@@ -18,8 +18,9 @@ class BotBrain :
         self.map = init_map
         self.map_size = max_map_size
         
-    def play_move(self):
+    def play_move(self) :
         """ Function to decide which move to play.
+
         """
         pass
 
