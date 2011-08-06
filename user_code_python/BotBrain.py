@@ -9,18 +9,16 @@ class BotBrain :
     # Some static variables here if needed
     dummy
 
-    def __init__(self, init_map, max_map_size) :
-        """ Constructor for the bot. 
+    def __init__(self) :
+    
+	pass    
+    
 
-        @param init_map Char[][]: Inital map
-        @param max_map_size  Int: Max rows or columns in map.
-        """
-        self.map = init_map
-        self.map_size = max_map_size
-        
-    def play_move(self) :
+    def play_move(self,Info my_info) :
         """ Function to decide which move to play.
-
+	
         """
-        pass
+	return WEST
+	
+
 

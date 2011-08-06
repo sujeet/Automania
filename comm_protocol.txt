@@ -1,0 +1,17 @@
+This file describes the communication protocols that we are gonna follow. We can update with our requirements as and when required.
+
+input to info class from game engine:
+
+initial:
+The following details must be provided in that order:
+my tag number 
+enemy tag number
+my position ( x and y )
+enemy position ( x and y )
+map file name
+
+for every move:
+first line: number of updates (n)
+then n lines follow each of the form 'x y element'
+
+if the game had ended n should be 0.
