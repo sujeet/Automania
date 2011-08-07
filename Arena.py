@@ -6,12 +6,12 @@ from Position import *
 class Arena :
     """ Handles the game simulation. """
 
-    def __init__ (self, map_file_name) :
+    def __init__ (self, map_file_name, bot_files) :
         """ Initializes the map and bikes. """
         self.map = Map (map_file_name)
         init_posns = self._generate_init_posns (self.map)
-        self.bikes = [Bike (BIKE_1_SYMBOL, init_posns[0]),
-                      Bike (BIKE_2_SYMBOL, init_posns[1])]
+        self.bikes = [Bike (BIKE_1_SYMBOL, init_posns[0], bot_files[0]),
+                      Bike (BIKE_2_SYMBOL, init_posns[1], bot_files[1])]
         self.power_ups = []
         self.game_over = False
 
@@ -20,8 +20,8 @@ class Arena :
         for teh bikes. """
         # return (Position (0, 0),
         #         Position (map.size - 1, map.size - 1))
-        return (Position (3, 3),
-                Position (7, 7))
+        return (Position (3, 3, map.size - 1, map.size - 1),
+                Position (7, 7, map.size - 1, map.size - 1))
 
     def get_moves (self) :
         """ Gets moves from each bot driving the bikes. """
@@ -59,4 +59,6 @@ class Arena :
         self._update_map ()
 
     def terminate_game (self) :
-        pass
+        """ All the aftergame cleanup goes here. """
+        for bike in self.bikes :
+            bike.bot.process.kill ()

@@ -3,12 +3,12 @@ from Bot import *
 class Bike :
     """ Represents the bike in arena. """
     
-    def __init__ (self, symbol, starting_posn) :
+    def __init__ (self, symbol, starting_posn, code_file) :
         """ Initializes the bike. """
         self.curr_posn = starting_posn
         self.prev_posn = starting_posn
         self.symbol    = symbol
-        self.bot       = Bot (symbol)
+        self.bot       = Bot (symbol, code_file)
         self.is_dead   = False
 
     def __str__ (self) :
