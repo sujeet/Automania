@@ -75,13 +75,13 @@ void compute( Map map,Position my_posn )
 		Q.pop();
 		visited[n.cur_posn.x][n.cur_posn.y] = 1;
 
-		if( get_symbol( n.cur_posn ) == POWER1 )
+		if( map.get_symbol( n.cur_posn ) == POWER1 )
 		{
 			power1_posn.push_back(n.cur_posn);
 			power1_move.push_back(n.initial_move);
 		}
 
-		if( get_symbol( n.cur_posn ) == POWER )
+		if( map.get_symbol( n.cur_posn ) == POWER2 )
 		{
 			power2_posn.push_back(n.cur_posn);
 			power2_move.push_back(n.initial_move);
