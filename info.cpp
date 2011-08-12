@@ -1,25 +1,9 @@
-#include<iostream>
-
-#include "constants.h"
-#include "map.h"
-#include "position.h"
+#include "info.h"
 
 class Info
 {
 
-private:
-
-int game_ended;
-string map_file;
-
 public:
-
-int my_tag;
-int enemy_tag;
-Position my_posn;
-Position enemy_posn;
-
-Map map;
 
 void initial_read()
 {
@@ -60,7 +44,8 @@ void read_info()
 
 		if( element == my_tag )
 		{
-			my_posn.initialize(x,y); //update my position.
+			my_posn.initialize(x,y); //update my position.	THIS FUNCTION MUST BE INCLUDED IN POSITION CLASS.
+
 		}
 
 		if( element == enemy_tag )
@@ -75,7 +60,54 @@ void compute_details()
 {
 	//This function finds all non trivial details. This may include shortest distance to all powers and the first moves to be made to reach them in shortest time
 	//This can also compute other details like the area of the current region in which the bike resides etc..
+	bfs player1,player2;
+	player1.compute(map,my_posn);
+	player2.compute(map,enemy_posn);
 	
+	int n = player1.power1.size();
+
+	my_power1_posn.resize(n);
+	my_power1_move.resize(n);
+	for( int i=0;i<n;i++)
+	{
+		my_power1_posn[i] = player1.power1_posn[i];
+		my_power1_move[i] = player1.power1_move[i];	
+
+	}
+	
+	int m = player1.power2.size();
+
+	my_power2_posn.resize(m);
+	my_power2_move.resize(m);
+	for( int i=0;i<m;i++)
+	{
+		my_power2_posn[i] = player1.power2_posn[i];
+		my_power2_move[i] = player1.power2_move[i];	
+
+	}
+	
+	int p = player2.power1.size();
+
+	enemy_power1_posn.resize(p);
+	enemy_power1_move.resize(p);
+	for( int i=0;i<p;i++)
+	{
+		enemy_power1_posn[i] = player2.power1_posn[i];
+		enemy_power1_move[i] = player2.power1_move[i];	
+
+	}
+	
+	int q = player1.power2.size();
+	
+	enemy_power2_posn.resize(q);
+	enemy_power2_move.resize(q);
+	for( int i=0;i<q;i++)
+	{
+		enemy_power2_posn[i] = player2.power2_posn[i];
+		enemy_power2_move[i] = player2.power2_move[i];	
+
+	}
+			
 }
 
 void end_game()
