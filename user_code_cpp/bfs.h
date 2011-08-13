@@ -3,8 +3,18 @@
 #include<queue>
 
 #include "map.h"
-#include "constants.h"
-#include "position.h"
+
+class node
+{
+
+public:
+
+Position cur_posn;
+int initial_move;
+int distance;
+
+node( Position p,int i,int d);
+};
 
 class bfs
 {

@@ -1,7 +1,4 @@
-#include "constants.h"
-#include "map.h"
-#include "info.h"
-#include "BotBrain.h"
+#include "botBrain.h"
 
 int main()
 {
@@ -9,6 +6,7 @@ int main()
 	BotBrain my_bot;
 
 	my_info.initial_read();
+	string res[] = { "NORTH" , "WEST" , "SOUTH" , "EAST" };
 
 	while(1)
 	{
@@ -18,11 +16,11 @@ int main()
 					
 		my_info.compute_details();
 
-		int result = my_bot.get_move(my_info);
+		int result = my_bot.play_move(my_info);
 		if( result > 4 || result < 1 )
-			//disqualify.
-
-		cout<<result<<endl;
+			cout<<"INVALID"<<endl;
+		else
+			cout<<res[result]<<endl;
 		
 	}	
 }
