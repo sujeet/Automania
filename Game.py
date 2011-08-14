@@ -1,9 +1,11 @@
+import sys
+
 from Constants import *
 from Arena import *
     
 if __name__ == "__main__" :
     map_file_name = "map.txt"
-    arena = Arena (map_file_name)
+    arena = Arena (map_file_name, sys.argv [1:])
 
     for i in xrange (N_TURNS) :
         arena.get_moves ()
