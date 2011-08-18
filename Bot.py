@@ -19,8 +19,13 @@ def get_process_according_to_filename (filename) :
                                  stdin = subprocess.PIPE,
                                  stdout = subprocess.PIPE)
     else :
-        raise Exception ("Can not handle files with extension : " +
-                         extension)
+        try :
+            return subprocess.Popen ([filename],
+                                     stdin = subprocess.PIPE,
+                                     stdout = subprocess.PIPE)
+        except :
+            raise Exception ("Can not handle files with extension : " +
+                             extension)
 
 class Bot :
     """ Handles the user programms.
@@ -50,9 +55,9 @@ class Bot :
 
     def get_move (self) :
         """ Communicate with the player code and return the move. """
-        self.process.stdin.write ("sujeet" + linesep)
-        # self.process.stdin.write (self.info_to_send + linesep)
+        self.process.stdin.write (self.info_to_send + linesep)
         self.process.stdin.flush ()
+        self.info_to_send = ""
         direction = self.process.stdout.readline ()
         try :
             return Constants.__getattribute__ (direction)

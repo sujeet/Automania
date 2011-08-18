@@ -45,7 +45,8 @@ class Map :
         """ Used for creating map diffs to send across
         to the bots. Also will be useful for the game
         visualizer. """
-        print position, symbol
+        print position.x, position.y, ".", symbol
+        # print position, symbol
 
     def set_symbol (self, position, symbol) :
         """ Sets the given symbol at the given position. """

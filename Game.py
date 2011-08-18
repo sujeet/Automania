@@ -10,7 +10,8 @@ if __name__ == "__main__" :
     for i in xrange (N_TURNS) :
         arena.get_moves ()
         arena.make_moves ()
-        print arena.map
+        # print arena.map
+        print arena.bikes[0].bot.extra_score, arena.bikes[1].bot.extra_score, "$ $"
         if arena.game_over == True :
             break
 

@@ -14,6 +14,23 @@ class Arena :
                       Bike (BIKE_2_SYMBOL, init_posns[1], bot_files[1])]
         self.power_ups = []
         self.game_over = False
+        # Send the initialization info to the bots.
+        for bike in self.bikes :
+            bike.bot.add_to_info_to_send (bike.symbol)
+            if bike.symbol == "a" :
+                enemy_symbol = "b"
+                bot_num = 0
+            else :
+                enemy_symbol = "a"
+                bot_num = 1
+            bike.bot.add_to_info_to_send (enemy_symbol)
+            bike.bot.add_to_info_to_send (str(init_posns[bot_num%2].x)
+                                          + " "
+                                          + str(init_posns[bot_num%2].y))
+            bike.bot.add_to_info_to_send (str(init_posns[(bot_num+1)%2].x)
+                                          + " "
+                                          + str(init_posns[(bot_num+1)%2].y))
+            bike.bot.add_to_info_to_send (map_file_name)
 
     def _generate_init_posns (self, map) :
         """ Depending on map, generates initial positions
@@ -50,7 +67,15 @@ class Arena :
         """ Based on the bike positions, updates
         the map. """
         for bike in self.bikes :
+            bike.bot.add_to_info_to_send ("2")
+        for bike in self.bikes :
             self.map.set_symbol (bike.curr_posn, bike.symbol)
+            for bike2 in self.bikes :
+                bike2.bot.add_to_info_to_send (str (bike.curr_posn.x)
+                                               + " "
+                                               + str (bike.curr_posn.y)
+                                               + " "
+                                               + bike.symbol)
 
     def make_moves (self) :
         """ Checks for collisions, moves bikes on the map. """
