@@ -1,29 +1,15 @@
 #include "bfs.h"
 
-class node
-{
-
-public:
-
-Position cur_posn;
-int initial_move;
-int distance;
-
-node( Position p,int i,int d)
+node::node( Position p,int i,int d)
 {
 	cur_posn.initialize(p.x,p.y);	//THIS FUNCTION MUST BE INCLUDED IN POSITION CLASS
 	initial_move = i;
 	distance = d;		
 }
-};
 
 
-class bfs
-{
 
-public:
-
-void compute( Map map,Position my_posn )
+void bfs::compute( Map map,Position my_posn )
 {
 
 	queue <node> Q;		
@@ -36,15 +22,15 @@ void compute( Map map,Position my_posn )
 
 	//this part can be compressed
 	temp_posn = my_posn;
-	temp_position.update( EAST );
-	if( map.moveabe_position( temp_posn) )	//THIS FUNCTION MUST BE ADDED TO THE MAP CLASS. THIS FUCNTION CHECKS WHETHER THE CURRENT POSTION IN THE MAP IS A MOVEABLE POSITION ( NOT A POSITION OUTSIDE THE MAP AND NOT A WALL OR TRAIL ) 
+	temp_posn.update( EAST );
+	if( map.moveable_position( temp_posn) )	//THIS FUNCTION MUST BE ADDED TO THE MAP CLASS. THIS FUCNTION CHECKS WHETHER THE CURRENT POSTION IN THE MAP IS A MOVEABLE POSITION ( NOT A POSITION OUTSIDE THE MAP AND NOT A WALL OR TRAIL ) 
 	{
 		node n(temp_posn,EAST,1);
 		Q.push(n);
 	}
 
 	temp_posn = my_posn;
-	temp_position.update( WEST );
+	temp_posn.update( WEST );
 	if( map.moveable_position( temp_posn) )
 	{
 		node n(temp_posn,WEST,1);
@@ -52,7 +38,7 @@ void compute( Map map,Position my_posn )
 	}
 
 	temp_posn = my_posn;
-	temp_position.update( NORTH );
+	temp_posn.update( NORTH );
 	if( map.moveable_position( temp_posn) )
 	{
 		node n(temp_posn,NORTH,1);
@@ -60,7 +46,7 @@ void compute( Map map,Position my_posn )
 	}
 
 	temp_posn = my_posn;
-	temp_position.update( SOUTH );
+	temp_posn.update( SOUTH );
 	if( map.moveable_position( temp_posn) )
 	{
 		node n(temp_posn,SOUTH,1);
@@ -89,15 +75,15 @@ void compute( Map map,Position my_posn )
 		
 		//this part can be compressed.
 		temp_posn = my_posn;
-		temp_position.update( EAST );
-		if( map.moveabe_position( temp_posn) && visited[temp_posn.x][temp_posn.y] == 0 )
+		temp_posn.update( EAST );
+		if( map.moveable_position( temp_posn) && visited[temp_posn.x][temp_posn.y] == 0 )
 		{
 			node n2(temp_posn,n.initial_move,1);
 			Q.push(n2);
 		}
 
 		temp_posn = my_posn;
-		temp_position.update( WEST );
+		temp_posn.update( WEST );
 		if( map.moveable_position( temp_posn) && visited[temp_posn.x][temp_posn.y] == 0 )
 		{
 			node n2(temp_posn,n.initial_move,1);
@@ -105,7 +91,7 @@ void compute( Map map,Position my_posn )
 		}
 	
 		temp_posn = my_posn;
-		temp_position.update( NORTH );
+		temp_posn.update( NORTH );
 		if( map.moveable_position( temp_posn) && visited[temp_posn.x][temp_posn.y] == 0 )
 		{
 			node n2(temp_posn,n.initial_move,1);
@@ -113,7 +99,7 @@ void compute( Map map,Position my_posn )
 		}
 	
 		temp_posn = my_posn;
-		temp_position.update( SOUTH );
+		temp_posn.update( SOUTH );
 		if( map.moveable_position( temp_posn) && visited[temp_posn.x][temp_posn.y] == 0 )
 		{
 			node n2(temp_posn,n.initial_move,1);
@@ -123,4 +109,4 @@ void compute( Map map,Position my_posn )
 
 }
 
-};
+
