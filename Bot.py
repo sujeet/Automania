@@ -56,9 +56,12 @@ class Bot :
     def get_move (self) :
         """ Communicate with the player code and return the move. """
         self.process.stdin.write (self.info_to_send + linesep)
+        print "sent message : ", self.info_to_send
         self.process.stdin.flush ()
         self.info_to_send = ""
+        print "waiting for response ..."
         direction = self.process.stdout.readline ()
+        print "got response : ", direction
         try :
             return Constants.__getattribute__ (direction)
         except :
