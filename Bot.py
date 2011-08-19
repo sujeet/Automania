@@ -1,4 +1,5 @@
 import subprocess
+import sys
 from os import linesep
 
 import Constants
@@ -22,7 +23,8 @@ def get_process_according_to_filename (filename) :
         try :
             return subprocess.Popen ([filename],
                                      stdin = subprocess.PIPE,
-                                     stdout = subprocess.PIPE)
+                                     stdout = subprocess.PIPE,
+                                     stderr = sys.stderr)
         except :
             raise Exception ("Can not handle files with extension : " +
                              extension)

@@ -17,11 +17,11 @@ class Arena :
         # Send the initialization info to the bots.
         for bike in self.bikes :
             bike.bot.add_to_info_to_send (bike.symbol)
-            if bike.symbol == "a" :
-                enemy_symbol = "b"
+            if bike.symbol == BIKE_1_SYMBOL :
+                enemy_symbol = BIKE_2_SYMBOL
                 bot_num = 0
             else :
-                enemy_symbol = "a"
+                enemy_symbol = BIKE_2_SYMBOL
                 bot_num = 1
             bike.bot.add_to_info_to_send (enemy_symbol)
             bike.bot.add_to_info_to_send (str(init_posns[bot_num%2].x)

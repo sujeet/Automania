@@ -8,12 +8,17 @@ void Info::initial_read()
 	//what else should be read initially?
 
 	cin>>my_tag;	//my tag
+    cerr << "my tag" << my_tag << endl << flush;
 	cin>>enemy_tag; //enemy tag
+    cerr << "enemy tag" << enemy_tag << endl << flush;
 	cin>>x>>y;	//my initial position
+    cerr << x << " " << y << endl << flush;
 	my_posn.initialize(x,y); //this function must be added to the position class
 	cin>>x>>y;		//enemy initial position
+    cerr << x << " " << y << endl << flush;
 	enemy_posn.initialize(x,y);
 	cin>>map_file;	//name of the map file
+    cerr << "map file " << map_file << endl << flush;
 	
 	map.initialize(map_file);	//this function must be included in map class
 }

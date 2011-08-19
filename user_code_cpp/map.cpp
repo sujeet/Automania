@@ -1,19 +1,31 @@
+#include <iostream>
+#include <fstream>
+
 #include "map.h"
+
+using namespace std;
 
 void Map::initialize(string file_name )
 {
-	char c = getchar();
+	char c;
+    ifstream map_file;
+    
+    map_file.open (file_name.c_str());
+    map_file >> c;
 	while( c != EOF )
 	{
 		vector <char> temp;
 		while( c != '\n' )
 		{
 			temp.push_back(c);
-			c = getchar();
+            map_file >> c;
+            cerr << c << flush;
 		}
+        cerr << "done with one line." << endl << flush;
+        cerr << endl << flush;
 		
 		array.push_back( temp );
-		c = getchar();
+        map_file >> c;
 	}
 
 }
