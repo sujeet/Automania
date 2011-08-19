@@ -40,7 +40,7 @@ void Info::read_info()
 		char element;
 		cin>>x>>y;
 		cin>>element;
-		Position posn(x,y);
+    	Position posn(x,y);
 		map.set_symbol(posn,element);
 
 		if( element == my_tag )

@@ -11,21 +11,20 @@ void Map::initialize(string file_name )
     ifstream map_file;
     
     map_file.open (file_name.c_str());
-    map_file >> c;
+    c = map_file.get();
 	while( c != EOF )
 	{
 		vector <char> temp;
 		while( c != '\n' )
 		{
 			temp.push_back(c);
-            map_file >> c;
-            cerr << c << flush;
+            c = map_file.get();
 		}
-        cerr << "done with one line." << endl << flush;
+        
         cerr << endl << flush;
 		
 		array.push_back( temp );
-        map_file >> c;
+        c = map_file.get();
 	}
 
 }

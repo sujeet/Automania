@@ -8,6 +8,8 @@ int main()
      my_info.initial_read();
      string res[] = { "NORTH" , "WEST" , "SOUTH" , "EAST" };
 
+     cout<<"NORTH"<<endl<<flush;
+
      while(1)
      {
           my_info.read_info();
@@ -20,8 +22,7 @@ int main()
           if( result > 4 || result < 1 )
                cout<<"INVALID"<<endl << flush;
           else
-               cout << "NORTH" << endl << flush;
-               // cout<<res[result]<<endl<<flush;
+                cout<<res[result]<<endl<<flush;
 		
      }	
 }

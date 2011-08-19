@@ -13,8 +13,8 @@ string map_file;
 
 public:
 
-int my_tag;
-int enemy_tag;
+char my_tag;
+char enemy_tag;
 Position my_posn;
 Position enemy_posn;
 Map map;
