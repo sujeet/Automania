@@ -8,6 +8,7 @@ if __name__ == "__main__" :
     arena = Arena (map_file_name, sys.argv [1:])
 
     for i in xrange (N_TURNS) :
+        arena.check_for_bot_crash ()
         arena.get_moves ()
         arena.make_moves ()
         # print arena.map

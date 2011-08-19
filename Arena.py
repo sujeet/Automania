@@ -76,6 +76,15 @@ class Arena :
                                                + str (bike.curr_posn.y)
                                                + " "
                                                + bike.symbol)
+    def check_for_bot_crash (self) :
+        """ Checks if any of the bot programmes have terminated.
+        If yes prints it and the exit status. """
+        for bike in self.bikes :
+            return_code = bike.bot.process.poll ()
+            if return_code != None :
+                self.game_over = True
+                print "The player with symbol " + bike.symbol + " terminated with exit code " + str (return_code)
+                exit (1)
 
     def make_moves (self) :
         """ Checks for collisions, moves bikes on the map. """
