@@ -25,6 +25,8 @@ vector <Position> power1_posn;
 vector <Position> power2_posn;
 vector <int> power1_move;
 vector <int> power2_move;
+vector <int> power1_distance;
+vector <int> power2_distance;
 	
 void compute( Map, Position );
 
