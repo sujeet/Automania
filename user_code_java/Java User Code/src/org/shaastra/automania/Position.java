@@ -33,10 +33,28 @@ public class Position {
 		
 	}
 	
-	public void update(int direction[])
+	public void update(int direction)
 	{
-		this.x += direction[0];
-		this.y += direction[1];
+		if( direction == GlobalDataStore.EAST )
+		{	
+			x += 1;
+			y += 0;
+		}
+		if( direction == GlobalDataStore.WEST )
+		{	
+			x -= 1;
+			y += 0;
+		}
+		if( direction == GlobalDataStore.NORTH )
+		{	
+			x += 0;
+			y -= 1;
+		}
+		if( direction == GlobalDataStore.SOUTH )
+		{	
+			x += 0;
+			y += 1;
+		}
 	}
 
 }
