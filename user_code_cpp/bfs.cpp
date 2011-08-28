@@ -2,8 +2,8 @@
 
 node::node( Position p,int i,int d)
 {
-	cur_posn.initialize(p.x,p.y);	//THIS FUNCTION MUST BE INCLUDED IN POSITION CLASS
-	initial_move = i;
+	cur_posn.initialize(p.x,p.y);	
+    initial_move = i;
 	distance = d;		
 }
 
@@ -15,7 +15,6 @@ void bfs::compute( Map map,Position my_posn )
 
 	Position temp_posn;
 	vector <vector <int> > visited( MAX_X+2,vector <int> (MAX_Y+2,0) );
-
 
 	//initial pushes
 
@@ -64,44 +63,46 @@ void bfs::compute( Map map,Position my_posn )
 		{
 			power1_posn.push_back(n.cur_posn);
 			power1_move.push_back(n.initial_move);
+            power1_distance.push_back(n.distance);
 		}
 
 		if( map.get_symbol( n.cur_posn ) == POWER2 )
 		{
 			power2_posn.push_back(n.cur_posn);
 			power2_move.push_back(n.initial_move);
+            power2_distance.push_back(n.distance);
 		}
 		
 		//this part can be compressed.
-		temp_posn = my_posn;
+		temp_posn = n.cur_posn; //to be checked. will it copy the individual elements?
 		temp_posn.update( EAST );
 		if( map.moveable_position( temp_posn) && visited[temp_posn.x][temp_posn.y] == 0 )
 		{
-			node n2(temp_posn,n.initial_move,1);
+			node n2(temp_posn,n.initial_move,n.distance+1);
 			Q.push(n2);
 		}
 
-		temp_posn = my_posn;
+		temp_posn = n.cur_posn;
 		temp_posn.update( WEST );
 		if( map.moveable_position( temp_posn) && visited[temp_posn.x][temp_posn.y] == 0 )
 		{
-			node n2(temp_posn,n.initial_move,1);
+			node n2(temp_posn,n.initial_move,n.distance+1);
 			Q.push(n2);
 		}
 	
-		temp_posn = my_posn;
+		temp_posn = n.cur_posn;
 		temp_posn.update( NORTH );
 		if( map.moveable_position( temp_posn) && visited[temp_posn.x][temp_posn.y] == 0 )
 		{
-			node n2(temp_posn,n.initial_move,1);
+			node n2(temp_posn,n.initial_move,n.distance+1);
 			Q.push(n2);
 		}
 	
-		temp_posn = my_posn;
+		temp_posn = n.cur_posn;
 		temp_posn.update( SOUTH );
 		if( map.moveable_position( temp_posn) && visited[temp_posn.x][temp_posn.y] == 0 )
 		{
-			node n2(temp_posn,n.initial_move,1);
+			node n2(temp_posn,n.initial_move,n.distance+1);
 			Q.push(n2);
 		}
 	}

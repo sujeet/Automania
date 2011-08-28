@@ -69,10 +69,12 @@ void Info::compute_details()
 
 	my_power1_posn.resize(n);
 	my_power1_move.resize(n);
+    my_power1_distance.resize(n);
 	for( int i=0;i<n;i++)
 	{
 		my_power1_posn[i] = player1.power1_posn[i];
 		my_power1_move[i] = player1.power1_move[i];	
+        my_power1_distance[i] = player1.power1_distance[i];
 
 	}
 	
@@ -80,10 +82,12 @@ void Info::compute_details()
 
 	my_power2_posn.resize(m);
 	my_power2_move.resize(m);
+    my_power2_distance.resize(m);
 	for( int i=0;i<m;i++)
 	{
 		my_power2_posn[i] = player1.power2_posn[i];
 		my_power2_move[i] = player1.power2_move[i];	
+        my_power2_distance[i] = player1.power2_distance[i];
 
 	}
 	
@@ -91,10 +95,12 @@ void Info::compute_details()
 
 	enemy_power1_posn.resize(p);
 	enemy_power1_move.resize(p);
+    enemy_power1_distance.resize(p);
 	for( int i=0;i<p;i++)
 	{
 		enemy_power1_posn[i] = player2.power1_posn[i];
 		enemy_power1_move[i] = player2.power1_move[i];	
+        enemy_power1_distance[i] = player2.power1_distance[i];
 
 	}
 	
@@ -102,11 +108,12 @@ void Info::compute_details()
 	
 	enemy_power2_posn.resize(q);
 	enemy_power2_move.resize(q);
+    enemy_power2_distance.resize(q);
 	for( int i=0;i<q;i++)
 	{
 		enemy_power2_posn[i] = player2.power2_posn[i];
-		enemy_power2_move[i] = player2.power2_move[i];	
-
+		enemy_power2_move[i] = player2.power2_move[i];
+        enemy_power2_distance[i] = player2.power2_distance[i];
 	}
 			
 }
