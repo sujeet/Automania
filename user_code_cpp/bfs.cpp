@@ -8,7 +8,6 @@ node::node( Position p,int i,int d)
 }
 
 
-
 void bfs::compute( Map map,Position my_posn )
 {
 
