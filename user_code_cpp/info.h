@@ -21,15 +21,19 @@ Map map;
 
 vector <Position> my_power1_posn; //since the actual powers are not finalized
 vector <int> my_power1_move;	//first move to be made to reach the target point in shortest time.
+vector <int> my_power1_distance;
 
 vector <Position> my_power2_posn;
 vector <int> my_power2_move;
+vector <int> my_power2_distance;
 
 vector <Position> enemy_power1_posn;
 vector <int> enemy_power1_move;
+vector <int> enemy_power1_distance;
 
 vector <Position> enemy_power2_posn;
 vector <int> enemy_power2_move;
+vector <int> enemy_power2_distance;
 
 void initial_read();	//initially reads the necessary details like the players tagetc.
 void read_info();	//reads the input from the engine and updates the variables.
