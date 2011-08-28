@@ -22,6 +22,7 @@ public class Info {
 	
 	public char my_tag;
 	public char enemy_tag;
+	public char newline_buf;
 	public Position my_posn;
 	public Position enemy_posn;
 	public Map map;
@@ -54,9 +55,11 @@ public class Info {
 		this.in = new BufferedReader(new InputStreamReader(System.in));
 	    try {
 			my_tag = (char) in.read();
+			newline_buf = (char) in.read();
 			enemy_tag =(char) in.read();
-		    x = in.read();
-		    y = in.read();
+			newline_buf = (char) in.read();
+			x = Integer.parseInt(in.readLine());
+			y = Integer.parseInt(in.readLine());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,17 +68,18 @@ public class Info {
 		System.out.println("my_tag = " + my_tag + " enemy_tag = " + enemy_tag + "\n");
 		System.out.println("x = " + x + " y = " + y);
 	    // x and y are my initial positions
-	    my_posn.initialize(x, y);
+		my_posn = new Position(x, y);
 	    
 	    try {
-			x = in.read();
-		    y = in.read();
+			x = Integer.parseInt(in.readLine());
+			y = Integer.parseInt(in.readLine());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    enemy_posn.initialize(x, y);
+		enemy_posn = new Position(x, y);
 	    
+		map_file = new String();
 	    try {
 			map_file = in.readLine();
 		} catch (IOException e) {
@@ -92,7 +96,7 @@ public class Info {
 	{
 		int num_ip = 0;
 		try {
-			num_ip = in.read();
+			num_ip =  Integer.parseInt(in.readLine());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -109,14 +113,16 @@ public class Info {
 			int x = 0, y = 0;
 			char element = 0;
 			try {
-				x = in.read();
-				y = in.read();
+				x = Integer.parseInt(in.readLine());
+				y = Integer.parseInt(in.readLine());
 				element = (char) in.read();
+				newline_buf = (char) in.read();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
+		System.out.println("x = " + x + " y = " + y + "\n");
 			Position posn = new Position(x,y);
 			map.set_symbol(posn,element);
 			

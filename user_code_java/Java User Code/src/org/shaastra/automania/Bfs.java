@@ -96,38 +96,48 @@ public class Bfs {
 			//this part can be compressed.
 			temp_posn = n.cur_posn; //to be checked. will it copy the individual elements?
 			temp_posn.update( GlobalDataStore.EAST );
-			if( map.moveable_position( temp_posn) * visited[temp_posn.x][temp_posn.y] == 0 )
+			if( map.moveable_position( temp_posn) != 0 )
 			{
-				Node n2 = new Node(temp_posn,n.initial_move,n.distance+1);
-				Q.add(n2);
+				if(visited[temp_posn.x][temp_posn.y] != 0 )
+				{
+					Node n2 = new Node(temp_posn,n.initial_move,n.distance+1);
+					Q.add(n2);
+				}
 			}
 
 			temp_posn = n.cur_posn;
 			temp_posn.update( GlobalDataStore.WEST );
-			if( map.moveable_position( temp_posn) * visited[temp_posn.x][temp_posn.y] == 0 )
+			if( map.moveable_position( temp_posn) != 0 )
 			{
-				Node n2 = new Node(temp_posn,n.initial_move,n.distance+1);
-				Q.add(n2);
+				if(visited[temp_posn.x][temp_posn.y] != 0 )
+				{
+					Node n2 = new Node(temp_posn,n.initial_move,n.distance+1);
+					Q.add(n2);
+				}
 			}
 		
 			temp_posn = n.cur_posn;
 			temp_posn.update( GlobalDataStore.NORTH );
-			if( map.moveable_position( temp_posn) * visited[temp_posn.x][temp_posn.y] == 0 )
+			if( map.moveable_position( temp_posn) != 0 )
 			{
-				Node n2 = new Node(temp_posn,n.initial_move,n.distance+1);
-				Q.add(n2);
+				if(visited[temp_posn.x][temp_posn.y] != 0 )
+				{
+					Node n2 = new Node(temp_posn,n.initial_move,n.distance+1);
+					Q.add(n2);
+				}
 			}
 		
 			temp_posn = n.cur_posn;
 			temp_posn.update( GlobalDataStore.SOUTH );
-			if( map.moveable_position( temp_posn) * visited[temp_posn.x][temp_posn.y] == 0 )
+			if( map.moveable_position( temp_posn) != 0 )
 			{
-				Node n2 = new Node(temp_posn,n.initial_move,n.distance+1);
-				Q.add(n2);
+				if(visited[temp_posn.x][temp_posn.y] != 0 )
+				{
+					Node n2 = new Node(temp_posn,n.initial_move,n.distance+1);
+					Q.add(n2);
+				}
 			}
 		}
-
-		
 	}
 
 }

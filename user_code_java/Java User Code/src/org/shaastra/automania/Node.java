@@ -17,7 +17,7 @@ public class Node {
 	
 	Node(Position p,int i,int d)
 	{
-		cur_posn.initialize(p.x , p.y);
+		cur_posn = new Position(p.x, p.y);
 		initial_move = i;
 		distance = d;
 	}
