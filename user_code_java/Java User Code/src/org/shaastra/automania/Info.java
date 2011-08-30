@@ -147,7 +147,7 @@ public class Info {
 		Bfs player2 = new Bfs();
 		player1.compute(map,my_posn);
 		player2.compute(map,enemy_posn);
-		
+	/*	
 		int n = player1.power1_posn.size();
 
 		my_power1_posn.clear();
@@ -207,6 +207,7 @@ public class Info {
 	        enemy_power2_distance.add(player2_power1_distance[i]);
 		}
 
+*/
 	}
 
 	int end_game()

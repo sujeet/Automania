@@ -38,6 +38,7 @@ public class Bfs {
 			}
 		}
 		//initial pushes
+		visited[my_posn.x][my_posn.y] = 1;;
 
 		//this part can be compressed
 		temp_posn = my_posn;
@@ -46,6 +47,7 @@ public class Bfs {
 		{
 			Node n = new Node(temp_posn,GlobalDataStore.EAST,1);
 			Q.add(n);
+			System.out.println("EAST");
 		}
 
 		temp_posn = my_posn;
@@ -54,6 +56,7 @@ public class Bfs {
 		{
 			Node n = new Node(temp_posn,GlobalDataStore.WEST,1);
 			Q.add(n);
+			System.out.println("WES");
 		}
 
 		temp_posn = my_posn;
@@ -62,6 +65,7 @@ public class Bfs {
 		{
 			Node n = new Node(temp_posn,GlobalDataStore.NORTH,1);
 			Q.add(n);
+			System.out.println("North");
 		}
 
 		temp_posn = my_posn;
@@ -70,14 +74,19 @@ public class Bfs {
 		{
 			Node n = new Node(temp_posn,GlobalDataStore.SOUTH,1);
 			Q.add(n);
+			System.out.println("south");
 		}
 		
 		//The main loop
 
 		while( !Q.isEmpty())
 		{
+			System.out.println(Q.size());
 			Node n = Q.remove();
+			System.out.println(Q.size());
 			visited[n.cur_posn.x][n.cur_posn.y] = 1;
+			System.out.println(n.cur_posn.x + " " + n.cur_posn.y);
+			
 
 			if( map.get_symbol( n.cur_posn ) == GlobalDataStore.POWER1 )
 			{
@@ -94,46 +103,58 @@ public class Bfs {
 			}
 			
 			//this part can be compressed.
-			temp_posn = n.cur_posn; //to be checked. will it copy the individual elements?
+			temp_posn.x = n.cur_posn.x;
+			temp_posn.y = n.cur_posn.y;
 			temp_posn.update( GlobalDataStore.EAST );
+			System.out.println("Temp " + temp_posn.x + " " + temp_posn.y);
 			if( map.moveable_position( temp_posn) != 0 )
 			{
-				if(visited[temp_posn.x][temp_posn.y] != 0 )
+				if(visited[temp_posn.x][temp_posn.y] == 0 )
 				{
 					Node n2 = new Node(temp_posn,n.initial_move,n.distance+1);
+					System.out.println("Adding node with value" + n2.cur_posn.x + n2.cur_posn.y);
 					Q.add(n2);
 				}
 			}
 
-			temp_posn = n.cur_posn;
+			temp_posn.x = n.cur_posn.x;
+			temp_posn.y = n.cur_posn.y;
 			temp_posn.update( GlobalDataStore.WEST );
+			System.out.println("Temp " + temp_posn.x + " " + temp_posn.y);
 			if( map.moveable_position( temp_posn) != 0 )
 			{
-				if(visited[temp_posn.x][temp_posn.y] != 0 )
+				if(visited[temp_posn.x][temp_posn.y] == 0 )
 				{
 					Node n2 = new Node(temp_posn,n.initial_move,n.distance+1);
+					System.out.println("Adding node with value" + n2.cur_posn.x + n2.cur_posn.y);
 					Q.add(n2);
 				}
 			}
 		
-			temp_posn = n.cur_posn;
+			temp_posn.x = n.cur_posn.x;
+			temp_posn.y = n.cur_posn.y;
 			temp_posn.update( GlobalDataStore.NORTH );
-			if( map.moveable_position( temp_posn) != 0 )
+			System.out.println("Temp " + temp_posn.x + " " + temp_posn.y);
+			if( map.moveable_position( temp_posn) == 0 )
 			{
 				if(visited[temp_posn.x][temp_posn.y] != 0 )
 				{
 					Node n2 = new Node(temp_posn,n.initial_move,n.distance+1);
+					System.out.println("Adding node with value" + n2.cur_posn.x + n2.cur_posn.y);
 					Q.add(n2);
 				}
 			}
 		
-			temp_posn = n.cur_posn;
+			temp_posn.x = n.cur_posn.x;
+			temp_posn.y = n.cur_posn.y;
 			temp_posn.update( GlobalDataStore.SOUTH );
-			if( map.moveable_position( temp_posn) != 0 )
+			System.out.println("Temp " + temp_posn.x + " " + temp_posn.y);
+			if( map.moveable_position( temp_posn) == 0 )
 			{
 				if(visited[temp_posn.x][temp_posn.y] != 0 )
 				{
 					Node n2 = new Node(temp_posn,n.initial_move,n.distance+1);
+					System.out.println("Adding node with value" + n2.cur_posn.x + n2.cur_posn.y);
 					Q.add(n2);
 				}
 			}

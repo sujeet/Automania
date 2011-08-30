@@ -29,6 +29,7 @@ public class UserMain {
 	    
 		while(true)
 		{
+			System.out.println("Running inside loop");
 			my_info.read_info();
 			if( my_info.end_game() == 1 )
 				break;
