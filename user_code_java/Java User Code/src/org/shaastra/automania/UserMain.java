@@ -25,11 +25,9 @@ public class UserMain {
 		
 	    my_info.initial_read();
 	    String res[] = { "NORTH" , "WEST" , "SOUTH" , "EAST" };
-		System.out.println("NORTH");
 	    
 		while(true)
 		{
-			System.out.println("Running inside loop");
 			my_info.read_info();
 			if( my_info.end_game() == 1 )
 				break;

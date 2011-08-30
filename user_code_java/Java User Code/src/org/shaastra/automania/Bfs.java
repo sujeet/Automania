@@ -5,6 +5,7 @@ package org.shaastra.automania;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import org.shaastra.automania.*;
@@ -14,12 +15,12 @@ import org.shaastra.automania.*;
  *
  */
 public class Bfs {
-	ArrayList <Position> power1_posn;
-	ArrayList <Position> power2_posn;
-	ArrayList <Integer> power1_move;
-	ArrayList <Integer> power2_move;
-	ArrayList <Integer> power1_distance;
-	ArrayList <Integer> power2_distance;
+	List<Position> power1_posn = new ArrayList<Position>();
+	List<Position> power2_posn = new ArrayList<Position>();
+	List<Integer> power1_move = new ArrayList<Integer>();
+	List<Integer> power2_move = new ArrayList<Integer>();
+	List<Integer> power1_distance = new ArrayList<Integer>();
+	List<Integer> power2_distance = new ArrayList<Integer>();
 	
 	public void compute(Map map, Position my_posn) {
 		// TODO Auto-generated method stub
@@ -47,7 +48,6 @@ public class Bfs {
 		{
 			Node n = new Node(temp_posn,GlobalDataStore.EAST,1);
 			Q.add(n);
-			System.out.println("EAST");
 		}
 
 		temp_posn = my_posn;
@@ -56,7 +56,6 @@ public class Bfs {
 		{
 			Node n = new Node(temp_posn,GlobalDataStore.WEST,1);
 			Q.add(n);
-			System.out.println("WES");
 		}
 
 		temp_posn = my_posn;
@@ -65,7 +64,6 @@ public class Bfs {
 		{
 			Node n = new Node(temp_posn,GlobalDataStore.NORTH,1);
 			Q.add(n);
-			System.out.println("North");
 		}
 
 		temp_posn = my_posn;
@@ -74,18 +72,14 @@ public class Bfs {
 		{
 			Node n = new Node(temp_posn,GlobalDataStore.SOUTH,1);
 			Q.add(n);
-			System.out.println("south");
 		}
 		
 		//The main loop
 
 		while( !Q.isEmpty())
 		{
-			System.out.println(Q.size());
 			Node n = Q.remove();
-			System.out.println(Q.size());
 			visited[n.cur_posn.x][n.cur_posn.y] = 1;
-			System.out.println(n.cur_posn.x + " " + n.cur_posn.y);
 			
 
 			if( map.get_symbol( n.cur_posn ) == GlobalDataStore.POWER1 )
@@ -106,13 +100,11 @@ public class Bfs {
 			temp_posn.x = n.cur_posn.x;
 			temp_posn.y = n.cur_posn.y;
 			temp_posn.update( GlobalDataStore.EAST );
-			System.out.println("Temp " + temp_posn.x + " " + temp_posn.y);
 			if( map.moveable_position( temp_posn) != 0 )
 			{
 				if(visited[temp_posn.x][temp_posn.y] == 0 )
 				{
 					Node n2 = new Node(temp_posn,n.initial_move,n.distance+1);
-					System.out.println("Adding node with value" + n2.cur_posn.x + n2.cur_posn.y);
 					Q.add(n2);
 				}
 			}
@@ -120,13 +112,11 @@ public class Bfs {
 			temp_posn.x = n.cur_posn.x;
 			temp_posn.y = n.cur_posn.y;
 			temp_posn.update( GlobalDataStore.WEST );
-			System.out.println("Temp " + temp_posn.x + " " + temp_posn.y);
 			if( map.moveable_position( temp_posn) != 0 )
 			{
 				if(visited[temp_posn.x][temp_posn.y] == 0 )
 				{
 					Node n2 = new Node(temp_posn,n.initial_move,n.distance+1);
-					System.out.println("Adding node with value" + n2.cur_posn.x + n2.cur_posn.y);
 					Q.add(n2);
 				}
 			}
@@ -134,13 +124,11 @@ public class Bfs {
 			temp_posn.x = n.cur_posn.x;
 			temp_posn.y = n.cur_posn.y;
 			temp_posn.update( GlobalDataStore.NORTH );
-			System.out.println("Temp " + temp_posn.x + " " + temp_posn.y);
 			if( map.moveable_position( temp_posn) == 0 )
 			{
 				if(visited[temp_posn.x][temp_posn.y] != 0 )
 				{
 					Node n2 = new Node(temp_posn,n.initial_move,n.distance+1);
-					System.out.println("Adding node with value" + n2.cur_posn.x + n2.cur_posn.y);
 					Q.add(n2);
 				}
 			}
@@ -148,13 +136,11 @@ public class Bfs {
 			temp_posn.x = n.cur_posn.x;
 			temp_posn.y = n.cur_posn.y;
 			temp_posn.update( GlobalDataStore.SOUTH );
-			System.out.println("Temp " + temp_posn.x + " " + temp_posn.y);
 			if( map.moveable_position( temp_posn) == 0 )
 			{
 				if(visited[temp_posn.x][temp_posn.y] != 0 )
 				{
 					Node n2 = new Node(temp_posn,n.initial_move,n.distance+1);
-					System.out.println("Adding node with value" + n2.cur_posn.x + n2.cur_posn.y);
 					Q.add(n2);
 				}
 			}

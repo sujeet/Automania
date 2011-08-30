@@ -29,7 +29,7 @@ public class BotBrain {
 	public int play_move(Info my_info)
 	{
 		// return type my need to be changed.
-		return 0;
+		return 2;
 	}
 
 }

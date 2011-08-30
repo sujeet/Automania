@@ -49,10 +49,8 @@ public class Map {
 			char[] temp_array = temp.toCharArray();
 			for(j = 0; j < array[i].length; j++)
 			{
-				System.out.println("i = " + i + " j = " + j);
 				debug_var = temp_array[j];
 				array[i][j] = debug_var;
-				System.out.println(debug_var);
 			}
 			temp = bufRead.readLine();
 		}

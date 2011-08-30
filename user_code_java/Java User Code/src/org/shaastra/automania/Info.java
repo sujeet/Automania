@@ -27,22 +27,40 @@ public class Info {
 	public Position enemy_posn;
 	public Map map;
 	
-	public ArrayList<Position> my_power1_posn;
-	public ArrayList<Integer> my_power1_move;
-	public ArrayList<Integer> my_power1_distance;
+	public List<Position> my_power1_posn;
+	public List<Integer> my_power1_move;
+	public List<Integer> my_power1_distance;
 	
-	public ArrayList<Position> my_power2_posn;
-	public ArrayList<Integer> my_power2_move;
-	public ArrayList<Integer> my_power2_distance;
+	public List<Position> my_power2_posn;
+	public List<Integer> my_power2_move;
+	public List<Integer> my_power2_distance;
 
-	public ArrayList<Position> enemy_power1_posn;
-	public ArrayList<Integer> enemy_power1_move;
-	public ArrayList<Integer> enemy_power1_distance;
+	public List<Position> enemy_power1_posn;
+	public List<Integer> enemy_power1_move;
+	public List<Integer> enemy_power1_distance;
 
-	public ArrayList<Position> enemy_power2_posn;
-	public ArrayList<Integer> enemy_power2_move;
-	public ArrayList<Integer> enemy_power2_distance;
+	public List<Position> enemy_power2_posn;
+	public List<Integer> enemy_power2_move;
+	public List<Integer> enemy_power2_distance;
 	
+	public Info()
+	{
+		my_power1_posn = new ArrayList<Position>();
+		my_power1_move = new ArrayList<Integer>();
+		my_power1_distance = new ArrayList<Integer>();
+		
+		my_power2_posn = new ArrayList<Position>();
+		my_power2_move = new ArrayList<Integer>();
+		my_power2_distance = new ArrayList<Integer>();
+	
+		enemy_power1_posn = new ArrayList<Position>();
+		enemy_power1_move = new ArrayList<Integer>();
+		enemy_power1_distance = new ArrayList<Integer>();
+	
+		enemy_power2_posn = new ArrayList<Position>();
+		enemy_power2_move = new ArrayList<Integer>();
+		enemy_power2_distance = new ArrayList<Integer>();
+	}
 	/**
 	 * Initially
 	 * @throws IOException 
@@ -65,8 +83,6 @@ public class Info {
 			e.printStackTrace();
 		}
 	    
-		System.out.println("my_tag = " + my_tag + " enemy_tag = " + enemy_tag + "\n");
-		System.out.println("x = " + x + " y = " + y);
 	    // x and y are my initial positions
 		my_posn = new Position(x, y);
 	    
@@ -122,7 +138,6 @@ public class Info {
 				e.printStackTrace();
 			}
 			
-		System.out.println("x = " + x + " y = " + y + "\n");
 			Position posn = new Position(x,y);
 			map.set_symbol(posn,element);
 			
@@ -147,15 +162,14 @@ public class Info {
 		Bfs player2 = new Bfs();
 		player1.compute(map,my_posn);
 		player2.compute(map,enemy_posn);
-	/*	
 		int n = player1.power1_posn.size();
 
 		my_power1_posn.clear();
 		my_power1_move.clear();
 	    my_power1_distance.clear();
-	    Position[] power1_posn = (Position[]) player1.power1_posn.toArray();
-	    Integer[] power1_move =  (Integer[]) player1.power1_move.toArray();
-	    Integer[] power1_distance = (Integer[]) player1.power1_distance.toArray();
+	    Position[] power1_posn = (Position[]) player1.power1_posn.toArray(new Position[player1.power1_posn.size()]);
+	    Integer[] power1_move =  (Integer[]) player1.power1_move.toArray(new Integer[player1.power1_move.size()]);
+	    Integer[] power1_distance = (Integer[]) player1.power1_distance.toArray(new Integer[player1.power1_distance.size()]);
 		for( int i=0;i<n;i++)
 		{
 			my_power1_posn.add(power1_posn[i]);
@@ -169,9 +183,9 @@ public class Info {
 		my_power2_posn.clear();
 		my_power2_move.clear();
 	    my_power2_distance.clear();
-	    Position[] power2_posn = (Position[]) player1.power2_posn.toArray();
-	    Integer[] power2_move =  (Integer[]) player1.power2_move.toArray();
-	    Integer[] power2_distance = (Integer[]) player1.power2_distance.toArray();
+	    Position[] power2_posn = (Position[]) player1.power2_posn.toArray(new Position[player1.power2_posn.size()]);
+	    Integer[] power2_move =  (Integer[]) player1.power2_move.toArray(new Integer[player1.power2_move.size()]);
+	    Integer[] power2_distance = (Integer[]) player1.power2_distance.toArray(new Integer[player1.power2_distance.size()]);
 		for( int i=0;i<m;i++)
 		{
 			my_power1_posn.add(power2_posn[i]);
@@ -184,9 +198,9 @@ public class Info {
 		enemy_power1_posn.clear();
 		enemy_power1_move.clear();
 	    enemy_power1_distance.clear();
-	    Position[] player2_power1_posn = (Position[]) player2.power1_posn.toArray();
-	    Integer[] player2_power1_move =  (Integer[]) player2.power1_move.toArray();
-	    Integer[] player2_power1_distance = (Integer[]) player2.power1_distance.toArray();
+	    Position[] player2_power1_posn = (Position[]) player2.power1_posn.toArray(new Position[player2.power1_posn.size()]);
+	    Integer[] player2_power1_move =  (Integer[]) player2.power1_move.toArray(new Integer[player2.power1_move.size()]);
+	    Integer[] player2_power1_distance = (Integer[]) player2.power1_distance.toArray(new Integer[player2.power1_distance.size()]);
 		for( int i=0;i<p;i++)
 		{
 			enemy_power1_posn.add(player2_power1_posn[i]);
@@ -200,14 +214,16 @@ public class Info {
 		enemy_power2_posn.clear();
 		enemy_power2_move.clear();
 	    enemy_power2_distance.clear();
+	    Position[] player2_power2_posn = (Position[]) player2.power2_posn.toArray(new Position[player2.power2_posn.size()]);
+	    Integer[] player2_power2_move =  (Integer[]) player2.power2_move.toArray(new Integer[player2.power2_move.size()]);
+	    Integer[] player2_power2_distance = (Integer[]) player2.power2_distance.toArray(new Integer[player2.power2_distance.size()]);
 		for( int i=0;i<q;i++)
 		{
-			enemy_power2_posn.add(player2_power1_posn[i]);
-			enemy_power2_move.add(player2_power1_move[i]);	
-	        enemy_power2_distance.add(player2_power1_distance[i]);
+			enemy_power2_posn.add(player2_power2_posn[i]);
+			enemy_power2_move.add(player2_power2_move[i]);	
+	        enemy_power2_distance.add(player2_power2_distance[i]);
 		}
 
-*/
 	}
 
 	int end_game()
