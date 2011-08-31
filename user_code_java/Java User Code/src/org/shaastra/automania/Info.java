@@ -26,6 +26,7 @@ public class Info {
 	public Position my_posn;
 	public Position enemy_posn;
 	public Map map;
+	public String line = "";
 	
 	public List<Position> my_power1_posn;
 	public List<Integer> my_power1_move;
@@ -76,8 +77,10 @@ public class Info {
 			newline_buf = (char) in.read();
 			enemy_tag =(char) in.read();
 			newline_buf = (char) in.read();
-			x = Integer.parseInt(in.readLine());
-			y = Integer.parseInt(in.readLine());
+			String line = in.readLine();
+			String[] myNumbers=line.split(" ");
+			x = Integer.parseInt(myNumbers[0]);
+			y = Integer.parseInt(myNumbers[1]);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -87,8 +90,10 @@ public class Info {
 		my_posn = new Position(x, y);
 	    
 	    try {
-			x = Integer.parseInt(in.readLine());
-			y = Integer.parseInt(in.readLine());
+			String line = in.readLine();
+			String[] myNumbers=line.split(" ");
+			x = Integer.parseInt(myNumbers[0]);
+			y = Integer.parseInt(myNumbers[1]);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
