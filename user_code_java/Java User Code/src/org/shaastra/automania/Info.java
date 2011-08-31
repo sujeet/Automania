@@ -20,24 +20,47 @@ public class Info {
 	private String map_file;
 	private BufferedReader in ;
 	
-	public int my_tag;
-	public int enemy_tag;
+	public char my_tag;
+	public char enemy_tag;
+	public char newline_buf;
 	public Position my_posn;
 	public Position enemy_posn;
 	public Map map;
 	
-	public ArrayList<Position> my_power1_posn;
-	public ArrayList<Integer> my_pwer1_move;
+	public List<Position> my_power1_posn;
+	public List<Integer> my_power1_move;
+	public List<Integer> my_power1_distance;
 	
-	public ArrayList<Position> my_power2_posn;
-	public ArrayList<Integer> my_power2_move;
+	public List<Position> my_power2_posn;
+	public List<Integer> my_power2_move;
+	public List<Integer> my_power2_distance;
 
-	public ArrayList<Position> enemy_power1_posn;
-	public ArrayList<Integer> enemy_power1_move;
+	public List<Position> enemy_power1_posn;
+	public List<Integer> enemy_power1_move;
+	public List<Integer> enemy_power1_distance;
 
-	public ArrayList<Position> enemy_power2_posn;
-	public ArrayList<Integer> enemy_power2_move;
+	public List<Position> enemy_power2_posn;
+	public List<Integer> enemy_power2_move;
+	public List<Integer> enemy_power2_distance;
 	
+	public Info()
+	{
+		my_power1_posn = new ArrayList<Position>();
+		my_power1_move = new ArrayList<Integer>();
+		my_power1_distance = new ArrayList<Integer>();
+		
+		my_power2_posn = new ArrayList<Position>();
+		my_power2_move = new ArrayList<Integer>();
+		my_power2_distance = new ArrayList<Integer>();
+	
+		enemy_power1_posn = new ArrayList<Position>();
+		enemy_power1_move = new ArrayList<Integer>();
+		enemy_power1_distance = new ArrayList<Integer>();
+	
+		enemy_power2_posn = new ArrayList<Position>();
+		enemy_power2_move = new ArrayList<Integer>();
+		enemy_power2_distance = new ArrayList<Integer>();
+	}
 	/**
 	 * Initially
 	 * @throws IOException 
@@ -49,29 +72,30 @@ public class Info {
 		
 		this.in = new BufferedReader(new InputStreamReader(System.in));
 	    try {
-			my_tag = in.read();
-			enemy_tag = in.read();
-		    x = in.read();
-		    y = in.read();
+			my_tag = (char) in.read();
+			newline_buf = (char) in.read();
+			enemy_tag =(char) in.read();
+			newline_buf = (char) in.read();
+			x = Integer.parseInt(in.readLine());
+			y = Integer.parseInt(in.readLine());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	    
-		System.out.println("my_tag = " + my_tag + " enemy_tag = " + enemy_tag + "\n");
-		System.out.println("x = " + x + " y = " + y);
 	    // x and y are my initial positions
-	    my_posn.initialize(x, y);
+		my_posn = new Position(x, y);
 	    
 	    try {
-			x = in.read();
-		    y = in.read();
+			x = Integer.parseInt(in.readLine());
+			y = Integer.parseInt(in.readLine());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    enemy_posn.initialize(x, y);
+		enemy_posn = new Position(x, y);
 	    
+		map_file = new String();
 	    try {
 			map_file = in.readLine();
 		} catch (IOException e) {
@@ -88,7 +112,7 @@ public class Info {
 	{
 		int num_ip = 0;
 		try {
-			num_ip = in.read();
+			num_ip =  Integer.parseInt(in.readLine());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -105,9 +129,10 @@ public class Info {
 			int x = 0, y = 0;
 			char element = 0;
 			try {
-				x = in.read();
-				y = in.read();
+				x = Integer.parseInt(in.readLine());
+				y = Integer.parseInt(in.readLine());
 				element = (char) in.read();
+				newline_buf = (char) in.read();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -132,52 +157,71 @@ public class Info {
 	{
 		//This function finds all non trivial details. This may include shortest distance to all powers and the first moves to be made to reach them in shortest time
 		//This can also compute other details like the area of the current region in which the bike resides etc..
-		Bfs player1,player2;
+
+		Bfs player1 = new Bfs();
+		Bfs player2 = new Bfs();
 		player1.compute(map,my_posn);
 		player2.compute(map,enemy_posn);
-		
 		int n = player1.power1_posn.size();
 
-		my_power1_posn.resize(n);
-		my_power1_move.resize(n);
+		my_power1_posn.clear();
+		my_power1_move.clear();
+	    my_power1_distance.clear();
+	    Position[] power1_posn = (Position[]) player1.power1_posn.toArray(new Position[player1.power1_posn.size()]);
+	    Integer[] power1_move =  (Integer[]) player1.power1_move.toArray(new Integer[player1.power1_move.size()]);
+	    Integer[] power1_distance = (Integer[]) player1.power1_distance.toArray(new Integer[player1.power1_distance.size()]);
 		for( int i=0;i<n;i++)
 		{
-			my_power1_posn[i] = player1.power1_posn[i];
-			my_power1_move[i] = player1.power1_move[i];	
+			my_power1_posn.add(power1_posn[i]);
+			my_power1_move.add(power1_move[i]);	
+	        my_power1_distance.add(power1_distance[i]);
 
 		}
 		
 		int m = player1.power2_posn.size();
 
-		my_power2_posn.resize(m);
-		my_power2_move.resize(m);
+		my_power2_posn.clear();
+		my_power2_move.clear();
+	    my_power2_distance.clear();
+	    Position[] power2_posn = (Position[]) player1.power2_posn.toArray(new Position[player1.power2_posn.size()]);
+	    Integer[] power2_move =  (Integer[]) player1.power2_move.toArray(new Integer[player1.power2_move.size()]);
+	    Integer[] power2_distance = (Integer[]) player1.power2_distance.toArray(new Integer[player1.power2_distance.size()]);
 		for( int i=0;i<m;i++)
 		{
-			my_power2_posn[i] = player1.power2_posn[i];
-			my_power2_move[i] = player1.power2_move[i];	
-
+			my_power1_posn.add(power2_posn[i]);
+			my_power1_move.add(power2_move[i]);	
+	        my_power1_distance.add(power2_distance[i]);
 		}
 		
 		int p = player2.power1_posn.size();
 
-		enemy_power1_posn.resize(p);
-		enemy_power1_move.resize(p);
+		enemy_power1_posn.clear();
+		enemy_power1_move.clear();
+	    enemy_power1_distance.clear();
+	    Position[] player2_power1_posn = (Position[]) player2.power1_posn.toArray(new Position[player2.power1_posn.size()]);
+	    Integer[] player2_power1_move =  (Integer[]) player2.power1_move.toArray(new Integer[player2.power1_move.size()]);
+	    Integer[] player2_power1_distance = (Integer[]) player2.power1_distance.toArray(new Integer[player2.power1_distance.size()]);
 		for( int i=0;i<p;i++)
 		{
-			enemy_power1_posn[i] = player2.power1_posn[i];
-			enemy_power1_move[i] = player2.power1_move[i];	
+			enemy_power1_posn.add(player2_power1_posn[i]);
+			enemy_power1_move.add(player2_power1_move[i]);	
+	        enemy_power1_distance.add(player2_power1_distance[i]);
 
 		}
 		
 		int q = player1.power2_posn.size();
 		
-		enemy_power2_posn.resize(q);
-		enemy_power2_move.resize(q);
+		enemy_power2_posn.clear();
+		enemy_power2_move.clear();
+	    enemy_power2_distance.clear();
+	    Position[] player2_power2_posn = (Position[]) player2.power2_posn.toArray(new Position[player2.power2_posn.size()]);
+	    Integer[] player2_power2_move =  (Integer[]) player2.power2_move.toArray(new Integer[player2.power2_move.size()]);
+	    Integer[] player2_power2_distance = (Integer[]) player2.power2_distance.toArray(new Integer[player2.power2_distance.size()]);
 		for( int i=0;i<q;i++)
 		{
-			enemy_power2_posn[i] = player2.power2_posn[i];
-			enemy_power2_move[i] = player2.power2_move[i];	
-
+			enemy_power2_posn.add(player2_power2_posn[i]);
+			enemy_power2_move.add(player2_power2_move[i]);	
+	        enemy_power2_distance.add(player2_power2_distance[i]);
 		}
 
 	}

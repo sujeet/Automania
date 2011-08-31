@@ -20,8 +20,8 @@ public class GlobalDataStore {
 	public static int SOUTH  = 2;
 	public static int WEST = 1;
 	public static int EAST = 3;
-	public static int MAX_X = 100;
-	public static int MAX_Y = 100;
+	public static int MAX_X = 50;
+	public static int MAX_Y = 50;
 
 	/*
 	 ##################################

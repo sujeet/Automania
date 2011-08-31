@@ -32,6 +32,7 @@ public class Map {
 	public void initialize(String file_name ) throws IOException
 	{
 		MAP_SIZE = GlobalDataStore.MAX_X;
+		array = new char[MAP_SIZE][MAP_SIZE];
 		FileReader map_file = new FileReader(file_name);
 		
 		BufferedReader bufRead = new BufferedReader(map_file);
@@ -40,9 +41,17 @@ public class Map {
 		temp = bufRead.readLine();
 		
 		int i;
-		for(i = 0; i < MAP_SIZE; i++)
+		for(i = 0; i < array.length; i++)
 		{
-			array[i] = temp.toCharArray();
+			int j;
+			
+			char debug_var;
+			char[] temp_array = temp.toCharArray();
+			for(j = 0; j < array[i].length; j++)
+			{
+				debug_var = temp_array[j];
+				array[i][j] = debug_var;
+			}
 			temp = bufRead.readLine();
 		}
 

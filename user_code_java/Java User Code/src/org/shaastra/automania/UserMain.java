@@ -3,6 +3,8 @@
  */
 package org.shaastra.automania;
 
+import java.io.IOException;
+
 import org.shaastra.automania.*;
 
 /**
@@ -13,13 +15,17 @@ public class UserMain {
 
 	/**
 	 * @param args
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		
 		Info my_info = new Info();
 		BotBrain my_bot = new BotBrain();
 		
+	    my_info.initial_read();
+	    String res[] = { "NORTH" , "WEST" , "SOUTH" , "EAST" };
+	    
 		while(true)
 		{
 			my_info.read_info();
@@ -28,11 +34,17 @@ public class UserMain {
 			
 			my_info.compute_details();
 
-			int result = my_bot.get_move(my_info);
+			int result = my_bot.play_move(my_info);
 			if( result > 4 || result < 1 )
+			{
+				System.out.println("INVALID");
 				//disqualify.
-
-			cout<<result;
+			}
+			else
+			{
+				System.out.println(res[result]);
+			}
+				
 		}
 
 	}
