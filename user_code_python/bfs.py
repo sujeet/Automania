@@ -25,7 +25,7 @@ class bfs:
 
     def compute( self, map,my_posn ):
 
-    	self.Q = queue.queue()		
+    	self.Q = Queue()		
 
         self.temp_posn = Position()
         

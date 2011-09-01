@@ -10,6 +10,8 @@ void Map::initialize(string file_name )
 	char c;
     ifstream map_file;
     
+    n = MAX_X;
+
     map_file.open (file_name.c_str());
     c = map_file.get();
 	while( c != EOF )

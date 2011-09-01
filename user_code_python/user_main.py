@@ -9,7 +9,7 @@ my_info.initial_read()
 res = [ "NORTH" , "WEST" , "SOUTH" , "EAST" ]
 
 print "NORTH"
-sys.stdout.flush()
+stdout.flush()
 
 while(1):
 
@@ -25,10 +25,10 @@ while(1):
     if result > 4 or result < 1 :
 
         print "INVALID"
-        sys.stdout.flush()
+        stdout.flush()
 
     else:
 
         print res[result]
-        sys.stdout.flush()
+        stdout.flush()
 

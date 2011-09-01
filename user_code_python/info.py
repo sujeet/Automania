@@ -71,17 +71,14 @@ class Info:
             self.posn = Position(self.x,self.y)
             self.map.set_symbol(self.posn,self.element)
 
-            if( element == my_tag ):
+            if( self.element == self.my_tag ):
 	    	
                 self.my_posn.initialize(self.x,self.y) #update my position.
 
 
-            if( element == enemy_tag ):
+            if( self.element == self.enemy_tag ):
 	    	
                 self.enemy_posn.initialize(self.x,self.y) #update enemy position.
-            return
-			
-
 
 
     def compute_details(self):
@@ -118,7 +115,7 @@ class Info:
             self.enemy_power1_move.append( self.player2.power1_move[i]	)
             self.enemy_power1_distance.append( self.player2.power1_distance[i] )
 	
-            self.q = len(self.player1.power2_posn)
+        self.q = len(self.player1.power2_posn)
 
         for i in range(self.q):
 	
