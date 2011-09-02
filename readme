@@ -1,0 +1,28 @@
+Welcome to automaina!
+
+This is a small readme file which you can use for ready reference.
+
+Bots can be written in three different languages: C++ Java and Python.
+
+You are expected to return your move in the 'botbrain' class in the corresponding folder ( eg. user_code_cpp )
+
+You cannot change anything else other than botbrain file. You allowed to add new files however. Note that if you add new files, you must make suitable modifications to the makefile. If your makefile is incorrect, your bot will not be considered.
+
+A lot of classes/functions are already defined to help you focus on the logic of the game rather than programming details. Please go through the classes and the file 'programming_details' before you start coding.
+
+You can run sample games locally before uploading the code. The details for running are given:
+
+//@ sujeet: Fill this up. Include details to run bots written in different lang. together.
+
+Power ups:
+Nitro: This power makes your bike twice as fast as the enemy. This power can sometimes be used form a closed region around enemy bike thereby trapping him. This power is activated as soon as it is captured. Each nitro power allows you to move faster for ... moves //@sujeet: fill this. and what will happen if i have a nitro already and land up in another? will the moves be added or updated? i personally prefer updation. your call...
+Traversers: This power can help you to pass through the trail. You can have a number of traversers at any time. Each time you pass through a trail, the number of traversers comes down by one.
+Restart: This is a strange power. This is located at the centre of the map. If one of the player reaches this power, all the existing trails disappears but it can be used only once.
+
+
+
+Good Luck!
+
+
+
+
