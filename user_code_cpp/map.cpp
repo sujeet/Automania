@@ -23,7 +23,6 @@ void Map::initialize(string file_name )
             c = map_file.get();
 		}
         
-        cerr << endl << flush;
 		
 		array.push_back( temp );
         c = map_file.get();
@@ -49,7 +48,7 @@ int Map::moveable_position( Position pos )
 {
 	if( pos.x < 0 || pos.x >= n || pos.y < 0 || pos.y >= n )
 		return 0;
-	if( get_symbol( pos ) == EMPTY )
+	if( get_symbol( pos ) == EMPTY || get_symbol( pos ) == TRAVERSER || get_symbol( pos ) == NITRO )
 		return 1;	//NOTE THIS MUST BE CHANGED IF PARALLEL PLAY IS DECIDED.
 	return 0;
 }

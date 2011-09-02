@@ -34,7 +34,7 @@ class Map:
     def moveable_position( self, pos ):
         if pos.x < 0 or pos.x >= self.n or pos.y < 0 or pos.y >= self.n :
 	    	return 0
-        if self.get_symbol( pos ) == EMPTY or self.get_symbol( pos ) == POWER1 or self.get_symbol( pos ) == POWER2 :
+        if self.get_symbol( pos ) == EMPTY or self.get_symbol( pos ) == TRAVERSER or self.get_symbol( pos ) == NITRO :
 	    	return 1	#NOTE THIS MUST BE CHANGED IF PARALLEL PLAY IS DECIDED.
     	return 0
 	

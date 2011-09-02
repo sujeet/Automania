@@ -5,20 +5,13 @@ from botbrain import *
 my_info = Info()
 my_bot = BotBrain()
 
-my_info.initial_read()
 res = [ "NORTH" , "WEST" , "SOUTH" , "EAST" ]
+my_info.initial_read()
+    
+my_info.compute_details()
 
-print "NORTH"
-stdout.flush()
 
 while(1):
-
-    my_info.read_info()
-
-    if my_info.end_game() > 0 : 
-        break
-
-    my_info.compute_details()
 
     result = my_bot.play_move(my_info)
 
@@ -31,4 +24,12 @@ while(1):
 
         print res[result]
         stdout.flush()
+    
+    my_info.read_info()
+
+    if my_info.end_game() > 0 : 
+        break
+
+    my_info.compute_details()
+
 

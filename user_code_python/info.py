@@ -8,21 +8,21 @@ class Info:
         self.enemy_posn = Position()
         self.map = Map()
 
-        self.my_power1_posn = [] 
-        self.my_power1_move = []
-        self.my_power1_distance = []
+        self.my_traverser_posn = [] 
+        self.my_traverser_move = []
+        self.my_traverser_distance = []
 
-        self.my_power2_posn = []
-        self.my_power2_move = []
-        self.my_power2_distance = []
+        self.my_nitro_posn = []
+        self.my_nitro_move = []
+        self.my_nitro_distance = []
 
-        self.enemy_power1_posn = []
-        self.enemy_power1_move = []
-        self.enemy_power1_distance = []
+        self.enemy_traverser_posn = []
+        self.enemy_traverser_move = []
+        self.enemy_traverser_distance = []
 
-        self.enemy_power2_posn = []
-        self.enemy_power2_move = []
-        self.enemy_power2_distance = []
+        self.enemy_nitro_posn = []
+        self.enemy_nitro_move = []
+        self.enemy_nitro_distance = []
 
 
     def initial_read(self):
@@ -80,6 +80,13 @@ class Info:
 	    	
                 self.enemy_posn.initialize(self.x,self.y) #update enemy position.
 
+            self.temp = raw_input()
+            self.a = self.temp.split(' ')
+            self.nitro_moves_left = int(self.a[0])
+            self.traversers = int( self.a[1] )
+
+
+
 
     def compute_details(self):
 
@@ -91,37 +98,37 @@ class Info:
         self.player1.compute(self.map,self.my_posn)
         self.player2.compute(self.map,self.enemy_posn)
 	
-        self.n = len(self.player1.power1_posn)
+        self.n = len(self.player1.traverser_posn)
 
         for i in range(self.n):
 	
-            self.my_power1_posn.append( self.player1.power1_posn[i] )
-            self.my_power1_move.append( self.player1.power1_move[i] )	
-            self.my_power1_distance.append( self.player1.power1_distance[i] )
+            self.my_traverser_posn.append( self.player1.traverser_posn[i] )
+            self.my_traverser_move.append( self.player1.traverser_move[i] )	
+            self.my_traverser_distance.append( self.player1.traverser_distance[i] )
 	
-        self.m = len(self.player1.power2_posn)
+        self.m = len(self.player1.nitro_posn)
 
         for i in range(self.m):
 	
-            self.my_power2_posn.append( self.player1.power2_posn[i] )
-            self.my_power2_move.append( self.player1.power2_move[i] )	
-            self.my_power2_distance.append( self.player1.power2_distance[i] )
+            self.my_nitro_posn.append( self.player1.nitro_posn[i] )
+            self.my_nitro_move.append( self.player1.nitro_move[i] )	
+            self.my_nitro_distance.append( self.player1.nitro_distance[i] )
 	
-        self.p = len(self.player2.power1_posn)
+        self.p = len(self.player2.traverser_posn)
 
         for i in range(self.p):
 	
-            self.enemy_power1_posn.append( self.player2.power1_posn[i] )
-            self.enemy_power1_move.append( self.player2.power1_move[i]	)
-            self.enemy_power1_distance.append( self.player2.power1_distance[i] )
+            self.enemy_traverser_posn.append( self.player2.traverser_posn[i] )
+            self.enemy_traverser_move.append( self.player2.traverser_move[i]	)
+            self.enemy_traverser_distance.append( self.player2.traverser_distance[i] )
 	
-        self.q = len(self.player1.power2_posn)
+        self.q = len(self.player1.nitro_posn)
 
         for i in range(self.q):
 	
-            self.enemy_power2_posn.append( self.player2.power2_posn[i] )
-            self.enemy_power2_move.append( self.player2.power2_move[i] )
-            self.enemy_power2_distance.append( self.player2.power2_distance[i] )
+            self.enemy_nitro_posn.append( self.player2.nitro_posn[i] )
+            self.enemy_nitro_move.append( self.player2.nitro_move[i] )
+            self.enemy_nitro_distance.append( self.player2.nitro_distance[i] )
 
 	
     def end_game(self):

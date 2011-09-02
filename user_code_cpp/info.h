@@ -19,21 +19,24 @@ Position my_posn;
 Position enemy_posn;
 Map map;
 
-vector <Position> my_power1_posn; //since the actual powers are not finalized
-vector <int> my_power1_move;	//first move to be made to reach the target point in shortest time.
-vector <int> my_power1_distance;
+int nitro_moves_left;
+int traversers;
 
-vector <Position> my_power2_posn;
-vector <int> my_power2_move;
-vector <int> my_power2_distance;
+vector <Position> my_traverser_posn; //since the actual powers are not finalized
+vector <int> my_traverser_move;	//first move to be made to reach the target point in shortest time.
+vector <int> my_traverser_distance;
 
-vector <Position> enemy_power1_posn;
-vector <int> enemy_power1_move;
-vector <int> enemy_power1_distance;
+vector <Position> my_nitro_posn;
+vector <int> my_nitro_move;
+vector <int> my_nitro_distance;
 
-vector <Position> enemy_power2_posn;
-vector <int> enemy_power2_move;
-vector <int> enemy_power2_distance;
+vector <Position> enemy_traverser_posn;
+vector <int> enemy_traverser_move;
+vector <int> enemy_traverser_distance;
+
+vector <Position> enemy_nitro_posn;
+vector <int> enemy_nitro_move;
+vector <int> enemy_nitro_distance;
 
 void initial_read();	//initially reads the necessary details like the players tagetc.
 void read_info();	//reads the input from the engine and updates the variables.
