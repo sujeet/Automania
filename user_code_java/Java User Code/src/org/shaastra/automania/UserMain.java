@@ -25,6 +25,7 @@ public class UserMain {
 		
 	    my_info.initial_read();
 	    String res[] = { "NORTH" , "WEST" , "SOUTH" , "EAST" };
+		System.out.println("NORTH");
 	    
 		while(true)
 		{
