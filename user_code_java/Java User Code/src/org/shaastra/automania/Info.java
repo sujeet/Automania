@@ -17,6 +17,9 @@ import org.shaastra.automania.*;
 public class Info {
 	
 	private int game_ended;
+	int nitro_moves_left;
+	int traversers;
+
 	private String map_file;
 	private BufferedReader in ;
 	
@@ -28,39 +31,39 @@ public class Info {
 	public Map map;
 	public String line = "";
 	
-	public List<Position> my_power1_posn;
-	public List<Integer> my_power1_move;
-	public List<Integer> my_power1_distance;
+	public List<Position> my_nitro_posn;
+	public List<Integer> my_nitro_move;
+	public List<Integer> my_nitro_distance;
 	
-	public List<Position> my_power2_posn;
-	public List<Integer> my_power2_move;
-	public List<Integer> my_power2_distance;
+	public List<Position> my_traverser_posn;
+	public List<Integer> my_traverser_move;
+	public List<Integer> my_traverser_distance;
 
-	public List<Position> enemy_power1_posn;
-	public List<Integer> enemy_power1_move;
-	public List<Integer> enemy_power1_distance;
+	public List<Position> enemy_nitro_posn;
+	public List<Integer> enemy_nitro_move;
+	public List<Integer> enemy_nitro_distance;
 
-	public List<Position> enemy_power2_posn;
-	public List<Integer> enemy_power2_move;
-	public List<Integer> enemy_power2_distance;
+	public List<Position> enemy_traverser_posn;
+	public List<Integer> enemy_traverser_move;
+	public List<Integer> enemy_traverser_distance;
 	
 	public Info()
 	{
-		my_power1_posn = new ArrayList<Position>();
-		my_power1_move = new ArrayList<Integer>();
-		my_power1_distance = new ArrayList<Integer>();
+		my_nitro_posn = new ArrayList<Position>();
+		my_nitro_move = new ArrayList<Integer>();
+		my_nitro_distance = new ArrayList<Integer>();
 		
-		my_power2_posn = new ArrayList<Position>();
-		my_power2_move = new ArrayList<Integer>();
-		my_power2_distance = new ArrayList<Integer>();
+		my_traverser_posn = new ArrayList<Position>();
+		my_traverser_move = new ArrayList<Integer>();
+		my_traverser_distance = new ArrayList<Integer>();
 	
-		enemy_power1_posn = new ArrayList<Position>();
-		enemy_power1_move = new ArrayList<Integer>();
-		enemy_power1_distance = new ArrayList<Integer>();
+		enemy_nitro_posn = new ArrayList<Position>();
+		enemy_nitro_move = new ArrayList<Integer>();
+		enemy_nitro_distance = new ArrayList<Integer>();
 	
-		enemy_power2_posn = new ArrayList<Position>();
-		enemy_power2_move = new ArrayList<Integer>();
-		enemy_power2_distance = new ArrayList<Integer>();
+		enemy_traverser_posn = new ArrayList<Position>();
+		enemy_traverser_move = new ArrayList<Integer>();
+		enemy_traverser_distance = new ArrayList<Integer>();
 	}
 	/**
 	 * Initially
@@ -113,7 +116,7 @@ public class Info {
 		
 	}
 	
-	void read_info()
+	void read_info() throws IOException
 	{
 		int num_ip = 0;
 		try {
@@ -156,6 +159,11 @@ public class Info {
 				enemy_posn.initialize(x, y);
 			}
 		}
+		String line = in.readLine();
+		String[] myNumbers=line.split(" ");
+		nitro_moves_left = Integer.parseInt(myNumbers[0]);
+		traversers = Integer.parseInt(myNumbers[1]);
+		System.out.println(nitro_moves_left + traversers);
 	}
 	
 	void compute_details()
@@ -167,66 +175,66 @@ public class Info {
 		Bfs player2 = new Bfs();
 		player1.compute(map,my_posn);
 		player2.compute(map,enemy_posn);
-		int n = player1.power1_posn.size();
+		int n = player1.nitro_posn.size();
 
-		my_power1_posn.clear();
-		my_power1_move.clear();
-	    my_power1_distance.clear();
-	    Position[] power1_posn = (Position[]) player1.power1_posn.toArray(new Position[player1.power1_posn.size()]);
-	    Integer[] power1_move =  (Integer[]) player1.power1_move.toArray(new Integer[player1.power1_move.size()]);
-	    Integer[] power1_distance = (Integer[]) player1.power1_distance.toArray(new Integer[player1.power1_distance.size()]);
+		my_nitro_posn.clear();
+		my_nitro_move.clear();
+	    my_nitro_distance.clear();
+	    Position[] nitro_posn = (Position[]) player1.nitro_posn.toArray(new Position[player1.nitro_posn.size()]);
+	    Integer[] nitro_move =  (Integer[]) player1.nitro_move.toArray(new Integer[player1.nitro_move.size()]);
+	    Integer[] nitro_distance = (Integer[]) player1.nitro_distance.toArray(new Integer[player1.nitro_distance.size()]);
 		for( int i=0;i<n;i++)
 		{
-			my_power1_posn.add(power1_posn[i]);
-			my_power1_move.add(power1_move[i]);	
-	        my_power1_distance.add(power1_distance[i]);
+			my_nitro_posn.add(nitro_posn[i]);
+			my_nitro_move.add(nitro_move[i]);	
+	        my_nitro_distance.add(nitro_distance[i]);
 
 		}
 		
-		int m = player1.power2_posn.size();
+		int m = player1.traverser_posn.size();
 
-		my_power2_posn.clear();
-		my_power2_move.clear();
-	    my_power2_distance.clear();
-	    Position[] power2_posn = (Position[]) player1.power2_posn.toArray(new Position[player1.power2_posn.size()]);
-	    Integer[] power2_move =  (Integer[]) player1.power2_move.toArray(new Integer[player1.power2_move.size()]);
-	    Integer[] power2_distance = (Integer[]) player1.power2_distance.toArray(new Integer[player1.power2_distance.size()]);
+		my_traverser_posn.clear();
+		my_traverser_move.clear();
+	    my_traverser_distance.clear();
+	    Position[] traverser_posn = (Position[]) player1.traverser_posn.toArray(new Position[player1.traverser_posn.size()]);
+	    Integer[] traverser_move =  (Integer[]) player1.traverser_move.toArray(new Integer[player1.traverser_move.size()]);
+	    Integer[] traverser_distance = (Integer[]) player1.traverser_distance.toArray(new Integer[player1.traverser_distance.size()]);
 		for( int i=0;i<m;i++)
 		{
-			my_power1_posn.add(power2_posn[i]);
-			my_power1_move.add(power2_move[i]);	
-	        my_power1_distance.add(power2_distance[i]);
+			my_nitro_posn.add(traverser_posn[i]);
+			my_nitro_move.add(traverser_move[i]);	
+	        my_nitro_distance.add(traverser_distance[i]);
 		}
 		
-		int p = player2.power1_posn.size();
+		int p = player2.nitro_posn.size();
 
-		enemy_power1_posn.clear();
-		enemy_power1_move.clear();
-	    enemy_power1_distance.clear();
-	    Position[] player2_power1_posn = (Position[]) player2.power1_posn.toArray(new Position[player2.power1_posn.size()]);
-	    Integer[] player2_power1_move =  (Integer[]) player2.power1_move.toArray(new Integer[player2.power1_move.size()]);
-	    Integer[] player2_power1_distance = (Integer[]) player2.power1_distance.toArray(new Integer[player2.power1_distance.size()]);
+		enemy_nitro_posn.clear();
+		enemy_nitro_move.clear();
+	    enemy_nitro_distance.clear();
+	    Position[] player2_nitro_posn = (Position[]) player2.nitro_posn.toArray(new Position[player2.nitro_posn.size()]);
+	    Integer[] player2_nitro_move =  (Integer[]) player2.nitro_move.toArray(new Integer[player2.nitro_move.size()]);
+	    Integer[] player2_nitro_distance = (Integer[]) player2.nitro_distance.toArray(new Integer[player2.nitro_distance.size()]);
 		for( int i=0;i<p;i++)
 		{
-			enemy_power1_posn.add(player2_power1_posn[i]);
-			enemy_power1_move.add(player2_power1_move[i]);	
-	        enemy_power1_distance.add(player2_power1_distance[i]);
+			enemy_nitro_posn.add(player2_nitro_posn[i]);
+			enemy_nitro_move.add(player2_nitro_move[i]);	
+	        enemy_nitro_distance.add(player2_nitro_distance[i]);
 
 		}
 		
-		int q = player1.power2_posn.size();
+		int q = player1.traverser_posn.size();
 		
-		enemy_power2_posn.clear();
-		enemy_power2_move.clear();
-	    enemy_power2_distance.clear();
-	    Position[] player2_power2_posn = (Position[]) player2.power2_posn.toArray(new Position[player2.power2_posn.size()]);
-	    Integer[] player2_power2_move =  (Integer[]) player2.power2_move.toArray(new Integer[player2.power2_move.size()]);
-	    Integer[] player2_power2_distance = (Integer[]) player2.power2_distance.toArray(new Integer[player2.power2_distance.size()]);
+		enemy_traverser_posn.clear();
+		enemy_traverser_move.clear();
+	    enemy_traverser_distance.clear();
+	    Position[] player2_traverser_posn = (Position[]) player2.traverser_posn.toArray(new Position[player2.traverser_posn.size()]);
+	    Integer[] player2_traverser_move =  (Integer[]) player2.traverser_move.toArray(new Integer[player2.traverser_move.size()]);
+	    Integer[] player2_traverser_distance = (Integer[]) player2.traverser_distance.toArray(new Integer[player2.traverser_distance.size()]);
 		for( int i=0;i<q;i++)
 		{
-			enemy_power2_posn.add(player2_power2_posn[i]);
-			enemy_power2_move.add(player2_power2_move[i]);	
-	        enemy_power2_distance.add(player2_power2_distance[i]);
+			enemy_traverser_posn.add(player2_traverser_posn[i]);
+			enemy_traverser_move.add(player2_traverser_move[i]);	
+	        enemy_traverser_distance.add(player2_traverser_distance[i]);
 		}
 
 	}

@@ -14,19 +14,19 @@ public class GlobalDataStore {
 	public static char WALL = 'w';
 	public static char TRAIL = 't';
 	public static char EMPTY = '.';
-	public static char POWER1 = '1';
-	public static char POWER2 = '2';
+	public static char TRAVERSER = 'T';
+	public static char NITRO = 'N';
 	public static int NORTH  = 0;
 	public static int SOUTH  = 2;
 	public static int WEST = 1;
 	public static int EAST = 3;
-	public static int MAX_X = 50;
-	public static int MAX_Y = 50;
-
+	public static int MAX_X = 60;
+	public static int MAX_Y = 60;
+	
 	/*
 	 ##################################
 	 #                                #
-	 #  +----------------------> x    #
+	 #  +----------------------> y    #
 	 #  |                             #
 	 #  |             north           #
 	 #  |               ^             #
@@ -38,7 +38,7 @@ public class GlobalDataStore {
 	 #  |               V             #
 	 #  V             south           #
 	 #                                #
-	 #  y                             #
+	 #  x                             #
 	 #                                #
 	 ##################################
 	*/

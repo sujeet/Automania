@@ -23,28 +23,32 @@ public class UserMain {
 		Info my_info = new Info();
 		BotBrain my_bot = new BotBrain();
 		
-	    my_info.initial_read();
 	    String res[] = { "NORTH" , "WEST" , "SOUTH" , "EAST" };
-		System.out.println("NORTH");
+	    my_info.initial_read();
+	    if(my_info.end_game() != 0)
+	    {
+	    }
+			my_info.compute_details();
 	    
 		while(true)
 		{
-			my_info.read_info();
-			if( my_info.end_game() == 1 )
-				break;
-			
-			my_info.compute_details();
 
 			int result = my_bot.play_move(my_info);
 			if( result > 4 || result < 1 )
 			{
 				System.out.println("INVALID");
-				//disqualify.
+				System.out.flush();
 			}
 			else
 			{
 				System.out.println(res[result]);
+				System.out.flush();
 			}
+			my_info.read_info();
+			if( my_info.end_game() == 1 )
+				break;
+			
+			my_info.compute_details();
 				
 		}
 

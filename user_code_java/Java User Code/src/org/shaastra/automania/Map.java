@@ -81,7 +81,7 @@ public class Map {
 	{
 	        if( pos.x < 0 || pos.x >= MAP_SIZE || pos.y < 0 || pos.y >= MAP_SIZE )
 	                return 0;
-	        if( get_symbol( pos ) == GlobalDataStore.EMPTY )
+	        if( get_symbol( pos ) == GlobalDataStore.EMPTY || get_symbol(pos) == GlobalDataStore.NITRO || get_symbol(pos) == GlobalDataStore.TRAVERSER)
 	                return 1;       //NOTE THIS MUST BE CHANGED IF PARALLEL PLAY IS DECIDED.
 	        return 0;
 	}
