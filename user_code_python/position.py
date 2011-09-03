@@ -10,22 +10,18 @@ class Position:
         self.x = a
         self.y = b
 
-    def update(direction):
+    def update(self,direction):
 
         if direction == EAST :
-            self.x += 1
-            self.y += 0
+            self.y += 1
 
         if direction == WEST :
-            self.x -= 1
-            self.y += 0
-
-        if direction == NORTH :
-            self.x += 0
             self.y -= 1
 
+        if direction == NORTH :
+            self.x -= 1
+
         if direction == SOUTH :
-            self.x += 0
-            self.y += 1
+            self.x += 1
 
 

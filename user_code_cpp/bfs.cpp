@@ -18,11 +18,10 @@ void bfs::compute( Map map,Position my_posn )
 
 	//initial pushes
 
-	//this part can be compressed
 	temp_posn = my_posn;
 	temp_posn.update( EAST );
-	if( map.moveable_position( temp_posn) )	//THIS FUNCTION MUST BE ADDED TO THE MAP CLASS. THIS FUCNTION CHECKS WHETHER THE CURRENT POSTION IN THE MAP IS A MOVEABLE POSITION ( NOT A POSITION OUTSIDE THE MAP AND NOT A WALL OR TRAIL ) 
-	{
+	if( map.moveable_position( temp_posn) )	
+    {
 		node n(temp_posn,EAST,1);
 		Q.push(n);
 	}
@@ -57,26 +56,29 @@ void bfs::compute( Map map,Position my_posn )
 	{
 		node n = Q.front();
 		Q.pop();
+        if( visited[n.cur_posn.x][n.cur_posn.y] != 0 )
+        {
+            continue;
+        }
 		visited[n.cur_posn.x][n.cur_posn.y] = 1;
 
-		if( map.get_symbol( n.cur_posn ) == POWER1 )
+		if( map.get_symbol( n.cur_posn ) == TRAVERSER )
 		{
-			power1_posn.push_back(n.cur_posn);
-			power1_move.push_back(n.initial_move);
-            power1_distance.push_back(n.distance);
+			traverser_posn.push_back(n.cur_posn);
+			traverser_move.push_back(n.initial_move);
+            traverser_distance.push_back(n.distance);
 		}
 
-		if( map.get_symbol( n.cur_posn ) == POWER2 )
+		if( map.get_symbol( n.cur_posn ) == NITRO )
 		{
-			power2_posn.push_back(n.cur_posn);
-			power2_move.push_back(n.initial_move);
-            power2_distance.push_back(n.distance);
+			nitro_posn.push_back(n.cur_posn);
+			nitro_move.push_back(n.initial_move);
+            nitro_distance.push_back(n.distance);
 		}
 		
-		//this part can be compressed.
-		temp_posn = n.cur_posn; //to be checked. will it copy the individual elements?
-		temp_posn.update( EAST );
-		if( map.moveable_position( temp_posn) && visited[temp_posn.x][temp_posn.y] == 0 )
+		temp_posn = n.cur_posn; 
+        temp_posn.update( EAST );
+		if( map.moveable_position( temp_posn) && (visited[temp_posn.x][temp_posn.y] == 0) )
 		{
 			node n2(temp_posn,n.initial_move,n.distance+1);
 			Q.push(n2);
@@ -84,7 +86,7 @@ void bfs::compute( Map map,Position my_posn )
 
 		temp_posn = n.cur_posn;
 		temp_posn.update( WEST );
-		if( map.moveable_position( temp_posn) && visited[temp_posn.x][temp_posn.y] == 0 )
+		if( map.moveable_position( temp_posn) && (visited[temp_posn.x][temp_posn.y] == 0) )
 		{
 			node n2(temp_posn,n.initial_move,n.distance+1);
 			Q.push(n2);
@@ -92,7 +94,7 @@ void bfs::compute( Map map,Position my_posn )
 	
 		temp_posn = n.cur_posn;
 		temp_posn.update( NORTH );
-		if( map.moveable_position( temp_posn) && visited[temp_posn.x][temp_posn.y] == 0 )
+		if( map.moveable_position( temp_posn) && (visited[temp_posn.x][temp_posn.y] == 0) )
 		{
 			node n2(temp_posn,n.initial_move,n.distance+1);
 			Q.push(n2);
@@ -100,7 +102,7 @@ void bfs::compute( Map map,Position my_posn )
 	
 		temp_posn = n.cur_posn;
 		temp_posn.update( SOUTH );
-		if( map.moveable_position( temp_posn) && visited[temp_posn.x][temp_posn.y] == 0 )
+		if( map.moveable_position( temp_posn) && (visited[temp_posn.x][temp_posn.y] == 0) )
 		{
 			node n2(temp_posn,n.initial_move,n.distance+1);
 			Q.push(n2);

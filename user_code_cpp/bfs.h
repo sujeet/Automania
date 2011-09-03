@@ -21,12 +21,12 @@ class bfs
 
 public:
 
-vector <Position> power1_posn;
-vector <Position> power2_posn;
-vector <int> power1_move;
-vector <int> power2_move;
-vector <int> power1_distance;
-vector <int> power2_distance;
+vector <Position> traverser_posn;
+vector <Position> nitro_posn;
+vector <int> traverser_move;
+vector <int> nitro_move;
+vector <int> traverser_distance;
+vector <int> nitro_distance;
 	
 void compute( Map, Position );
 

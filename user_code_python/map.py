@@ -8,13 +8,14 @@ class Map:
 
         self.map_file = open (file_name,"r")
             
-        self.array = [[]*(MAX_X+2) for x in xrange( MAX_Y+2 ) ]
+        self.array = []
 
         self.temp = self.map_file.read()
 
-        for i in range( len(self.temp) ):
-            for j in range( len(self.temp) ):
-                self.array[i][j] = self.temp[i][j]
+        for i in range( MAX_X ):
+            self.array.append([])
+            for j in range( MAX_Y ):
+                self.array[i].append(self.temp[i*(MAX_X+1)+j])
 
 
     def set_symbol(self, pos, symbol):
@@ -33,7 +34,7 @@ class Map:
     def moveable_position( self, pos ):
         if pos.x < 0 or pos.x >= self.n or pos.y < 0 or pos.y >= self.n :
 	    	return 0
-        if self.get_symbol( pos ) == EMPTY or self.get_symbol( pos ) == POWER1 or self.get_symbol( pos ) == POWER2 :
+        if self.get_symbol( pos ) == EMPTY or self.get_symbol( pos ) == TRAVERSER or self.get_symbol( pos ) == NITRO :
 	    	return 1	#NOTE THIS MUST BE CHANGED IF PARALLEL PLAY IS DECIDED.
     	return 0
 	

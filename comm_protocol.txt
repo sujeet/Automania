@@ -13,5 +13,7 @@ map file name
 for every move:
 first line: number of updates (n)
 then n lines follow each of the form 'x y element'
+then a single line follows with two space separated integers:
+number of moves left for nitro to vanish( possibily zero ) number of traverser power that the player has.
 
 if the game had ended n should be 0.

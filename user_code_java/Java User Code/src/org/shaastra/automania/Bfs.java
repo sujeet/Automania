@@ -15,12 +15,12 @@ import org.shaastra.automania.*;
  *
  */
 public class Bfs {
-	List<Position> power1_posn = new ArrayList<Position>();
-	List<Position> power2_posn = new ArrayList<Position>();
-	List<Integer> power1_move = new ArrayList<Integer>();
-	List<Integer> power2_move = new ArrayList<Integer>();
-	List<Integer> power1_distance = new ArrayList<Integer>();
-	List<Integer> power2_distance = new ArrayList<Integer>();
+	List<Position> traverser_posn = new ArrayList<Position>();
+	List<Position> nitro_posn = new ArrayList<Position>();
+	List<Integer> traverser_move = new ArrayList<Integer>();
+	List<Integer> nitro_move = new ArrayList<Integer>();
+	List<Integer> traverser_distance = new ArrayList<Integer>();
+	List<Integer> nitro_distance = new ArrayList<Integer>();
 	
 	public void compute(Map map, Position my_posn) {
 		// TODO Auto-generated method stub
@@ -41,10 +41,9 @@ public class Bfs {
 		//initial pushes
 		visited[my_posn.x][my_posn.y] = 1;;
 
-		//this part can be compressed
 		temp_posn = my_posn;
 		temp_posn.update( GlobalDataStore.EAST );
-		if( map.moveable_position( temp_posn) != 0 )	//THIS FUNCTION MUST BE ADDED TO THE MAP CLASS. THIS FUCNTION CHECKS WHETHER THE CURRENT POSTION IN THE MAP IS A MOVEABLE POSITION ( NOT A POSITION OUTSIDE THE MAP AND NOT A WALL OR TRAIL ) 
+		if( map.moveable_position( temp_posn) != 0 ) 
 		{
 			Node n = new Node(temp_posn,GlobalDataStore.EAST,1);
 			Q.add(n);
@@ -80,23 +79,26 @@ public class Bfs {
 		{
 			Node n = Q.remove();
 			visited[n.cur_posn.x][n.cur_posn.y] = 1;
-			
-
-			if( map.get_symbol( n.cur_posn ) == GlobalDataStore.POWER1 )
+			if(visited[n.cur_posn.x][n.cur_posn.y] != 0)
 			{
-				power1_posn.add(n.cur_posn);
-				power1_move.add(n.initial_move);
-	            power1_distance.add(n.distance);
-			}
-
-			if( map.get_symbol( n.cur_posn ) == GlobalDataStore.POWER2 )
-			{
-				power2_posn.add(n.cur_posn);
-				power2_move.add(n.initial_move);
-	            power2_distance.add(n.distance);
+				continue;
 			}
 			
-			//this part can be compressed.
+
+			if( map.get_symbol( n.cur_posn ) == GlobalDataStore.TRAVERSER)
+			{
+				traverser_posn.add(n.cur_posn);
+				traverser_move.add(n.initial_move);
+	            traverser_distance.add(n.distance);
+			}
+
+			if( map.get_symbol( n.cur_posn ) == GlobalDataStore.NITRO )
+			{
+				nitro_posn.add(n.cur_posn);
+				nitro_move.add(n.initial_move);
+	            nitro_distance.add(n.distance);
+			}
+			
 			temp_posn.x = n.cur_posn.x;
 			temp_posn.y = n.cur_posn.y;
 			temp_posn.update( GlobalDataStore.EAST );

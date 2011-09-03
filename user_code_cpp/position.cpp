@@ -20,23 +20,19 @@ void Position::update(int direction)
 {
 	if( direction == EAST )
 	{	
-		x += 1;
-		y += 0;
+		y += 1;
 	}
 	if( direction == WEST )
 	{	
-		x -= 1;
-		y += 0;
+		y -= 1;
 	}
 	if( direction == NORTH )
 	{	
-		x += 0;
-		y -= 1;
+		x -= 1;
 	}
 	if( direction == SOUTH )
 	{	
-		x += 0;
-		y += 1;
+		x += 1;
 	}
 }
 

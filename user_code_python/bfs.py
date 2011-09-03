@@ -16,16 +16,16 @@ class bfs:
 
     def __init__(self):
 
-        self.power1_posn = []
-        self.power2_posn = []
-        self.power1_move = []
-        self.power2_move = []
-        self.power1_distance = []
-        self.power2_distance = []
+        self.traverser_posn = []
+        self.nitro_posn = []
+        self.traverser_move = []
+        self.nitro_move = []
+        self.traverser_distance = []
+        self.nitro_distance = []
 
     def compute( self, map,my_posn ):
 
-    	self.Q = queue.queue()		
+    	self.Q = Queue()		
 
         self.temp_posn = Position()
         
@@ -34,8 +34,6 @@ class bfs:
 
     	#initial pushes
     
-	    #this part can be compressed
-
     	self.temp_posn = my_posn
         self.temp_posn.update( EAST )
 
@@ -75,23 +73,26 @@ class bfs:
         while not self.Q.empty():
 
             self.n = self.Q.get()
+
+            if visited[self.n.cur_posn.x][self.n.cur_posn.y] == 1: 
+                continue
+
             self.visited[self.n.cur_posn.x][self.n.cur_posn.y] = 1
 
             if map.get_symbol( self.n.cur_posn ) == POWER1 :
 	    	
-                self.power1_posn.append(self.n.cur_posn)
-                self.power1_move.append(self.n.initial_move)
-                self.power1_distance.append(self.n.distance)
+                self.traverser_posn.append(self.n.cur_posn)
+                self.traverser_move.append(self.n.initial_move)
+                self.traverser_distance.append(self.n.distance)
 		
 
             if map.get_symbol( self.n.cur_posn ) == POWER2 :
 		
-                self.power2_posn.append(self.n.cur_posn)
-                self.power2_move.append(self.n.initial_move)
-                self.power2_distance.append(self.n.distance)
+                self.nitro_posn.append(self.n.cur_posn)
+                self.nitro_move.append(self.n.initial_move)
+                self.nitro_distance.append(self.n.distance)
 		
 		
-	    	#this part can be compressed.
             self.temp_posn = self.n.cur_posn 
             self.temp_posn.update( EAST )
             if map.moveable_position( self.temp_posn) and self.visited[self.temp_posn.x][self.temp_posn.y] == 0 :
