@@ -42,6 +42,16 @@ class Map :
         if (not pass_condition) :
             raise Exception ("The map does not have position : "
                              + position.__str__())
+
+    def get_count (self, symbol) :
+        """ Returns the number of occurences of the symbol in the
+        character array. """
+        count = 0
+        for row in self._map_array :
+            for letter in row :
+                if (letter == symbol) :
+                    count += 1
+        return count
         
     def log_symbols (self, sym1, sym2, sym3, sym4) :
         """ Writes the four symbols in space seperated

@@ -21,7 +21,7 @@ class Arena :
                 enemy_symbol = BIKE_2_SYMBOL
                 bot_num = 0
             else :
-                enemy_symbol = BIKE_2_SYMBOL
+                enemy_symbol = BIKE_1_SYMBOL
                 bot_num = 1
             bike.bot.add_to_info_to_send (enemy_symbol)
             bike.bot.add_to_info_to_send (str(init_posns[bot_num%2].x)
@@ -40,10 +40,10 @@ class Arena :
         return (Position (3, 3, map.size - 1, map.size - 1),
                 Position (7, 7, map.size - 1, map.size - 1))
 
-    def get_moves (self) :
+    def get_moves (self, first_move = False) :
         """ Gets moves from each bot driving the bikes. """
         for bike in self.bikes :
-            bike.get_move ()
+            bike.get_move (first_move)
 
     def _check_for_collisions (self) :
         """ Checks for collisions, and if any,
@@ -92,8 +92,20 @@ class Arena :
         self._pick_power_ups ()
         self._update_map ()
 
+    def print_scores (self) :
+        """ Prints to stdout
+        -> 0  if both bots have occupied same area
+        -> -1 if player2 has occupied more area
+        -> 1  if player1 has occupied more area """
+        score1 = self.map.get_count (BIKE_1_SYMBOL)
+        score2 = self.map.get_count (BIKE_2_SYMBOL)
+        if (score1 < score2) : print -1
+        elif (score2 < score1) : print 1
+        else : print 0
+
     def terminate_game (self) :
         """ All the aftergame cleanup goes here. """
+        self.print_scores ()
         for bike in self.bikes :
             bike.bot.process.kill ()
         self.map.log_file.close ()

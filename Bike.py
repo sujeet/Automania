@@ -17,10 +17,10 @@ class Bike :
                 + "Previous Position : " + self.prev_posn.__str__ () + linesep
                 + "Symbol : " + symbol + linesep)
 
-    def get_move (self) :
+    def get_move (self, first_move = False) :
         """ Gets the move from the bot.
         Sets the curr_position accordingly. """
-        self.curr_posn.update (self.bot.get_move ())
+        self.curr_posn.update (self.bot.get_move (first_move))
     
     def power_up (self, power_symbol) :
         """ """

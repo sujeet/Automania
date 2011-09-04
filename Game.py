@@ -9,7 +9,7 @@ if __name__ == "__main__" :
 
     for i in xrange (N_TURNS) :
         arena.check_for_bot_crash ()
-        arena.get_moves ()
+        arena.get_moves ((i == 0))
         arena.make_moves ()
         arena.map.log_symbols (arena.bikes[0].bot.extra_score,
                                arena.bikes[1].bot.extra_score,

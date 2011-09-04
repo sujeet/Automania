@@ -98,18 +98,19 @@ class Bot :
         """ Appends a newline to info_to_send and then appends the more_info to it."""
         self.info_to_send += linesep + more_info
 
-    def get_move (self) :
+    def get_move (self, first_move = False) :
         """ Communicate with the player code and return the move. """
-        self.process.stdin.write (self.info_to_send + linesep)
-        print "sent message : ", self.info_to_send
         # Temperory stuff
-        self.process.stdin.write ("0 0" + linesep) # 0 moves for nitro 0 gothru powers
+        if (not first_move) :
+            self.add_to_info_to_send ("0 0" + linesep) # 0 moves for nitro 0 gothru powers
         # End of temperory stuff
+        self.process.stdin.write (self.info_to_send + linesep)
+        # print "sent message : ", self.info_to_send
         self.process.stdin.flush ()
         self.info_to_send = ""
-        print "waiting for response ..."
+        # print "waiting for response ..."
         direction = self.process.stdout.readline ()
-        print "got response : ", direction
+        # print "got response : ", direction
         try :
             return Constants.__getattribute__ (direction)
         except :
