@@ -10,24 +10,27 @@ def get_process_according_to_filename (filename) :
     then the subprocess should be started with python interpreter."""
 
     splitup = filename.split (".")
-    if len (splitup) < 2 :
-        raise Exception ("Could not determine the extension of the file " +
-                         filename)
+
     extension = splitup [-1]
     # Now depending on extension, start the process.
     if extension == "py" :
         return subprocess.Popen (["python", filename],
                                  stdin = subprocess.PIPE,
                                  stdout = subprocess.PIPE)
+    elif extension == "jar" :
+        return subprocess.Popen (["java", "-jar", filename],
+                                 stdin = subprocess.PIPE,
+                                 stdout = subprocess.PIPE)
     else :
         try :
+            # assume the file is an executable and try to run it.
             return subprocess.Popen ([filename],
                                      stdin = subprocess.PIPE,
                                      stdout = subprocess.PIPE,
                                      stderr = sys.stderr)
         except :
-            raise Exception ("Can not handle files with extension : " +
-                             extension)
+            raise Exception ("Could not handle the bot file : " +
+                             filename)
 
 class Bot :
     """ Handles the user programms.
