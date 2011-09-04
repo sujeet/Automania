@@ -1,11 +1,12 @@
 from os import linesep
+from Constants import *
 
 class Map :
     """ Represents the map. """
 
     def __init__ (self, map_file_name) :
         """ Initializes the 2D array from
-        the file. """
+        the file. Also opens the log file. """
         map_file = file (map_file_name)
         self._map_array = [list (line.strip ())
                           for line in
@@ -13,6 +14,7 @@ class Map :
         map_file.close ()
         self._validate ()
         self.size = len (self._map_array)
+        self.log_file = open (LOG_FILE, "w")
 
     def __str__ (self) :
         """ String representation of map. As a snapshot. """
@@ -41,18 +43,26 @@ class Map :
             raise Exception ("The map does not have position : "
                              + position.__str__())
         
-    def _log_changes (self, position, symbol) :
+    def log_symbols (self, sym1, sym2, sym3, sym4) :
+        """ Writes the four symbols in space seperated
+        line to the log file. """
+        changes = (str (sym1) + " "
+                   + str (sym2) + " "
+                   + str (sym3) + " "
+                   + str (sym4) + linesep)
+        self.log_file.write (changes)
+
+    def log_changes (self, position, symbol) :
         """ Used for creating map diffs to send across
         to the bots. Also will be useful for the game
         visualizer. """
-        print position.x, position.y, ".", symbol
-        # print position, symbol
+        self.log_symbols (position.x, position.y, ".", symbol)
 
     def set_symbol (self, position, symbol) :
         """ Sets the given symbol at the given position. """
         self._validate_position (position)
         self._map_array [position.x] [position.y] = symbol
-        self._log_changes (position, symbol)
+        self.log_changes (position, symbol)
 
     def get_symbol (self, position) :
         """ Returns the symbol at the position. """
