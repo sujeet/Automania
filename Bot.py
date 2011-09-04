@@ -101,12 +101,15 @@ class Bot :
     def get_move (self) :
         """ Communicate with the player code and return the move. """
         self.process.stdin.write (self.info_to_send + linesep)
-        # print "sent message : ", self.info_to_send
+        print "sent message : ", self.info_to_send
+        # Temperory stuff
+        self.process.stdin.write ("0 0" + linesep) # 0 moves for nitro 0 gothru powers
+        # End of temperory stuff
         self.process.stdin.flush ()
         self.info_to_send = ""
-        # print "waiting for response ..."
+        print "waiting for response ..."
         direction = self.process.stdout.readline ()
-        # print "got response : ", direction
+        print "got response : ", direction
         try :
             return Constants.__getattribute__ (direction)
         except :

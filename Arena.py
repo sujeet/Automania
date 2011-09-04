@@ -96,3 +96,4 @@ class Arena :
         """ All the aftergame cleanup goes here. """
         for bike in self.bikes :
             bike.bot.process.kill ()
+        self.map.log_file.close ()
