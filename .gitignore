@@ -5,3 +5,5 @@ user_code_java/Java User Code/bin/*
 user_code_java/Java User Code/.project
 user_code_java/Java User Code/.classpath
 user_code_java/Java User Code/.settings/*
+*.html
+.ropeproject

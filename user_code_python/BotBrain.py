@@ -7,18 +7,15 @@ class BotBrain :
     to code. """
 
     # Some static variables here if needed
-    dummy
+    dummy = ""
 
     def __init__(self) :
     
 	pass    
     
 
-    def play_move(self,Info my_info) :
+    def play_move(self, my_info) :
         """ Function to decide which move to play.
 	
         """
 	return WEST
-	
-
-
