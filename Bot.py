@@ -1,8 +1,44 @@
 import subprocess
 import sys
+import zipfile
+import tempfile
+import os
 from os import linesep
 
 import Constants
+
+def get_process_for_zip_file (filename) :
+    """ The given filename is that of a zip file and the
+    zip file is assumed to contain a file named `main.py`.
+    Extracts the zip file in a temperory folder, and starts
+    process corrosponding to `main.py`. """
+
+    try:
+        f = zipfile.ZipFile(filename)
+    except zipfile.BadZipfile:
+        raise Exception ("Invalid zip file : "
+                         + filename)
+    extract_path = tempfile.mkdtemp ()
+
+    # Handle older versions of zipfile that do not contain 'extractall'
+    if hasattr(f, "extractall"):
+        f.extractall(path = extract_path)
+    else:
+        for name in f.namelist():
+            path = os.path.join (extract_path, name)
+            f_ = open(path, "wb")
+            f_.write( f.read( name ) )
+            f_.close()
+
+    output = os.path.join(extract_path, "main.py")
+    if not os.path.exists(output):
+        raise Exception ("Unable to find 'main.py' in "
+                         + filename)
+
+    return subprocess.Popen (["python", output],
+                             stdin = subprocess.PIPE,
+                             stdout = subprocess.PIPE)
+
 
 def get_process_according_to_filename (filename) :
     """ Starts a subprocess assuming that the filename is
@@ -21,6 +57,10 @@ def get_process_according_to_filename (filename) :
         return subprocess.Popen (["java", "-jar", filename],
                                  stdin = subprocess.PIPE,
                                  stdout = subprocess.PIPE)
+
+    elif extension == "zip" :
+        return get_process_for_zip_file (filename)
+
     else :
         try :
             # assume the file is an executable and try to run it.
