@@ -1,6 +1,5 @@
 from sys import *
-from BotBrain import *
-from Info import *
+from botbrain import *
 
 
 my_info = Info()
