@@ -592,6 +592,7 @@ def js () :
 
 
 if __name__ == "__main__" :
+    html_file = open (HTML_FILE, 'w')
     html = ("<html><head>"
             + css ()
             + """</head>
@@ -605,5 +606,6 @@ if __name__ == "__main__" :
             + "</div>"
             + js ()
             + "</body></html>")
-    print html
+    html_file.write (html)
+    html_file.close ()
     
