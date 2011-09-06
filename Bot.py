@@ -52,11 +52,13 @@ def get_process_according_to_filename (filename) :
     if extension == "py" :
         return subprocess.Popen (["python", filename],
                                  stdin = subprocess.PIPE,
-                                 stdout = subprocess.PIPE)
+                                 stdout = subprocess.PIPE,
+                                 stderr = sys.stderr)
     elif extension == "jar" :
         return subprocess.Popen (["java", "-jar", filename],
                                  stdin = subprocess.PIPE,
-                                 stdout = subprocess.PIPE)
+                                 stdout = subprocess.PIPE,
+                                 stderr = sys.stderr)
 
     elif extension == "zip" :
         return get_process_for_zip_file (filename)
@@ -105,12 +107,12 @@ class Bot :
             self.add_to_info_to_send ("0 0" + linesep) # 0 moves for nitro 0 gothru powers
         # End of temperory stuff
         self.process.stdin.write (self.info_to_send + linesep)
-        # print "sent message : ", self.info_to_send
+        print "sent message : ", self.info_to_send
         self.process.stdin.flush ()
         self.info_to_send = ""
-        # print "waiting for response ..."
+        print "waiting for response ..."
         direction = self.process.stdout.readline ()
-        # print "got response : ", direction
+        print "got response : ", direction
         try :
             return Constants.__getattribute__ (direction)
         except :
