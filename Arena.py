@@ -78,13 +78,14 @@ class Arena :
         for bike in self.bikes :
             bike.bot.add_to_info_to_send ("2")
         for bike in self.bikes :
-            self.map.set_symbol (bike.curr_posn, bike.symbol)
-            for bike2 in self.bikes :
-                bike2.bot.add_to_info_to_send (str (bike.curr_posn.x)
-                                               + " "
-                                               + str (bike.curr_posn.y)
-                                               + " "
-                                               + bike.symbol)
+            if not self.game_over :
+                self.map.set_symbol (bike.curr_posn, bike.symbol)
+                for bike2 in self.bikes :
+                    bike2.bot.add_to_info_to_send (str (bike.curr_posn.x)
+                                                   + " "
+                                                   + str (bike.curr_posn.y)
+                                                   + " "
+                                                   + bike.symbol)
     def check_for_bot_crash (self) :
         """ Checks if any of the bot programmes have terminated.
         If yes prints it and the exit status. """
@@ -107,7 +108,9 @@ class Arena :
         -> -1 if player2 has occupied more area
         -> 1  if player1 has occupied more area """
         score1 = self.map.get_count (BIKE_1_SYMBOL)
+        print score1
         score2 = self.map.get_count (BIKE_2_SYMBOL)
+        print score2
         if (score1 < score2) : print -1
         elif (score2 < score1) : print 1
         else : print 0

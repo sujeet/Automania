@@ -7,20 +7,19 @@ def css () :
          -webkit-border-radius :	10px;                                             
          -moz-box-shadow       :	5px 5px 7px #555555;                              
          -webkit-box-shadow    :	5px 5px 7px #555555;                              
-         width                 :	 """ + str ((MAP_SIZE - 1)*10 + 420)+ """px;             
+         width                 :	 """ + str ((MAP_SIZE - 1)*10 + 210)+ """px;             
          height                :	 """ + str ((MAP_SIZE - 1)*10) + """px;                   
          margin                :	 0pt auto;                                        
-         padding               :	 20px;                                            
+         padding               :	 20px 10px 20px 20px;                                            
          border                :	 0pt none;                                        
          background            :	 none repeat scroll 0% 0% """ + BKG_COLOUR + """;   
      }                                                                                
      .legend {                                                                        
          width                 :	 200px;                                           
-         height                :	 480px;                                           
          -moz-border-radius    :	10px;                                             
          -webkit-border-radius :	10px;                                             
-         float                 :	 left;                                            
-         margin                :	 10px 10px 10px 0px;                              
+         float                 :    right;                                            
+         margin                :	 10px 0 0;                              
          background            :	 none repeat scroll 0% 0% """ + EMPTY_COLOUR + """; 
      }                                                                                
      .status {                                                                        
@@ -31,16 +30,13 @@ def css () :
          margin                :	 10px 0 0;                                        
          background            :	 none repeat scroll 0% 0% """ + EMPTY_COLOUR + """; 
      }                                                                                
-     .control, .points {                                                              
+     .control {                                                              
          width                 :	 200px;                                           
          -moz-border-radius    :	10px;                                             
          -webkit-border-radius :	10px;                                             
          float                 :	 right;                                           
-         margin                :	 20px 0 0;                                        
+         margin                :	 0;                                        
          background            :	 none repeat scroll 0% 0% """ + EMPTY_COLOUR + """; 
-     }                                                                                
-     .points table {                                                                  
-         font-size             :	 14px;                                            
      }                                                                                
      .point_number {                                                                  
          text-align            :	 right;                                           
@@ -52,7 +48,7 @@ def css () :
          margin                :	 0pt;                                             
          padding               :	 0pt;                                             
          float                 :	 left;                                            
-         border                :	 0pt none;                                        
+         border                :	 thin solid #aaaaaa;
          background            :	 none repeat scroll 0% 0% """ + EMPTY_COLOUR + """; 
      }
 
@@ -116,74 +112,48 @@ def legend () :
           </tr>                                                                              
           <tr>                                                                               
               <td>                                                                           
-                  <canvas id='""" + GOLD + """' height=10px width=10px></canvas>               
+                  <canvas id='""" + BIKE_1_SYMBOL + """' height=10px width=10px></canvas>              
               </td>                                                                          
-              <td> Gold                                                                      
-              </td>                                                                          
-          </tr>                                                                              
-          <tr>                                                                               
-          </tr>                                                                              
-          <tr>                                                                               
-              <td>                                                                           
-                  <canvas id='""" + FALCON1 + """' height=10px width=10px></canvas>            
-              </td>                                                                          
-              <td> Player one falcon                                                         
+              <td> Player one bike                                                           
               </td>                                                                          
           </tr>                                                                              
           <tr>                                                                               
               <td>                                                                           
-                  <canvas id='""" + TANK1 + """' height=10px width=10px></canvas>              
+                  <canvas id='""" + BIKE_2_SYMBOL + """' height=10px width=10px></canvas>              
               </td>                                                                          
-              <td> Player one tank                                                           
+              <td> Player two bike                                                           
               </td>                                                                          
-          </tr>                                                                              
-          <tr>                                                                               
-              <td>                                                                           
-                  <canvas id='""" + BUNKER1 + """' height=10px width=10px></canvas>            
-              </td>                                                                          
-              <td> Player one bunker                                                         
-              </td>                                                                          
-          </tr>                                                                              
-          <tr>                                                                               
-          </tr>                                                                              
-          <tr>                                                                               
-              <td>                                                                           
-                  <canvas id='""" + FALCON2 + """' height=10px width=10px></canvas>            
-              </td>                                                                          
-              <td> Player two falcon                                                         
-              </td>                                                                          
-          </tr>                                                                              
-          <tr>                                                                               
-              <td>                                                                           
-                  <canvas id='""" + TANK2 + """' height=10px width=10px></canvas>              
-              </td>                                                                          
-              <td> Player two tank                                                           
-              </td>                                                                          
-          </tr>                                                                              
-                                                                                             
-          <tr>                                                                               
-              <td>                                                                           
-                  <canvas id='""" + BUNKER2 + """' height=10px width=10px></canvas>            
-              </td>                                                                          
-              <td> Player two bunker                                                         
-              </td>                                                                          
-          </tr>                                                                              
-          <tr>                                                                               
-          </tr>                                                                              
-          <tr>                                                                               
-              <td>                                                                           
-                  <canvas id='""" + MACHINE_GUN + """' height=10px width=10px></canvas>        
-              </td>                                                                          
-              <td> Machine Gun                                                               
-              </td>                                                                          
-          </tr>                                                                              
-          <tr>                                                                               
           </tr>                                                                              
           <tr>                                                                               
               <td>                                                                           
                   <canvas id='""" + WALL + """' height=10px width=10px></canvas>               
               </td>                                                                          
               <td> Wall                                                                      
+              </td>                                                                          
+          </tr>                                                                              
+          <tr>                                                                               
+          </tr>                                                                              
+          <tr>                                                                               
+          </tr>                                                                              
+          <tr>                                                                               
+              <td>                                                                           
+                  <canvas id='""" + NITRO + """' height=10px width=10px></canvas>               
+              </td>                                                                          
+              <td> Nitro power
+              </td>                                                                          
+          </tr>                                                                              
+          <tr>                                                                               
+              <td>                                                                           
+                  <canvas id='""" + TRAVERSER + """' height=10px width=10px></canvas>               
+              </td>                                                                          
+              <td> Traverser power
+              </td>                                                                          
+          </tr>                                                                              
+          <tr>                                                                               
+              <td>                                                                           
+                  <canvas id='""" + RESET + """' height=10px width=10px></canvas>               
+              </td>                                                                          
+              <td> Reset power
               </td>                                                                          
           </tr>                                                                              
       </tbody></table>                                                                       
@@ -195,17 +165,6 @@ def canvas () :
 def status_notifier () :
     return """<div class ='status'>                                                                                            
       <table style='width: 200px; color: """ + TEXT_COLOUR + """;'>                                                      
-          <tr>                                                                                                         
-              <th colspan='2'> Scores </th>                                                                            
-          </tr>                                                                                                        
-          <tr>                                                                                                         
-              <td> Player one : </td>                                                                                  
-              <td> <div id='player1_score' style = 'color : """ + TANK1_COLOUR + """; font-weight: bold'> 0 </div> </td> 
-          </tr>                                                                                                        
-          <tr>                                                                                                         
-              <td> Player two : </td>                                                                                  
-              <td> <div id='player2_score' style = 'color : """ + TANK2_COLOUR + """; font-weight: bold'> 0 </div> </td> 
-          </tr>                                                                                                        
           <tr>                                                                                                         
               <td>                                                                                                     
                  <span style = 'font-weight : bold'> Moves :</span>                                                    
@@ -239,37 +198,24 @@ def controls () :
               </td>                                                                                    
           </tr>                                                                                        
           <tr>                                                                                         
-              <td colspan = '3'>                                                                       
+              <td>                                                                       
                   <button id='slow_button' class='button black' onclick='slow()'>                      
                       Slower                                                                           
                   </button>                                                                            
               </td>                                                                                    
-          </tr>                                                                                        
-          <tr>                                                                                         
-              <td colspan = '3'>                                                                       
+              <td>                                                                       
+                  <button id='restart_button' class='button black' onclick='window.location.reload()'> 
+                      Restart                                                                          
+                  </button>                                                                            
+              </td>                                                                                    
+              <td>                                                                       
                   <button id='fast_button' class='button black' onclick='fast()'>                      
                       Faster                                                                           
                   </button>                                                                            
               </td>                                                                                    
           </tr>                                                                                        
-          <tr>                                                                                         
-              <td colspan = '3'>                                                                       
-                  <button id='restart_button' class='button black' onclick='window.location.reload()'> 
-                      Restart                                                                          
-                  </button>                                                                            
-              </td>                                                                                    
-          </tr>                                                                                        
       </table>                                                                                         
       </div> """                                                                                           
-
-def points_table () :
-    return """ <div class ='points'>                                                   
-      <table style='width: 200px; color: """ + TEXT_COLOUR + """;'>             
-          <tr>                                                                
-              <th colspan='3'> Points </th>                                   
-          </tr>                                                               
-      </table>                                                                
-      </div>"""                                                                  
 
 def diff_array () :
     logfile = open (LOG_FILE)
@@ -365,21 +311,21 @@ def js () :
                        ctx.fillRect (x, y, 10, 10);                 
                        break;                                       
                                                                     
-                   case '""" + TANK1 + """' :                         
+                   case '""" + BIKE_1_SYMBOL + """' :                         
                        ctx.fillStyle = 'rgba(0, 256, 0, 0.5)';      
                        ctx.fillRect (x, y, 10, 10);                 
                        ctx.fillStyle = 'rgba(0, 256, 0, 1)';        
                        ctx.fillRect (x+2, y+2, 6, 6);               
                        break;                                       
                                                                     
-                   case '""" + TANK2 + """' :                         
+                   case '""" + BIKE_2_SYMBOL + """' :                         
                        ctx.fillStyle = 'rgba(256, 0, 0, 0.5)';      
                        ctx.fillRect (x, y, 10, 10);                 
                        ctx.fillStyle = 'rgba(256, 0, 0, 1)';        
                        ctx.fillRect (x+2, y+2, 6, 6);               
                        break;                                       
                                                                     
-                   case '""" + MACHINE_GUN + """' :                   
+                   case '""" + RESET + """' :                   
                        ctx.fillStyle = 'rgba(0, 256, 256, 0.5)';    
                        ctx.fillRect (x, y, 10, 10);                 
                        ctx.fillStyle = 'rgba(0, 256, 256, 1)';      
@@ -400,23 +346,23 @@ def js () :
                        ctx.fillRect (x+4, y+4, 2, 2);               
                        break;                                       
                                                                     
-                   case '""" + MACHINE_GUN_BULLET + """' :            
+                   case '""" + RESET_BULLET + """' :            
                        ctx.fillStyle = 'rgba(256, 256, 256, 0.5)';  
                        ctx.fillRect (x+3, y+3, 4, 4);               
                        ctx.fillStyle = 'rgba(256, 256, 256, 1)';    
                        ctx.fillRect (x+4, y+4, 2, 2);               
                        break;                                       
                                                                     
-                   case '""" + FALCON1 + """' :                       
-                       ctx.fillStyle = '""" + FALCON1_COLOUR + """';  
+                   case '""" + NITRO + """' :                       
+                       ctx.fillStyle = '""" + NITRO_COLOUR + """';  
                        ctx.beginPath();                             
                        ctx.arc(x+5, y+5, 5, 0, Math.PI*2, true);    
                        ctx.closePath();                             
                        ctx.fill();                                  
                        break;                                       
                                                                     
-                   case '""" + FALCON2 + """' :                       
-                       ctx.fillStyle = '""" + FALCON2_COLOUR + """';  
+                   case '""" + TRAVERSER + """' :                       
+                       ctx.fillStyle = '""" + TRAVERSER_COLOUR + """';  
                        ctx.beginPath();                             
                        ctx.arc(x+5, y+5, 5, 0, Math.PI*2, true);    
                        ctx.closePath();                             
@@ -426,33 +372,26 @@ def js () :
             } """                                                        
 
     # Fill the legend with small canvases.
-    string_to_return += """ canvas = document.getElementById('""" + GOLD + """');               
+    string_to_return += """ 
+            canvas = document.getElementById('""" + BIKE_1_SYMBOL + """');              
             ctx = canvas.getContext('2d');                                    
-            fill_the_canvas (0, 0, '""" + GOLD + """');                         
-            canvas = document.getElementById('""" + FALCON1 + """');            
+            fill_the_canvas (0, 0, '""" + BIKE_1_SYMBOL + """');                        
+            canvas = document.getElementById('""" + BIKE_2_SYMBOL + """');              
             ctx = canvas.getContext('2d');                                    
-            fill_the_canvas (0, 0, '""" + FALCON1 + """');                      
-            canvas = document.getElementById('""" + TANK1 + """');              
-            ctx = canvas.getContext('2d');                                    
-            fill_the_canvas (0, 0, '""" + TANK1 + """');                        
-            canvas = document.getElementById('""" + BUNKER1 + """');            
-            ctx = canvas.getContext('2d');                                    
-            fill_the_canvas (0, 0, '""" + BUNKER1 + """');                      
-            canvas = document.getElementById('""" + FALCON2 + """');            
-            ctx = canvas.getContext('2d');                                    
-            fill_the_canvas (0, 0, '""" + FALCON2 + """');                      
-            canvas = document.getElementById('""" + TANK2 + """');              
-            ctx = canvas.getContext('2d');                                    
-            fill_the_canvas (0, 0, '""" + TANK2 + """');                        
-            canvas = document.getElementById('""" + BUNKER2 + """');            
-            ctx = canvas.getContext('2d');                                    
-            fill_the_canvas (0, 0, '""" + BUNKER2 + """');                      
-            canvas = document.getElementById('""" + MACHINE_GUN + """');        
-            ctx = canvas.getContext('2d');                                    
-            fill_the_canvas (0, 0, '""" + MACHINE_GUN + """');                  
+            fill_the_canvas (0, 0, '""" + BIKE_2_SYMBOL + """');                        
             canvas = document.getElementById('""" + WALL + """');               
             ctx = canvas.getContext('2d');                                    
-            fill_the_canvas (0, 0, '""" + WALL + """'); """
+            fill_the_canvas (0, 0, '""" + WALL + """');
+            canvas = document.getElementById('""" + NITRO + """');               
+            ctx = canvas.getContext('2d');                                    
+            fill_the_canvas (0, 0, '""" + NITRO + """');
+            canvas = document.getElementById('""" + TRAVERSER + """');               
+            ctx = canvas.getContext('2d');                                    
+            fill_the_canvas (0, 0, '""" + TRAVERSER + """');
+            canvas = document.getElementById('""" + RESET + """');               
+            ctx = canvas.getContext('2d');                                    
+            fill_the_canvas (0, 0, '""" + RESET + """');
+            """
     
     # Set the canvas and ctx back.
     string_to_return += """ canvas = document.getElementById('container'); 
@@ -471,16 +410,12 @@ def js () :
                       var symbol_to_display = diff_array[turn_number][i][3];                         
                       fill_the_canvas (x*10, y*10, symbol_to_display);                               
                  }                                                                                   
-                 document.getElementById('player1_score').innerHTML = diff_array[turn_number][i][0]; 
-                 document.getElementById('player2_score').innerHTML = diff_array[turn_number][i][1]; 
             }"""
 
     # Function to go back.
     string_to_return += """ function go_back (turn_number)                                                           
             {                                                                                        
                  var i = diff_array[turn_number].length - 1;                                         
-                 document.getElementById('player1_score').innerHTML = diff_array[turn_number][i][0]; 
-                 document.getElementById('player2_score').innerHTML = diff_array[turn_number][i][1]; 
                  for (i = diff_array[turn_number].length - 2; i >=0; i--){                           
                       var y = diff_array[turn_number][i][0];                                         
                       var x = diff_array[turn_number][i][1];                                         
@@ -598,11 +533,10 @@ if __name__ == "__main__" :
             + """</head>
             <body style='background:#aaaaaa;'>
             <div class = 'metacontainer'>"""
-            + legend ()
             + canvas ()
-            + status_notifier ()
             + controls ()
-            + points_table ()
+            + status_notifier ()
+            + legend ()
             + "</div>"
             + js ()
             + "</body></html>")
