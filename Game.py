@@ -1,4 +1,5 @@
 import sys
+import os
 
 from Constants import *
 from Arena import *
@@ -19,3 +20,4 @@ if __name__ == "__main__" :
             break
 
     arena.terminate_game ()
+    os.system ("python log_to_html.py")

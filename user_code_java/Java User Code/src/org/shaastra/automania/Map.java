@@ -25,20 +25,21 @@ public class Map {
 	}
 	
 	/*
-	 * initializes various things.
-	 * 
-	 * POSSIBLE ERROR AT THIS PLACE
+	 * Initializes various things.
 	 */
 	public void initialize(String file_name ) throws IOException
 	{
-		MAP_SIZE = GlobalDataStore.MAX_X;
-		array = new char[MAP_SIZE][MAP_SIZE];
 		FileReader map_file = new FileReader(file_name);
 		
 		BufferedReader bufRead = new BufferedReader(map_file);
 		
 		String temp;
 		temp = bufRead.readLine();
+		//System.err.println("the length of map must be");
+		//System.err.print(temp.length());
+		
+		MAP_SIZE = temp.length();
+		array = new char[MAP_SIZE][MAP_SIZE];
 		
 		int i;
 		for(i = 0; i < array.length; i++)

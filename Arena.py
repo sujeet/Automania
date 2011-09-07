@@ -48,12 +48,21 @@ class Arena :
     def _check_for_collisions (self) :
         """ Checks for collisions, and if any,
         sets the appropriate flags. """
+        # Bikes colliding with some thing there on the map
+        # since previous move
         for bike in self.bikes :
             symbol_at_new_posn = self.map.get_symbol (bike.curr_posn)
+            print symbol_at_new_posn
             bike.is_dead = (symbol_at_new_posn != EMPTY and
                             symbol_at_new_posn not in POWER_UP_SYMBOLS)
             if bike.is_dead :
                 self.game_over = True
+        # Bikes colliding with someting which has not shown
+        # up on the map yet (say, another bike)
+        if self.bikes[0].curr_posn == self.bikes[1].curr_posn :
+            for bike in self.bikes :
+                bike.is_dead
+            self.game_over = True
 
     def _pick_power_ups (self) :
         """ Makes the bikes pick the power-ups if they have

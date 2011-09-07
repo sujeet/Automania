@@ -4,6 +4,7 @@ BIKE_2_SYMBOL = "2"
 EMPTY = "."
 POWER_UP_SYMBOLS = ("a", "b")
 LOG_FILE = "log.txt"
+HTML_FILE = "log.html"
 
 NORTH = (0, -1)
 SOUTH = (0, 1)

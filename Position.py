@@ -9,6 +9,10 @@ class Position :
     def __str__ (self) :
         return "Position : " + str (self.x) + ", " + str (self.y)
 
+    def __eq__ (self, other) :
+        return (self.x == other.x and
+                self.y == other.y)
+
     def update (self, direction) :
         self.x += direction [0]
         self.y += direction [1]

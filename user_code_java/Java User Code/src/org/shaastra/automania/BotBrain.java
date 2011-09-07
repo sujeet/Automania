@@ -24,12 +24,11 @@ public class BotBrain {
 	/**
 	 * Function to decide which move to play.
 	 * @param my_info
-	 * @return
+	 * @return The move to be made.
 	 */
 	public int play_move(Info my_info)
 	{
-		// return type my need to be changed.
-		return 2;
+		return GlobalDataStore.SOUTH;
 	}
 
 }

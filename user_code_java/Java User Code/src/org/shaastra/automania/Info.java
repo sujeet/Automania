@@ -81,7 +81,12 @@ public class Info {
 			enemy_tag =(char) in.read();
 			newline_buf = (char) in.read();
 			String line = in.readLine();
+			while(line.length()<1)
+			{
+				line = in.readLine();
+			}
 			String[] myNumbers=line.split(" ");
+			//System.err.println(line + line.length()); 
 			x = Integer.parseInt(myNumbers[0]);
 			y = Integer.parseInt(myNumbers[1]);
 		} catch (IOException e) {
@@ -94,6 +99,10 @@ public class Info {
 	    
 	    try {
 			String line = in.readLine();
+			while(line == "")
+			{
+				line = in.readLine();
+			}
 			String[] myNumbers=line.split(" ");
 			x = Integer.parseInt(myNumbers[0]);
 			y = Integer.parseInt(myNumbers[1]);
@@ -106,6 +115,10 @@ public class Info {
 		map_file = new String();
 	    try {
 			map_file = in.readLine();
+			while(map_file == "")
+			{
+				map_file = in.readLine();
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -120,7 +133,14 @@ public class Info {
 	{
 		int num_ip = 0;
 		try {
-			num_ip =  Integer.parseInt(in.readLine());
+			String line = in.readLine();
+			while(line.length()< 1)
+			{
+				line = in.readLine();
+			}
+			String[] myNumbers=line.split(" ");
+			num_ip =  Integer.parseInt(myNumbers[0]);
+			//System.err.print(num_ip);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -137,10 +157,20 @@ public class Info {
 			int x = 0, y = 0;
 			char element = 0;
 			try {
-				x = Integer.parseInt(in.readLine());
-				y = Integer.parseInt(in.readLine());
-				element = (char) in.read();
-				newline_buf = (char) in.read();
+				String line = in.readLine();
+				while(line == "")
+				{
+					line = in.readLine();
+				}
+				String[] updateValues=line.split(" ");
+				//System.err.println(line); 
+				x = Integer.parseInt(updateValues[0]);
+				y = Integer.parseInt(updateValues[1]);
+				element = updateValues[2].charAt(0);
+			
+				//System.err.print(x);
+				//System.err.print(y);
+				//System.err.print(element);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -160,10 +190,15 @@ public class Info {
 			}
 		}
 		String line = in.readLine();
+		while(line == "")
+		{
+			line = in.readLine();
+		}
 		String[] myNumbers=line.split(" ");
+		System.err.println(line);
 		nitro_moves_left = Integer.parseInt(myNumbers[0]);
 		traversers = Integer.parseInt(myNumbers[1]);
-		System.out.println(nitro_moves_left + traversers);
+		System.err.println(nitro_moves_left + traversers);
 	}
 	
 	void compute_details()
