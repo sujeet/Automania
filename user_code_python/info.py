@@ -1,6 +1,8 @@
 from bfs import *
 import sys 
 
+#This class contains a lot of information about the game. Read the 'programming_details' file for a clear description of the class.
+
 class Info:
 
     def __init__(self):
@@ -26,7 +28,7 @@ class Info:
         self.enemy_nitro_distance = []
 
 
-    def initial_read(self):
+    def initial_read(self): #this function is of little importance to the user.
 	
         self.game_ended = 0
 
@@ -66,7 +68,7 @@ class Info:
         return
 
 
-    def read_info(self):
+    def read_info(self):   #this function is of little importance to the user.
 
         self.temp = raw_input()
         while self.temp == '':
@@ -108,7 +110,7 @@ class Info:
 
 
 
-    def compute_details(self):
+    def compute_details(self):  #this function is of little importance to the user.
 
 	    #This function finds all non trivial details. This may include shortest distance to all powers and the first moves to be made to reach them in shortest time
     	#This can also compute other details like the area of the current region in which the bike resides etc..

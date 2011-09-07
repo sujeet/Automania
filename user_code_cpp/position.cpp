@@ -16,7 +16,7 @@ void Position::initialize( int a, int b )
 	y = b;
 }
 
-void Position::update(int direction)
+void Position::update(int direction)    //this function updates the current position to move in the target direction.
 {
 	if( direction == EAST )
 	{	

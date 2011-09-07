@@ -6,7 +6,7 @@ Bots can be written in three different languages: C++ Java and Python.
 
 You are expected to return your move in the 'botbrain' class in the corresponding folder ( eg. user_code_cpp )
 
-You cannot change anything else other than botbrain file. You allowed to add new files however. Note that if you add new files, you must make suitable modifications to the makefile. If your makefile is incorrect, your bot will not be considered.
+You cannot change anything else other than botbrain file. You allowed to add new files however. Note that if you add new files, you must make suitable modifications to the makefile. If your makefile is incorrect, your bot will not be considered. For python users you need not worry about makefiles. //@devesh: update this for java users
 
 A lot of classes/functions are already defined to help you focus on the logic of the game rather than programming details. Please go through the classes and the file 'programming_details' before you start coding.
 

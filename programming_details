@@ -5,7 +5,7 @@ In each of the user_code folder, the following classes are defined:
 Position, Map, Bfs, Info, BotBrain.
 Each of the classes is briefly explained here.
 You can go through the classes if necessary. Enough comments are added for fast understanding.
-We recommend you to go through each of the class as you read this file.
+We recommend you to go through each of the class/header files as you read this file.
 
 Go through the constants file first to understand the macros used.
 
@@ -48,7 +48,7 @@ If you see the info.h file, you can find several vectors like 'my_traverser_posn
 NOTE1: There is an exact correspondence between these vectors. i.e Eg.if you access second element in each of the vectors, they give details about the exact same element. 
 NOTE2: These vectors are in the sorted order of the distance from the current position. So if you want to find the details of the nearest power, use the details of the first element. Check out the sample bots in botbrain file for a clear explanation.
 
-
+You can run sample games in your local system before submitting. Check out the readme file for details on how to compile and run. You can change the map if necessary. Make sure that the map is a square and that you updated the constants MAX_X and MAX_Y in the constants file
 
 
 The final move must be returned in the function 'play_move' in the botbrain class. The moves can be one of the directions: NORTH, SOUTH, EAST, WEST.  

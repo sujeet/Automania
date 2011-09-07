@@ -1,5 +1,6 @@
 #include "botBrain.h"
 
+//The user need not worry about this file
 int main()
 {
      Info my_info;

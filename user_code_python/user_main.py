@@ -1,6 +1,7 @@
 from sys import *
 from botbrain import *
 
+#The user need not worry about this file
 
 my_info = Info()
 my_bot = BotBrain()
