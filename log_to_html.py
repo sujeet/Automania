@@ -79,6 +79,7 @@ def css () :
      	*display              : inline;                                                                                      
      	vertical-align        : baseline;                                                                                    
      	margin                : 0 2px;                                                                                       
+     	width                 : 50px;                                                                                      
      	outline               : none;                                                                                        
      	cursor                : pointer;                                                                                     
      	text-align            : center;                                                                                      
@@ -199,17 +200,17 @@ def controls () :
           </tr>                                                                                        
           <tr>                                                                                         
               <td>                                                                       
-                  <button id='slow_button' class='button black' onclick='slow()'>                      
+                  <button id='slow_button' class='button black' style='padding-left:2px' onclick='slow()'>                      
                       Slower                                                                           
                   </button>                                                                            
               </td>                                                                                    
               <td>                                                                       
-                  <button id='restart_button' class='button black' onclick='window.location.reload()'> 
-                      Restart                                                                          
+                  <button id='restart_button' class='button black' style='padding-left:2px' onclick='window.location.reload()'> 
+                      Reload
                   </button>                                                                            
               </td>                                                                                    
               <td>                                                                       
-                  <button id='fast_button' class='button black' onclick='fast()'>                      
+                  <button id='fast_button' class='button black' style='padding-left:3px' onclick='fast()'>                      
                       Faster                                                                           
                   </button>                                                                            
               </td>                                                                                    
@@ -279,7 +280,7 @@ def js () :
             {                                                       
                switch (name)                                        
                {                                                    
-                   case '""" + DEAD + """' :                          
+                   case '""" + DEAD_SYMBOL + """' :                          
                        drawStar(ctx, 10, x + 5, y + 5, 'red', 7);   
                        drawStar(ctx, 6, x + 5, y + 5, 'yellow', 7); 
                        break;                                       

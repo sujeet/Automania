@@ -61,8 +61,12 @@ class Arena :
         # up on the map yet (say, another bike)
         if self.bikes[0].curr_posn == self.bikes[1].curr_posn :
             for bike in self.bikes :
-                bike.is_dead
+                bike.is_dead = True
             self.game_over = True
+        # Set the dead symbols on maps accordingly
+        for bike in self.bikes :
+            if bike.is_dead :
+                self.map.set_symbol (bike.curr_posn, DEAD_SYMBOL)
 
     def _pick_power_ups (self) :
         """ Makes the bikes pick the power-ups if they have
@@ -104,16 +108,15 @@ class Arena :
 
     def print_scores (self) :
         """ Prints to stdout
-        -> 0  if both bots have occupied same area
-        -> -1 if player2 has occupied more area
-        -> 1  if player1 has occupied more area """
-        score1 = self.map.get_count (BIKE_1_SYMBOL)
-        print score1
-        score2 = self.map.get_count (BIKE_2_SYMBOL)
-        print score2
-        if (score1 < score2) : print -1
-        elif (score2 < score1) : print 1
-        else : print 0
+        -> 0  if either both are alive or both are dead.
+        -> -1 if player2 is the only surviour. 
+        -> 1  if player1 is the only surviour. """
+        if self.bikes[0].is_dead == self.bikes[1].is_dead :
+            print 0
+        elif self.bikes[0].is_dead :
+            print -1
+        else :
+            print 1
 
     def terminate_game (self) :
         """ All the aftergame cleanup goes here. """

@@ -33,7 +33,7 @@ WEST = (-1, 0)
 GOLD =                'G'
 WALL =                '#'
 EMPTY =               '.'
-DEAD =                'D'
+DEAD_SYMBOL =                'D'
 
 BUNKER1 =             'X'
 NITRO =             'N'
