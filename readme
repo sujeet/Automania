@@ -6,7 +6,8 @@ Bots can be written in three different languages: C++ Java and Python.
 
 You are expected to return your move in the 'botbrain' class in the corresponding folder ( eg. user_code_cpp )
 
-You cannot change anything else other than botbrain file. You allowed to add new files however. Note that if you add new files, you must make suitable modifications to the makefile. If your makefile is incorrect, your bot will not be considered. For python users you need not worry about makefiles. //@devesh: update this for java users
+You cannot change anything else other than botbrain file. You allowed to add new files however. Note that if you add new files, you must make suitable modifications to the makefile. If your makefile is incorrect, your bot will not be considered. For python users you need not worry about makefiles.
+Java users can submit just their .jar files. The code given is just a reference code, you can choose to modify it or write a completely new code which takes care of the right I/O format. We strongly advise you to build on the given code.
 
 A lot of classes/functions are already defined to help you focus on the logic of the game rather than programming details. Please go through the classes and the file 'programming_details' before you start coding.
 
@@ -20,9 +21,5 @@ Traversers: This power can help you to pass through the trail. You can have a nu
 Restart: This is a strange power. This is located at the centre of the map. If one of the player reaches this power, all the existing trails disappears but it can be used only once.
 
 
-
 Good Luck!
-
-
-
 
