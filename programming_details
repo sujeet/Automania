@@ -23,9 +23,9 @@ This class is used only to calculate various details in info class and you need 
 
 BotBrain:
 
-This is the class where you are allowed to make changes. You can add functions, new classes if necessary. Make sure to update the .h files too. ( Python users please ignore )  //@DEVESH: Add stuff for java code.
+This is the class where you are allowed to make changes. You can add functions, new classes if necessary. Make sure to update the .h files too if you are writing in cpp. ( Python users please ignore ) 
 
-Info class: //please go through this part and add if there is anything specific to java must be included.
+Info class:
 
 This class contains a huge amount of information and saves you a lot of coding work. Effective use of the information you get in this class is good enough to build a very good bot.
 We strongly recommend you go through the info.h file in user_code_cpp ( For python users too ) to understand the details passed.
@@ -39,7 +39,7 @@ map - Type: Map. This contains the current map.
 nitro_moves_left - number of moves for which the nitro power lasts for you.
 traversers - number of traversers power available to you.
 
-If you see the info.h file, you can find several vectors like 'my_traverser_posn', 'enemy_nitro_distance'. The description for these vectors are given below.
+If you see the info.h(or class definition in case of java and python coders) file, you can find several vectors like 'my_traverser_posn', 'enemy_nitro_distance'. The description for these vectors are given below.
 -if the name starts with 'my', it is a detail about you. else it is about the enemy.
 -these vectors gives details about the power ups ( nitro and traverser ). They are given as sets of three. For example the detail my_nitro is described:
 -my_nitro_distance - vector of distances (shortest possible distance) from your position to all reachable nitro powers.
