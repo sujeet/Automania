@@ -4,6 +4,8 @@
 
 #include "map.h"
 
+//This class is not of much importance to the user. This basically implements a bfs function. If the user wants to write his own bfs function, he can use this class as a reference
+
 class node
 {
 

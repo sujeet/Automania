@@ -2,6 +2,8 @@
 #include<vector>
 #include "bfs.h"
 
+
+//This class contains a lot of information about the game. Read the 'programming_details' file for a clear description of the class.
 class Info
 {
 
@@ -22,8 +24,8 @@ Map map;
 int nitro_moves_left;
 int traversers;
 
-vector <Position> my_traverser_posn; //since the actual powers are not finalized
-vector <int> my_traverser_move;	//first move to be made to reach the target point in shortest time.
+vector <Position> my_traverser_posn; 
+vector <int> my_traverser_move;	
 vector <int> my_traverser_distance;
 
 vector <Position> my_nitro_posn;
@@ -38,9 +40,9 @@ vector <Position> enemy_nitro_posn;
 vector <int> enemy_nitro_move;
 vector <int> enemy_nitro_distance;
 
-void initial_read();	//initially reads the necessary details like the players tagetc.
-void read_info();	//reads the input from the engine and updates the variables.
-void compute_details();	//finds all the necessary details
-int end_game();	//checks if the game has ended.
+void initial_read();    //this function is of little importance to the user.	
+void read_info();  //this function is of little importance to the user.
+void compute_details();	//this function is of little importance to the user.
+int end_game();		//this function is of little importance to the user.
 
 };

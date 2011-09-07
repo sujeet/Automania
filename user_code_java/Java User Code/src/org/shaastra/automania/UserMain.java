@@ -14,6 +14,7 @@ import org.shaastra.automania.*;
 public class UserMain {
 
 	/**
+	 * User is requested not to try and change this.
 	 * @param args
 	 * @throws IOException 
 	 */

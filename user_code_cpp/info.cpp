@@ -1,5 +1,7 @@
 #include "info.h"
 
+//This class contains a lot of information about the game. Read the 'programming_details' file for a clear description of the class.
+
 
 void Info::initial_read()
 {

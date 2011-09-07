@@ -28,6 +28,7 @@ public class BotBrain {
 	 */
 	public int play_move(Info my_info)
 	{
+		// Here is where the user needs to code and return the move.
 		return GlobalDataStore.SOUTH;
 	}
 

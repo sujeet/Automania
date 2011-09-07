@@ -71,11 +71,16 @@ public class Map {
 	}
 	
 
+	/**
+	 * Gets a symbol at a position.
+	 * @param pos Position to get object from.
+	 * @return Character at the position and 'W' if invalid.
+	 */
 	char get_symbol( Position pos )
 	{
-	        if( pos.x >= MAP_SIZE || pos.x < 0 ||  pos.y >= MAP_SIZE || pos.y < 0 );
-	                //exception. Disqualify the player?
-	        return array[pos.x][pos.y];
+	        if( pos.x >= MAP_SIZE || pos.x < 0 ||  pos.y >= MAP_SIZE || pos.y < 0 )
+	        	return array[pos.x][pos.y];
+	        return 'W';
 	}
 
 	int moveable_position( Position pos )

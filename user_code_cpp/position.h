@@ -6,12 +6,13 @@ class Position
 
 public:
 
-int x,y;
+int x,y;    // x and y co ordinate
 
 Position();
 Position( int , int );
 void initialize( int , int );
-void update( int );
+void update( int ); //this function updates the current position to move in the target direction.
+
 
 };
 
