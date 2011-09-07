@@ -276,7 +276,7 @@ def js () :
              } """                                                
 
     # Function to fill out the canvas at appropriate places.
-    string_to_return += """ function fill_the_canvas (x, y, name)                   
+    string_to_return += """ function fill_the_canvas (y, x, name)                   
             {                                                       
                switch (name)                                        
                {                                                    

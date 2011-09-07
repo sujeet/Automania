@@ -71,10 +71,10 @@ class Map :
     def set_symbol (self, position, symbol) :
         """ Sets the given symbol at the given position. """
         self._validate_position (position)
-        self._map_array [position.x] [position.y] = symbol
+        self._map_array [position.y] [position.x] = symbol
         self.log_changes (position, symbol)
 
     def get_symbol (self, position) :
         """ Returns the symbol at the position. """
         self._validate_position (position)
-        return self._map_array [position.x] [position.y]
+        return self._map_array [position.y] [position.x]

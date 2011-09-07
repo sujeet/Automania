@@ -38,7 +38,7 @@ class Arena :
         # return (Position (0, 0),
         #         Position (map.size - 1, map.size - 1))
         return (Position (3, 3, map.size - 1, map.size - 1),
-                Position (7, 7, map.size - 1, map.size - 1))
+                Position (7, 12, map.size - 1, map.size - 1))
 
     def get_moves (self, first_move = False) :
         """ Gets moves from each bot driving the bikes. """
@@ -52,7 +52,6 @@ class Arena :
         # since previous move
         for bike in self.bikes :
             symbol_at_new_posn = self.map.get_symbol (bike.curr_posn)
-            print symbol_at_new_posn
             bike.is_dead = (symbol_at_new_posn != EMPTY and
                             symbol_at_new_posn not in POWER_UP_SYMBOLS)
             if bike.is_dead :
