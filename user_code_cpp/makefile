@@ -1,7 +1,7 @@
 CC = g++
 strict_options = -Wall -pedantic
 
-final: user_main.o botBrain.o info.o bfs.o map.o position.o map.o position.o
+main: user_main.o botBrain.o info.o bfs.o map.o position.o map.o position.o
 	$(CC) -o $@ $^
 
 user_main.o: user_main.cpp botBrain.h info.h bfs.h map.h constants.h position.h
@@ -23,4 +23,4 @@ position.o: position.cpp constants.h
 	$(CC) -o $@ -c $< $(strict_options)
 
 clean :
-	rm -rf *.o *.~ final
+	rm -rf *.o *.~ main
