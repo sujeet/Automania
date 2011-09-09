@@ -7,7 +7,6 @@ import org.shaastra.automania.*;
 
 /**
  * Literally this is the brain of the bot.
- * @author devesh
  * 
  * This is the class whose functions players need to code.
  */
@@ -29,6 +28,21 @@ public class BotBrain {
 	public int play_move(Info my_info)
 	{
 		// Here is where the user needs to code and return the move.
+		Position temp = my_info.my_posn;
+		
+		temp.update( GlobalDataStore.WEST );
+		if( my_info.map.moveable_position( temp ) != 0 )
+		{
+			return 	GlobalDataStore.WEST;
+		}
+		temp = my_info.my_posn;
+		temp.update( GlobalDataStore.EAST );	
+		if( my_info.map.moveable_position( temp ) != 0 )
+			return 	GlobalDataStore.EAST;
+		temp = my_info.my_posn;
+		temp.update( GlobalDataStore.NORTH );	
+		if( my_info.map.moveable_position( temp ) != 0 )
+			return 	GlobalDataStore.NORTH;
 		return GlobalDataStore.SOUTH;
 	}
 

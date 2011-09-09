@@ -4,7 +4,6 @@
 package org.shaastra.automania;
 
 /**
- * @author devesh
  *
  */
 public class Position {
@@ -37,23 +36,28 @@ public class Position {
 	{
 		if( direction == GlobalDataStore.EAST )
 		{	
-			x += 1;
-			y += 0;
+			y += 1;
+	        if( y == GlobalDataStore.MAX_Y )
+	            y = 0;
 		}
 		if( direction == GlobalDataStore.WEST )
 		{	
-			x -= 1;
-			y += 0;
+			y -= 1;
+	        if( y == -1 )
+	            y = GlobalDataStore.MAX_Y - 1;
 		}
 		if( direction == GlobalDataStore.NORTH )
 		{	
-			x += 0;
-			y -= 1;
+			x -= 1;
+	        if( x == -1 )
+	            x = GlobalDataStore.MAX_X - 1;
+
 		}
 		if( direction == GlobalDataStore.SOUTH )
 		{	
-			x += 0;
-			y += 1;
+			x += 1;
+	        if( x == GlobalDataStore.MAX_X )
+	            x = 0;
 		}
 	}
 

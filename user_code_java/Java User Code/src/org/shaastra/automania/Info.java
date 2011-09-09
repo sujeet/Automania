@@ -10,7 +10,6 @@ import org.shaastra.automania.*;
 /**
  * Info class gathers and provides all the helpful information
  * to the user.
- * @author devesh
  * 
  * Detailed explanation here.(TO BE DONE)
  */
@@ -87,8 +86,8 @@ public class Info {
 			}
 			String[] myNumbers=line.split(" ");
 			//System.err.println(line + line.length()); 
-			x = Integer.parseInt(myNumbers[0]);
-			y = Integer.parseInt(myNumbers[1]);
+			y = Integer.parseInt(myNumbers[0]);
+			x = Integer.parseInt(myNumbers[1]);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -104,8 +103,8 @@ public class Info {
 				line = in.readLine();
 			}
 			String[] myNumbers=line.split(" ");
-			x = Integer.parseInt(myNumbers[0]);
-			y = Integer.parseInt(myNumbers[1]);
+			y = Integer.parseInt(myNumbers[0]);
+			x = Integer.parseInt(myNumbers[1]);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -151,6 +150,9 @@ public class Info {
 			game_ended = 1;
 			return;	
 		}
+		map.set_symbol( my_posn, GlobalDataStore.TRAIL );
+		map.set_symbol( enemy_posn, GlobalDataStore.TRAIL );
+
 
 		for( int i=0;i<num_ip;i++)
 		{
@@ -164,8 +166,8 @@ public class Info {
 				}
 				String[] updateValues=line.split(" ");
 				//System.err.println(line); 
-				x = Integer.parseInt(updateValues[0]);
-				y = Integer.parseInt(updateValues[1]);
+				y = Integer.parseInt(updateValues[0]);
+				x = Integer.parseInt(updateValues[1]);
 				element = updateValues[2].charAt(0);
 			
 				//System.err.print(x);

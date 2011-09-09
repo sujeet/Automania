@@ -12,7 +12,6 @@ import org.shaastra.automania.*;
 
 /**
  * Represents the map.
- * @author devesh
  *
  */
 public class Map {
