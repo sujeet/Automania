@@ -11,7 +11,6 @@ import java.util.Queue;
 import org.shaastra.automania.*;
 
 /**
- * @author devesh
  *
  */
 public class Bfs {

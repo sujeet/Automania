@@ -4,7 +4,6 @@
 package org.shaastra.automania;
 
 /**
- * @author devesh
  *
  */
 public class Node {

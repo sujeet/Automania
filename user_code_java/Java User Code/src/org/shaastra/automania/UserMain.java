@@ -8,7 +8,6 @@ import java.io.IOException;
 import org.shaastra.automania.*;
 
 /**
- * @author devesh
  *
  */
 public class UserMain {
@@ -35,7 +34,7 @@ public class UserMain {
 		{
 
 			int result = my_bot.play_move(my_info);
-			if( result > 4 || result < 1 )
+			if( result > 3 || result < 0 )
 			{
 				System.out.println("INVALID");
 				System.out.flush();
