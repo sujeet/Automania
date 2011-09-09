@@ -12,6 +12,8 @@ class Arena :
         init_posns = self._generate_init_posns (self.map)
         self.bikes = [Bike (BIKE_1_SYMBOL, init_posns[0], bot_files[0]),
                       Bike (BIKE_2_SYMBOL, init_posns[1], bot_files[1])]
+        self.map.set_symbol (self.bikes[0].curr_posn, self.bikes[0].symbol)
+        self.map.set_symbol (self.bikes[1].curr_posn, self.bikes[1].symbol)
         self.power_ups = []
         self.game_over = False
         # Send the initialization info to the bots.
@@ -24,12 +26,12 @@ class Arena :
                 enemy_symbol = BIKE_1_SYMBOL
                 bot_num = 1
             bike.bot.add_to_info_to_send (enemy_symbol)
-            bike.bot.add_to_info_to_send (str(init_posns[bot_num%2].x)
+            bike.bot.add_to_info_to_send (str(init_posns[bot_num].x)
                                           + " "
-                                          + str(init_posns[bot_num%2].y))
-            bike.bot.add_to_info_to_send (str(init_posns[(bot_num+1)%2].x)
+                                          + str(init_posns[bot_num].y))
+            bike.bot.add_to_info_to_send (str(init_posns[1-bot_num].x)
                                           + " "
-                                          + str(init_posns[(bot_num+1)%2].y))
+                                          + str(init_posns[1-bot_num].y))
             bike.bot.add_to_info_to_send (map_file_name)
 
     def _generate_init_posns (self, map) :
@@ -43,7 +45,7 @@ class Arena :
     def get_moves (self, first_move = False) :
         """ Gets moves from each bot driving the bikes. """
         for bike in self.bikes :
-            bike.get_move (first_move)
+            bike.get_move (self.map.updates, self.map, first_move)
 
     def _check_for_collisions (self) :
         """ Checks for collisions, and if any,
@@ -73,22 +75,15 @@ class Arena :
         for bike in self.bikes :
             symbol_at_new_posn = self.map.get_symbol (bike.curr_posn)
             if symbol_at_new_posn in POWER_UP_SYMBOLS :
-                bike.power_up (symbol_at_new_posn)
+                bike.power_up (self, symbol_at_new_posn)
 
     def _update_map (self) :
         """ Based on the bike positions, updates
         the map. """
         for bike in self.bikes :
-            bike.bot.add_to_info_to_send ("2")
-        for bike in self.bikes :
             if not self.game_over :
                 self.map.set_symbol (bike.curr_posn, bike.symbol)
-                for bike2 in self.bikes :
-                    bike2.bot.add_to_info_to_send (str (bike.curr_posn.x)
-                                                   + " "
-                                                   + str (bike.curr_posn.y)
-                                                   + " "
-                                                   + bike.symbol)
+
     def check_for_bot_crash (self) :
         """ Checks if any of the bot programmes have terminated.
         If yes prints it and the exit status. """
@@ -104,6 +99,9 @@ class Arena :
         self._check_for_collisions ()
         self._pick_power_ups ()
         self._update_map ()
+
+    # def send_info_to_bots (self) :
+        
 
     def print_scores (self) :
         """ Prints to stdout

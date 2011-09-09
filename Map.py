@@ -1,5 +1,7 @@
 from os import linesep
 from Constants import *
+from Updates import *
+from Position import *
 
 class Map :
     """ Represents the map. """
@@ -15,6 +17,13 @@ class Map :
         self._validate ()
         self.size = len (self._map_array)
         self.log_file = open (LOG_FILE, "w")
+        self.updates = Updates ()
+        # Now, read the map again for the sake of logging
+        # TODO : find a better way of doing this.
+        for i in range (self.size) :
+            for j in range (self.size) :
+                position = Position (i, j, self.size, self.size)
+                self.set_symbol (position, self.get_symbol (position))
 
     def __str__ (self) :
         """ String representation of map. As a snapshot. """
@@ -53,26 +62,25 @@ class Map :
                     count += 1
         return count
         
-    def log_symbols (self, sym1, sym2, sym3, sym4) :
-        """ Writes the four symbols in space seperated
-        line to the log file. """
-        changes = (str (sym1) + " "
-                   + str (sym2) + " "
-                   + str (sym3) + " "
-                   + str (sym4) + linesep)
-        self.log_file.write (changes)
-
-    def log_changes (self, position, symbol) :
-        """ Used for creating map diffs to send across
-        to the bots. Also will be useful for the game
-        visualizer. """
-        self.log_symbols (position.x, position.y, ".", symbol)
+    def log_updates (self, x, y, previous_symbol, current_symbol) :
+        """ Writes the updates in the log file. """
+        self.log_file.write (str (x) + " "
+                             + str (y) + " "
+                             + str (previous_symbol) + " "
+                             + str (current_symbol) + linesep)
 
     def set_symbol (self, position, symbol) :
         """ Sets the given symbol at the given position. """
         self._validate_position (position)
+        self.updates.add (position.x,
+                          position.y,
+                          self.get_symbol (position),
+                          symbol)
+        self.log_updates (position.x,
+                          position.y,
+                          self.get_symbol (position),
+                          symbol)
         self._map_array [position.y] [position.x] = symbol
-        self.log_changes (position, symbol)
 
     def get_symbol (self, position) :
         """ Returns the symbol at the position. """

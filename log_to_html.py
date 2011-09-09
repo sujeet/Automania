@@ -302,27 +302,27 @@ def js () :
                        ctx.fillRect (x+2, y+2, 6, 6);               
                        break;                                       
                                                                     
-                   case '""" + BUNKER1 + """' :                       
-                       ctx.fillStyle = 'rgba(0, 256, 0, 0.2)';      
+                   case '""" + TRAIL1 + """' :                       
+                       ctx.fillStyle = 'rgb(0, 128, 0)';      
                        ctx.fillRect (x, y, 10, 10);                 
                        break;                                       
                                                                     
-                   case '""" + BUNKER2 + """' :                       
-                       ctx.fillStyle = 'rgba(256, 0, 0, 0.2)';      
+                   case '""" + TRAIL2 + """' :                       
+                       ctx.fillStyle = 'rgb(128, 0, 0)';      
                        ctx.fillRect (x, y, 10, 10);                 
                        break;                                       
                                                                     
                    case '""" + BIKE_1_SYMBOL + """' :                         
-                       ctx.fillStyle = 'rgba(0, 256, 0, 0.5)';      
+                       ctx.fillStyle = 'rgb(0, 128, 0)';      
                        ctx.fillRect (x, y, 10, 10);                 
-                       ctx.fillStyle = 'rgba(0, 256, 0, 1)';        
+                       ctx.fillStyle = 'rgb(0, 256, 0)';        
                        ctx.fillRect (x+2, y+2, 6, 6);               
                        break;                                       
                                                                     
                    case '""" + BIKE_2_SYMBOL + """' :                         
-                       ctx.fillStyle = 'rgba(256, 0, 0, 0.5)';      
+                       ctx.fillStyle = 'rgb(128, 0, 0)';      
                        ctx.fillRect (x, y, 10, 10);                 
-                       ctx.fillStyle = 'rgba(256, 0, 0, 1)';        
+                       ctx.fillStyle = 'rgb(256, 0, 0)';        
                        ctx.fillRect (x+2, y+2, 6, 6);               
                        break;                                       
                                                                     
@@ -433,6 +433,7 @@ def js () :
                  }                                                                    
                  go_back (function_counter);                                          
                  function_counter--;                                                  
+                 document.getElementById('number_of_moves').innerHTML = function_counter; 
             }                                                                         
 
     function step_forward ()                                                  
@@ -440,6 +441,7 @@ def js () :
                  update_map (function_counter);                                       
                  function_counter++;                                                  
                  function_counter = function_counter % max_number_of_funcs;           
+                 document.getElementById('number_of_moves').innerHTML = function_counter; 
             }"""
     
     # Now the play function

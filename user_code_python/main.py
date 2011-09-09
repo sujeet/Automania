@@ -16,7 +16,7 @@ while(1):
 
 	result = my_bot.play_move(my_info)
 	
-	if result > 4 or result < 1 :
+	if result > 3 or result < 0 :
 
         	print "INVALID"
 	        stdout.flush()
