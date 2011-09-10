@@ -7,8 +7,8 @@ def css () :
          -webkit-border-radius :	10px;                                             
          -moz-box-shadow       :	5px 5px 7px #555555;                              
          -webkit-box-shadow    :	5px 5px 7px #555555;                              
-         width                 :	 """ + str ((MAP_SIZE - 1)*10 + 210)+ """px;             
-         height                :	 """ + str ((MAP_SIZE - 1)*10) + """px;                   
+         width                 :	 """ + str (MAP_SIZE*10 + 210)+ """px;             
+         height                :	 """ + str (MAP_SIZE*10) + """px;                   
          margin                :	 0pt auto;                                        
          padding               :	 20px 10px 20px 20px;                                            
          border                :	 0pt none;                                        
@@ -161,7 +161,7 @@ def legend () :
       </div>""" 
 
 def canvas () :
-    return """<canvas id = 'container' class = 'container' width = '""" + str ((MAP_SIZE-1)*10) + """' height = '""" + str ((MAP_SIZE-1)*10) + """'></canvas>"""
+    return """<canvas id = 'container' class = 'container' width = '""" + str (MAP_SIZE*10) + """' height = '""" + str (MAP_SIZE*10) + """'></canvas>"""
 
 def status_notifier () :
     return """<div class ='status'>                                                                                            

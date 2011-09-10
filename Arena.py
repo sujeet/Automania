@@ -2,6 +2,7 @@ from Map import *
 from Bike import *
 from Constants import *
 from Position import *
+from random import randint
 
 class Arena :
     """ Handles the game simulation. """
@@ -37,10 +38,11 @@ class Arena :
     def _generate_init_posns (self, map) :
         """ Depending on map, generates initial positions
         for teh bikes. """
-        # return (Position (0, 0),
-        #         Position (map.size - 1, map.size - 1))
-        return (Position (3, 3, map.size - 1, map.size - 1),
-                Position (7, 12, map.size - 1, map.size - 1))
+        max_ = map.size - 1
+        x = randint (0, max_ / 3)
+        y = randint (0, max_ / 3)
+        return (Position (x, y, max_, max_),
+                Position (max_ - x, max_ - y, max_, max_))
 
     def get_moves (self, first_move = False) :
         """ Gets moves from each bot driving the bikes. """
