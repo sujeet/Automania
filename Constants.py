@@ -11,6 +11,8 @@ POWER_UP_SYMBOLS = (NITRO,
 LOG_FILE         = "log.txt"
 HTML_FILE        = "log.html"
 
+TRAVERSER_CAPACITY = 10
+
 NORTH            = (0, -1)
 SOUTH            = (0, 1)
 EAST             = (1, 0)

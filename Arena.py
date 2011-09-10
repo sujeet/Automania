@@ -14,7 +14,6 @@ class Arena :
                       Bike (BIKE_2_SYMBOL, init_posns[1], bot_files[1])]
         self.map.set_symbol (self.bikes[0].curr_posn, self.bikes[0].symbol)
         self.map.set_symbol (self.bikes[1].curr_posn, self.bikes[1].symbol)
-        self.power_ups = []
         self.game_over = False
         # Send the initialization info to the bots.
         for bike in self.bikes :
@@ -47,6 +46,15 @@ class Arena :
         for bike in self.bikes :
             bike.get_move (self.map.updates, self.map, first_move)
 
+    def update_powers (self) :
+        """ Updates the power up counts of bikes. """
+        for bike in self.bikes :
+            bot = bike.bot
+            bot.nitro_left = max (0,
+                                  bot.nitro_left - 1)
+            bot.traverser_left = max (0,
+                                      bot.traverser_left - 1)
+
     def _check_for_collisions (self) :
         """ Checks for collisions, and if any,
         sets the appropriate flags. """
@@ -54,10 +62,12 @@ class Arena :
         # since previous move
         for bike in self.bikes :
             symbol_at_new_posn = self.map.get_symbol (bike.curr_posn)
-            bike.is_dead = (symbol_at_new_posn != EMPTY and
-                            symbol_at_new_posn not in POWER_UP_SYMBOLS)
-            if bike.is_dead :
-                self.game_over = True
+            # check for collision only if traverser power is not there
+            if bike.bot.traverser_left == 0 :
+                bike.is_dead = (symbol_at_new_posn != EMPTY and
+                                symbol_at_new_posn not in POWER_UP_SYMBOLS)
+                if bike.is_dead :
+                    self.game_over = True
         # Bikes colliding with someting which has not shown
         # up on the map yet (say, another bike)
         if self.bikes[0].curr_posn == self.bikes[1].curr_posn :

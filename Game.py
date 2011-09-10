@@ -13,6 +13,7 @@ if __name__ == "__main__" :
         arena.get_moves ((i == 0))
         arena.map.updates.reset ()
         arena.make_moves ()
+        arena.update_powers ()
         arena.map.log_updates (0, 0, "$", "$")  
         if arena.game_over == True :
             break

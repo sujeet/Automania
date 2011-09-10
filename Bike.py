@@ -65,3 +65,8 @@ class Bike :
                         and (arena.bikes[0].curr_posn != position)
                         and (arena.bikes[1].curr_posn != position)) :
                         arena.map.set_symbol (position, EMPTY)
+
+        elif power_symbol == TRAVERSER :
+            self.bot.traverser_left += TRAVERSER_CAPACITY + 1
+            # The + 1 is necessary because later, during this move,
+            # it is going to be decreased by 1.
