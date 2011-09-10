@@ -11,9 +11,9 @@ if __name__ == "__main__" :
     for i in xrange (N_TURNS) :
         arena.check_for_bot_crash ()
         arena.get_moves ((i == 0))
-        arena.map.updates.reset ()
         arena.make_moves ()
         arena.update_powers ()
+        arena.turn_count += 1
         arena.map.log_updates (0, 0, "$", "$")  
         if arena.game_over == True :
             break

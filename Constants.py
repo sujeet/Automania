@@ -12,6 +12,7 @@ LOG_FILE         = "log.txt"
 HTML_FILE        = "log.html"
 
 TRAVERSER_CAPACITY = 10
+NITRO_QUANTITY = 30
 
 NORTH            = (0, -1)
 SOUTH            = (0, 1)

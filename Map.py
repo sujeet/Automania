@@ -17,7 +17,7 @@ class Map :
         self._validate ()
         self.size = len (self._map_array)
         self.log_file = open (LOG_FILE, "w")
-        self.updates = Updates ()
+        self.updates = [Updates (), Updates ()]
         # Now, read the map again for the sake of logging
         # TODO : find a better way of doing this.
         for i in range (self.size) :
@@ -72,10 +72,11 @@ class Map :
     def set_symbol (self, position, symbol) :
         """ Sets the given symbol at the given position. """
         self._validate_position (position)
-        self.updates.add (position.x,
-                          position.y,
-                          self.get_symbol (position),
-                          symbol)
+        for update in self.updates :
+            update.add (position.x,
+                        position.y,
+                        self.get_symbol (position),
+                        symbol)
         self.log_updates (position.x,
                           position.y,
                           self.get_symbol (position),

@@ -70,3 +70,8 @@ class Bike :
             self.bot.traverser_left += TRAVERSER_CAPACITY + 1
             # The + 1 is necessary because later, during this move,
             # it is going to be decreased by 1.
+
+        elif power_symbol == NITRO :
+            self.bot.nitro_left += NITRO_QUANTITY + 1
+            # The + 1 is necessary because later, during this move,
+            # it is going to be decreased by 1.

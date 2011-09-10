@@ -118,6 +118,7 @@ class Bot :
         print "waiting for response ..."
         direction = self.process.stdout.readline ()
         print "got response : ", direction
+        updates.reset ()
         try :
             return Constants.__getattribute__ (direction)
         except :

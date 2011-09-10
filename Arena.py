@@ -15,6 +15,7 @@ class Arena :
         self.map.set_symbol (self.bikes[0].curr_posn, self.bikes[0].symbol)
         self.map.set_symbol (self.bikes[1].curr_posn, self.bikes[1].symbol)
         self.game_over = False
+        self.turn_count = 0
         # Send the initialization info to the bots.
         for bike in self.bikes :
             bike.bot.add_to_info_to_send (bike.symbol)
@@ -43,8 +44,13 @@ class Arena :
 
     def get_moves (self, first_move = False) :
         """ Gets moves from each bot driving the bikes. """
-        for bike in self.bikes :
-            bike.get_move (self.map.updates, self.map, first_move)
+        for i in range (2) :
+            bike = self.bikes [i]
+            updates = self.map.updates [i]
+            if (self.bikes[1-i].bot.nitro_left != 0) and (self.turn_count % 2 == 1) :
+                pass
+            else :
+                bike.get_move (updates, self.map, first_move)
 
     def update_powers (self) :
         """ Updates the power up counts of bikes. """
@@ -60,14 +66,20 @@ class Arena :
         sets the appropriate flags. """
         # Bikes colliding with some thing there on the map
         # since previous move
-        for bike in self.bikes :
+        for i in range (2) :
+            bike = self.bikes [i]
             symbol_at_new_posn = self.map.get_symbol (bike.curr_posn)
             # check for collision only if traverser power is not there
             if bike.bot.traverser_left == 0 :
                 bike.is_dead = (symbol_at_new_posn != EMPTY and
                                 symbol_at_new_posn not in POWER_UP_SYMBOLS)
-                if bike.is_dead :
-                    self.game_over = True
+            # bring the bike back to life if it is dead becaule ...
+            # the opponent had nitro and this bike did not move this turn
+            # and hence were declared dead
+            if (bike.is_dead and
+                self.bikes [1-i].bot.nitro_left != 0 and
+                self.turn_count % 2 == 1) :
+                bike.is_dead = False
         # Bikes colliding with someting which has not shown
         # up on the map yet (say, another bike)
         if self.bikes[0].curr_posn == self.bikes[1].curr_posn :
@@ -75,9 +87,15 @@ class Arena :
                 bike.is_dead = True
             self.game_over = True
         # Set the dead symbols on maps accordingly
-        for bike in self.bikes :
+        for i in range (2) :
+            bike = self.bikes [i]
+            other_bike = self.bikes [1-i]
             if bike.is_dead :
+                self.game_over = True
                 self.map.set_symbol (bike.curr_posn, DEAD_SYMBOL)
+                if not other_bike.is_dead :
+                    self.map.set_symbol (other_bike.curr_posn,
+                                         other_bike.symbol)
 
     def _pick_power_ups (self) :
         """ Makes the bikes pick the power-ups if they have
