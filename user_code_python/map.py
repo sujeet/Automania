@@ -22,16 +22,15 @@ class Map:
 
     def set_symbol(self, pos, symbol): #this function updates the map with the given symbol in the given position.
 
-        if pos.x >= self.n or pos.x < 0 or  pos.y >= self.n or pos.y < 0 :
-    		#exception. Disqualify the player?
-	    self.array[pos.x][pos.y] = symbol
+        if pos.x < self.n and pos.x >= 0 and pos.y >= 0 or pos.y < self.n :
+		self.array[pos.x][pos.y] = symbol
 
 
     def get_symbol( self, pos ):  #this function is used to find the element present in a given position in the map.
 
-        if pos.x >= self.n or pos.x < 0 or  pos.y >= self.n or pos.y < 0 :
-		    #exception. Disqualify the player?
-	    return self.array[pos.x][pos.y]
+        if pos.x < self.n and pos.x >= 0 and pos.y >= 0 or pos.y < self.n :
+		return self.array[pos.x][pos.y]
+	return 'W' # this is a warning symbol
 
 
     def moveable_position( self, pos ): #this function is to check whether the given position is a moveable position or not. If the position contains a trail or wall or if the position is out of the bounds of the map, then it is not a moveable

@@ -77,19 +77,19 @@ class bfs:
 
             self.n = self.Q.get()
 
-            if visited[self.n.cur_posn.x][self.n.cur_posn.y] == 1: 
+            if self.visited[self.n.cur_posn.x][self.n.cur_posn.y] == 1: 
                 continue
 
             self.visited[self.n.cur_posn.x][self.n.cur_posn.y] = 1
 
-            if map.get_symbol( self.n.cur_posn ) == POWER1 :
+            if map.get_symbol( self.n.cur_posn ) == TRAVERSER :
 	    	
                 self.traverser_posn.append(self.n.cur_posn)
                 self.traverser_move.append(self.n.initial_move)
                 self.traverser_distance.append(self.n.distance)
 		
 
-            if map.get_symbol( self.n.cur_posn ) == POWER2 :
+            if map.get_symbol( self.n.cur_posn ) == NITRO :
 		
                 self.nitro_posn.append(self.n.cur_posn)
                 self.nitro_move.append(self.n.initial_move)

@@ -1,0 +1,77 @@
+This file gives you various details to help you program easily. You can start coding and refer to this file as and when necessary. But we recommend you to at least skim through this file once even though you may not understand everything. 
+
+In each of the user_code folder, the following classes are defined:
+
+Position, Map, Bfs, Info, BotBrain.
+Each of the classes is briefly explained here.
+You can go through the classes if necessary. Enough comments are added for fast understanding.
+We recommend you to go through each of the class/header files as you read this file.
+
+Go through the constants file first to understand the macros used.
+
+Position class:
+
+This class is to store a specific location and contains the x and y co-ordinate. A simple constructor and initializer function is given. An update function is given to update the current position in the target direction.
+
+Map Class:
+
+This class is used to store and query the map. Initialize function is of little importance for the reader. You can use this class to get the element in the given position (get_symbol function), update a position with a new element ( set_symbol function ). This class can also be used to check if a particular position is moveable or not( if the position contains a trail or wall, you cant move there ). These functions can come very handy when you write the code.
+
+Bfs class:
+
+This class is used only to calculate various details in info class and you need not worry about the implementation.
+
+BotBrain:
+
+This is the class where you are allowed to make changes. You can add functions, new classes if necessary. Make sure to update the .h files too if you are writing in cpp. ( Python users please ignore ) 
+
+Info class:
+
+This class contains a huge amount of information and saves you a lot of coding work. Effective use of the information you get in this class is good enough to build a very good bot.
+We strongly recommend you go through the info.h file in user_code_cpp ( For python users too ) to understand the details passed.
+
+The class contains the following information:
+my_tag - Your symbol in the map.
+enemy_tag - Enemy symbol in the map.
+my_posn - Type: Position. Your position in the map.
+enemy_posn - Type: Position. Enemy position in the map.
+map - Type: Map. This contains the current map. 
+nitro_moves_left - number of moves for which the nitro power lasts for you.
+traversers - number of traversers power available to you.
+
+If you see the info.h(or class definition in case of java and python coders) file, you can find several vectors like 'my_traverser_posn', 'enemy_nitro_distance'. The description for these vectors are given below.
+-if the name starts with 'my', it is a detail about you. else it is about the enemy.
+-these vectors gives details about the power ups ( nitro and traverser ). They are given as sets of three. For example the detail my_nitro is described:
+-my_nitro_distance - vector of distances (shortest possible distance) from your position to all reachable nitro powers.
+-my_nitro_posn - vector of positions of all reachable nitro powers.
+-my_nitro_move - vector of 'first moves' to be made to reach the power in shortest time.Here 'first_move' tells you what move you must make now to reach that power in shortest number of moves
+NOTE1: There is an exact correspondence between these vectors. i.e Eg.if you access second element in each of the vectors, they give details about the exact same element. 
+NOTE2: These vectors are in the sorted order of the distance from the current position. So if you want to find the details of the nearest power, use the details of the first element. Check out the sample bots in botbrain file for a clear explanation.
+
+You can run sample games in your local system before submitting. Check out the readme file for details on how to compile and run. You can change the map if necessary. Make sure that the map is a square and that you updated the constants MAX_X and MAX_Y in the constants file
+
+
+The final move must be returned in the function 'play_move' in the botbrain class. The moves can be one of the directions: NORTH, SOUTH, EAST, WEST.  
+An object of type 'info' called my_info is passed to the function. This contains all the information described which can be used for analyzing the game.
+
+
+Relationship between x co-ordinate y co-ordinate and the directions:
+ ##################################
+ #                                #
+ #  +----------------------> y    #
+ #  |                             #
+ #  |             north           #
+ #  |               ^             #
+ #  |               |             #
+ #  |               |             #
+ #  |    west <-----+-----> east  #
+ #  |               |             #
+ #  |               |             #
+ #  |               V             #
+ #  V             south           #
+ #                                #
+ #  x                             #
+ #                                #
+ ##################################
+
+

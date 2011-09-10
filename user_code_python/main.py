@@ -14,23 +14,23 @@ my_info.compute_details()
 
 while(1):
 
-    result = my_bot.play_move(my_info)
+	result = my_bot.play_move(my_info)
+	
+	if result > 4 or result < 1 :
 
-    if result > 4 or result < 1 :
+        	print "INVALID"
+	        stdout.flush()
 
-        print "INVALID"
-        stdout.flush()
+	else:
 
-    else:
-
-        print res[result]
-        stdout.flush()
+        	print res[result]
+	        stdout.flush()
     
-    my_info.read_info()
+	my_info.read_info()
 
-    if my_info.end_game() > 0 : 
-        break
+	if my_info.end_game() > 0 : 
+        	break
 
-    my_info.compute_details()
+	my_info.compute_details()
 
 

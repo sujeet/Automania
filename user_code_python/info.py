@@ -45,8 +45,8 @@ class Info:
             self.temp = raw_input()
 
         self.a = self.temp.split(' ')
-        self.x = int(self.a[0])
-        self.y = int(self.a[1])
+        self.y = int(self.a[0])
+        self.x = int(self.a[1])
 
     	self.my_posn.initialize(self.x,self.y) 
 	
@@ -55,8 +55,8 @@ class Info:
             self.temp = raw_input()
         
         self.a = self.temp.split(' ')
-        self.x = int(self.a[0])
-        self.y = int(self.a[1])
+        self.y = int(self.a[0])
+        self.x = int(self.a[1])
 
         self.enemy_posn.initialize(self.x,self.y)
 
@@ -70,14 +70,18 @@ class Info:
 
     def read_info(self):   #this function is of little importance to the user.
 
-        self.temp = raw_input()
+	self.temp = raw_input()
         while self.temp == '':
             self.temp = raw_input()
 
         self.num_ip = int(self.temp)
 
         if( self.num_ip == 0 ):
-		    self.game_ended = 1
+		self.game_ended = 1
+		return
+	
+	self.map.set_symbol( self.my_posn, TRAIL )
+	self.map.set_symbol( self.enemy_posn, TRAIL )
 
         for i in range(self.num_ip):	
 
@@ -86,11 +90,12 @@ class Info:
                 self.temp = raw_input()
 
             self.a = self.temp.split(' ')
-            self.x = int(self.a[0])
-            self.y = int(self.a[1])
+            self.y = int(self.a[0])
+            self.x = int(self.a[1])
             self.element = self.a[2]
 
             self.posn = Position(self.x,self.y)
+        
             self.map.set_symbol(self.posn,self.element)
 
             if( self.element == self.my_tag ):

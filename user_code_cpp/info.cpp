@@ -10,39 +10,44 @@ void Info::initial_read()
 
 	cin>>my_tag;	
 	cin>>enemy_tag; 
-	cin>>x>>y;	
+	cin>>y>>x;	
+	cerr<<x<<" "<<y<<" "<<endl<<endl;
 	my_posn.initialize(x,y);
-    cin>>x>>y;		
-    enemy_posn.initialize(x,y);
+	cin>>y>>x;		
+	cerr<<x<<" "<<y<<" "<<endl<<endl;
+	enemy_posn.initialize(x,y);
 	cin>>map_file;	
-	
-    map.initialize(map_file);	
+
+	map.initialize(map_file);	
 }
 
 void Info::read_info()
 {
 	int num_ip;
 	cin>>num_ip;
-	
+
 	if( num_ip == 0 )
 	{
 		game_ended = 1;
 		return;	
 	}
-	
+	map.set_symbol( my_posn, TRAIL );
+	map.set_symbol( enemy_posn, TRAIL );
+
 	for( int i=0;i<num_ip;i++)
 	{
 		int x,y;
 		char element;
-		cin>>x>>y;
+		cin>>y>>x;
 		cin>>element;
-    	Position posn(x,y);
+
+
+		Position posn(x,y);
 		map.set_symbol(posn,element);
 
 		if( element == my_tag )
 		{
 			my_posn.initialize(x,y); 
-
 		}
 
 		if( element == enemy_tag )
@@ -50,7 +55,7 @@ void Info::read_info()
 			enemy_posn.initialize(x,y); 
 		}
 	}
-    cin>>nitro_moves_left>>traversers;
+	cin>>nitro_moves_left>>traversers;
 
 }
 
@@ -67,53 +72,53 @@ void Info::compute_details()
 
 	my_traverser_posn.resize(n);
 	my_traverser_move.resize(n);
-    my_traverser_distance.resize(n);
+	my_traverser_distance.resize(n);
 	for( int i=0;i<n;i++)
 	{
 		my_traverser_posn[i] = player1.traverser_posn[i];
 		my_traverser_move[i] = player1.traverser_move[i];	
-        my_traverser_distance[i] = player1.traverser_distance[i];
+		my_traverser_distance[i] = player1.traverser_distance[i];
 
 	}
-	
+
 	int m = player1.nitro_posn.size();
 
 	my_nitro_posn.resize(m);
 	my_nitro_move.resize(m);
-    my_nitro_distance.resize(m);
+	my_nitro_distance.resize(m);
 	for( int i=0;i<m;i++)
 	{
 		my_nitro_posn[i] = player1.nitro_posn[i];
 		my_nitro_move[i] = player1.nitro_move[i];	
-        my_nitro_distance[i] = player1.nitro_distance[i];
+		my_nitro_distance[i] = player1.nitro_distance[i];
 
 	}
-	
+
 	int p = player2.traverser_posn.size();
 
 	enemy_traverser_posn.resize(p);
 	enemy_traverser_move.resize(p);
-    enemy_traverser_distance.resize(p);
+	enemy_traverser_distance.resize(p);
 	for( int i=0;i<p;i++)
 	{
 		enemy_traverser_posn[i] = player2.traverser_posn[i];
 		enemy_traverser_move[i] = player2.traverser_move[i];	
-        enemy_traverser_distance[i] = player2.traverser_distance[i];
+		enemy_traverser_distance[i] = player2.traverser_distance[i];
 
 	}
-	
+
 	int q = player1.nitro_posn.size();
-	
+
 	enemy_nitro_posn.resize(q);
 	enemy_nitro_move.resize(q);
-    enemy_nitro_distance.resize(q);
+	enemy_nitro_distance.resize(q);
 	for( int i=0;i<q;i++)
 	{
 		enemy_nitro_posn[i] = player2.nitro_posn[i];
 		enemy_nitro_move[i] = player2.nitro_move[i];
-        enemy_nitro_distance[i] = player2.nitro_distance[i];
+		enemy_nitro_distance[i] = player2.nitro_distance[i];
 	}
-			
+
 }
 
 int Info::end_game()

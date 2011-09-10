@@ -9,24 +9,24 @@ void Map::initialize(string file_name ) //this function is on no use to the user
 
 {
 	char c;
-    ifstream map_file;
-    
-    n = MAX_X;
+	ifstream map_file;
 
-    map_file.open (file_name.c_str());
-    c = map_file.get();
+	n = MAX_X;
+
+	map_file.open (file_name.c_str());
+	c = map_file.get();
 	while( c != EOF )
 	{
 		vector <char> temp;
 		while( c != '\n' )
 		{
 			temp.push_back(c);
-            c = map_file.get();
+			c = map_file.get();
 		}
-        
-		
+
+
 		array.push_back( temp );
-        c = map_file.get();
+		c = map_file.get();
 	}
 
 }
