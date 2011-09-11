@@ -15,7 +15,7 @@ int main()
 	while(1)
 	{
 		int result = my_bot.play_move(my_info);
-		if( result > 4 || result < 1 )
+		if( result > 3 || result < 0 )
 			cout<<"INVALID"<<endl << flush;
 		else
 			cout<<res[result]<<endl<<flush;
@@ -29,4 +29,3 @@ int main()
 	}	
 	return 1;
 }
-

@@ -95,29 +95,35 @@ class Bot :
         # if we decide to award points when a certain power
         # -up is taken or something like that.
         self.extra_score = 0    
+        self.traverser_left = 0
+        self.nitro_left = 0
 
     def add_to_info_to_send (self, more_info) :
         """ Appends a newline to info_to_send and then appends the more_info to it."""
         self.info_to_send += linesep + more_info
 
-    def get_move (self, first_move = False) :
+    def get_move (self, updates, first_move = False) :
         """ Communicate with the player code and return the move. """
-        # Temperory stuff
         if (not first_move) :
-            self.add_to_info_to_send ("0 0" + linesep) # 0 moves for nitro 0 gothru powers
-        # End of temperory stuff
+            self.add_to_info_to_send (str (len (updates)))
+            self.add_to_info_to_send (updates.to_bot_format ())
+            self.add_to_info_to_send (str (self.nitro_left) + " "
+                                      + str (self.traverser_left) + linesep)
+
         self.process.stdin.write (self.info_to_send + linesep)
-        # print "sent message : ", self.info_to_send
+        print "bot number : ", self.symbol
+        print "sent message : ", self.info_to_send
         self.process.stdin.flush ()
         self.info_to_send = ""
-        # print "waiting for response ..."
+        print "waiting for response ..."
         direction = self.process.stdout.readline ()
-        # print "got response : ", direction
+        print "got response : ", direction
+        updates.reset ()
         try :
             return Constants.__getattribute__ (direction)
         except :
             try :
                 return Constants.__getattribute__ (direction [:-1])
             except :
-                raise Exception ("Invalid move : " +
-                                 direction)
+                raise AttributeError ("Invalid move : " +
+                                      direction)

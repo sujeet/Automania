@@ -12,10 +12,9 @@ if __name__ == "__main__" :
         arena.check_for_bot_crash ()
         arena.get_moves ((i == 0))
         arena.make_moves ()
-        arena.map.log_symbols (arena.bikes[0].bot.extra_score,
-                               arena.bikes[1].bot.extra_score,
-                               "$",
-                               "$")
+        arena.update_powers ()
+        arena.turn_count += 1
+        arena.map.log_updates (0, 0, "$", "$")  
         if arena.game_over == True :
             break
 
