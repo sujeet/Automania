@@ -35,14 +35,39 @@ class Arena :
                                           + str(init_posns[1-bot_num].y))
             bike.bot.add_to_info_to_send (map_file_name)
 
+    def _generate_random_posns (self, map) :
+        """ Generates a random pair of symmetric positions
+            such that the positions do not conflict with any
+            object in the map and returns the pair.
+        """
+        max_ = map.size - 1
+        while True :
+            x = randint (0, max_ / 3)
+            y = randint (0, max_ / 3)
+            posn1 = Position (x, y, max_, max_)
+            posn2 = Position (max_ - x, max_ - y, max_, max_)
+            if (map.get_symbol (posn1) == EMPTY and
+                map.get_symbol (posn2) == EMPTY) :
+                break
+        return [posn1, posn2]
+            
+    def _map_has_bikes (self, map) :
+        """ Return true if the map has both the bikes (symbols) in it.
+        """
+        return (map.get_count (BIKE_1_SYMBOL) == 1 and
+                map.get_count (BIKE_2_SYMBOL) == 1)
+
     def _generate_init_posns (self, map) :
         """ Depending on map, generates initial positions
-        for teh bikes. """
-        max_ = map.size - 1
-        x = randint (0, max_ / 3)
-        y = randint (0, max_ / 3)
-        return (Position (x, y, max_, max_),
-                Position (max_ - x, max_ - y, max_, max_))
+            for the bikes.
+            -> Return the positions if the map has the bikes in it.
+            -> Else randomly generate symmetric positions and return.
+        """
+        if self._map_has_bikes (map) :
+            return [map.get_position (BIKE_1_SYMBOL),
+                    map.get_position (BIKE_2_SYMBOL)]
+        else :
+            return self._generate_random_posns (map)
 
     def get_moves (self, first_move = False) :
         """ Gets moves from each bot driving the bikes. """

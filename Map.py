@@ -87,3 +87,17 @@ class Map :
         """ Returns the symbol at the position. """
         self._validate_position (position)
         return self._map_array [position.y] [position.x]
+
+    def get_position (self, symbol) :
+        """ Returns the first encountered position of
+            the symbol. (use only on unique symbols for
+            desired results.)
+            Returns None if no symbol found.
+        """
+        for i in range (self.size) :
+            for j in range (self.size) :
+                if self._map_array [i][j] == symbol :
+                    return Position (i, j,
+                                     self.size - 1,
+                                     self.size - 1)
+        return None
