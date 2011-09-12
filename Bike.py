@@ -47,7 +47,12 @@ class Bike :
             self.put_trail_for_html (map)
             # saying prev_pons = curr_posn won't help
 
-        except AttributeError :
+        except InvalidMoveError as error :
+            print "Bike ", self.symbol, " ", error
+            self.is_dead = True
+
+        except BotProcessDiedError as error :
+            print error
             self.is_dead = True
     
     def power_up (self, arena, power_symbol) :

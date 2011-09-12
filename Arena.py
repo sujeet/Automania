@@ -174,5 +174,9 @@ class Arena :
         """ All the aftergame cleanup goes here. """
         self.print_scores ()
         for bike in self.bikes :
-            bike.bot.process.kill ()
+            try :
+                bike.bot.process.kill ()
+            except OSError :
+                # the process was already terminated
+                pass
         self.map.log_file.close ()

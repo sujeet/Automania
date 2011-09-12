@@ -6,6 +6,8 @@ import os
 from os import linesep
 
 import Constants
+from Constants import *
+from CustomExceptions import *
 
 def get_process_for_zip_file (filename) :
     """ The given filename is that of a zip file and the
@@ -37,7 +39,8 @@ def get_process_for_zip_file (filename) :
 
     return subprocess.Popen (["python", output],
                              stdin = subprocess.PIPE,
-                             stdout = subprocess.PIPE)
+                             stdout = subprocess.PIPE,
+                             stderr = sys.stderr)
 
 
 def get_process_according_to_filename (filename) :
@@ -52,13 +55,13 @@ def get_process_according_to_filename (filename) :
     if extension == "py" :
         return subprocess.Popen (["python", filename],
                                  stdin = subprocess.PIPE,
-                                 stdout = subprocess.PIPE)
-                                 # stderr = sys.stderr)
+                                 stdout = subprocess.PIPE,
+                                 stderr = sys.stderr)
     elif extension == "jar" :
         return subprocess.Popen (["java", "-jar", filename],
                                  stdin = subprocess.PIPE,
-                                 stdout = subprocess.PIPE)
-                                 # stderr = sys.stderr)
+                                 stdout = subprocess.PIPE,
+                                 stderr = sys.stderr)
 
     elif extension == "zip" :
         return get_process_for_zip_file (filename)
@@ -68,8 +71,8 @@ def get_process_according_to_filename (filename) :
             # assume the file is an executable and try to run it.
             return subprocess.Popen ([filename],
                                      stdin = subprocess.PIPE,
-                                     stdout = subprocess.PIPE)
-                                     # stderr = sys.stderr)
+                                     stdout = subprocess.PIPE,
+                                     stderr = sys.stderr)
         except :
             raise Exception ("Could not handle the bot file : " +
                              filename)
@@ -102,6 +105,23 @@ class Bot :
         """ Appends a newline to info_to_send and then appends the more_info to it."""
         self.info_to_send += linesep + more_info
 
+    def ensure_running (self) :
+        """ Ensures that the process related the bot is still running.
+            If not running, prints appropriate score (the crashing bot
+            loses) and exits the program.
+        """
+        return_code = self.process.poll ()
+        if return_code != None :
+            # Player 1 dead means score is -1
+            if self.symbol == BIKE_1_SYMBOL :
+                print -1
+            else :
+                print 1
+            raise BotProcessDiedError ("The player with symbol "
+                                       + self.symbol
+                                       + " terminated with exit code "
+                                       + str (return_code))
+
     def get_move (self, updates, first_move = False) :
         """ Communicate with the player code and return the move. """
         if (not first_move) :
@@ -116,7 +136,9 @@ class Bot :
         self.process.stdin.flush ()
         self.info_to_send = ""
         print "waiting for response ..."
+        self.ensure_running ()
         direction = self.process.stdout.readline ()
+        self.ensure_running ()
         print "got response : ", direction
         updates.reset ()
         try :
@@ -125,5 +147,5 @@ class Bot :
             try :
                 return Constants.__getattribute__ (direction [:-1])
             except :
-                raise AttributeError ("Invalid move : " +
-                                      direction)
+                raise InvalidMoveError ("Invalid move : " +
+                                        direction)
