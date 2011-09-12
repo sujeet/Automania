@@ -1,10 +1,15 @@
-#define BIKE_1_SYMBOL 'a'
-#define BIKE_2_SYMBOL 'b'
-#define WALL 'w'
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
+
+
+#define BIKE_1_SYMBOL '1'
+#define BIKE_2_SYMBOL '2'
+#define WALL '#'
 #define TRAIL 't'
 #define EMPTY  '.'
 #define TRAVERSER 'T'
 #define NITRO 'N'
+#define RESET 'R'
 #define NORTH 0
 #define SOUTH 2
 #define WEST 1
@@ -32,3 +37,4 @@
  ##################################
 */
 
+#endif

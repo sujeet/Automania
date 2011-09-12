@@ -1,3 +1,6 @@
+#ifndef POSITION_H
+#define POSITION_H
+
 #include<vector>
 using namespace std;
 
@@ -16,4 +19,4 @@ void update( int ); //this function updates the current position to move in the 
 
 };
 
-
+#endif

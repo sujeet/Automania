@@ -1,3 +1,6 @@
+#ifndef BFS_H
+#define BFS_H
+
 #include<iostream>
 #include<vector>
 #include<queue>
@@ -33,3 +36,5 @@ vector <int> nitro_distance;
 void compute( Map, Position );
 
 };
+
+#endif

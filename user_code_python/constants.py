@@ -1,11 +1,12 @@
  
-BIKE_1_SYMBOL = 'a'
-BIKE_2_SYMBOL = 'b'
-WALL = 'w'
+BIKE_1_SYMBOL = '1'
+BIKE_2_SYMBOL = '2'
+WALL = '#'
 TRAIL = 't'
 EMPTY  = '.'
 TRAVERSER = 'T'
 NITRO = 'N'
+RESET = 'R'
 NORTH = 0
 WEST = 1
 SOUTH = 2

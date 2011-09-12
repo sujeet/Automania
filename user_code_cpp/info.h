@@ -1,3 +1,6 @@
+#ifndef INFO_H
+#define INFO_H
+
 #include<iostream>
 #include<vector>
 #include "bfs.h"
@@ -46,3 +49,5 @@ void compute_details();	//this function is of little importance to the user.
 int end_game();		//this function is of little importance to the user.
 
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef MAP_H
+#define MAP_H
+
 #include<iostream>
 #include<string>
 #include<stdio.h>
@@ -17,3 +20,5 @@ public:
 
 	int moveable_position( Position );  //this function is to check whether the given position is a moveable position or not. If the position contains a trail or wall or if the position is out of the bounds of the map, then it is not a moveable
 };
+
+#endif
