@@ -149,7 +149,7 @@ class Info:
             self.enemy_traverser_move.append( self.player2.traverser_move[i]	)
             self.enemy_traverser_distance.append( self.player2.traverser_distance[i] )
 	
-        self.q = len(self.player1.nitro_posn)
+        self.q = len(self.player2.nitro_posn)
 
         for i in range(self.q):
 	

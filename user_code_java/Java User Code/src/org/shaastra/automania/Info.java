@@ -259,7 +259,7 @@ public class Info {
 
 		}
 		
-		int q = player1.traverser_posn.size();
+		int q = player2.traverser_posn.size();
 		
 		enemy_traverser_posn.clear();
 		enemy_traverser_move.clear();

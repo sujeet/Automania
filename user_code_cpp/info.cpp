@@ -107,7 +107,7 @@ void Info::compute_details()
 
 	}
 
-	int q = player1.nitro_posn.size();
+	int q = player2.nitro_posn.size();
 
 	enemy_nitro_posn.resize(q);
 	enemy_nitro_move.resize(q);
