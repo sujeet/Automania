@@ -39,8 +39,8 @@ def get_process_for_zip_file (filename) :
 
     return subprocess.Popen (["python", output],
                              stdin = subprocess.PIPE,
-                             stdout = subprocess.PIPE,
-                             stderr = sys.stderr)
+                             stdout = subprocess.PIPE)
+                             # stderr = sys.stderr)
 
 
 def get_process_according_to_filename (filename) :
@@ -55,13 +55,13 @@ def get_process_according_to_filename (filename) :
     if extension == "py" :
         return subprocess.Popen (["python", filename],
                                  stdin = subprocess.PIPE,
-                                 stdout = subprocess.PIPE,
-                                 stderr = sys.stderr)
+                                 stdout = subprocess.PIPE)
+                                 # stderr = sys.stderr)
     elif extension == "jar" :
         return subprocess.Popen (["java", "-jar", filename],
                                  stdin = subprocess.PIPE,
-                                 stdout = subprocess.PIPE,
-                                 stderr = sys.stderr)
+                                 stdout = subprocess.PIPE)
+                                 # stderr = sys.stderr)
 
     elif extension == "zip" :
         return get_process_for_zip_file (filename)
@@ -71,8 +71,8 @@ def get_process_according_to_filename (filename) :
             # assume the file is an executable and try to run it.
             return subprocess.Popen ([filename],
                                      stdin = subprocess.PIPE,
-                                     stdout = subprocess.PIPE,
-                                     stderr = sys.stderr)
+                                     stdout = subprocess.PIPE)
+                                     # stderr = sys.stderr)
         except :
             raise Exception ("Could not handle the bot file : " +
                              filename)
@@ -131,21 +131,18 @@ class Bot :
                                       + str (self.traverser_left) + linesep)
 
         self.process.stdin.write (self.info_to_send + linesep)
-        print "bot number : ", self.symbol
-        print "sent message : ", self.info_to_send
+        # print "bot number : ", self.symbol
+        # print "sent message : ", self.info_to_send
         self.process.stdin.flush ()
         self.info_to_send = ""
-        print "waiting for response ..."
+        # print "waiting for response ..."
         self.ensure_running ()
-        direction = self.process.stdout.readline ()
+        direction = self.process.stdout.readline ().strip ()
         self.ensure_running ()
-        print "got response : ", direction
+        # print "got response : ", direction
         updates.reset ()
         try :
             return Constants.__getattribute__ (direction)
         except :
-            try :
-                return Constants.__getattribute__ (direction [:-1])
-            except :
-                raise InvalidMoveError ("Invalid move : " +
-                                        direction)
+            raise InvalidMoveError ("Invalid move : " +
+                                    direction)
