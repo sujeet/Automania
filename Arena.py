@@ -74,7 +74,15 @@ class Arena :
         for i in range (2) :
             bike = self.bikes [i]
             updates = self.map.updates [i]
-            if (self.bikes[1-i].bot.nitro_left != 0) and (self.turn_count % 2 == 1) :
+            # When should we pass?
+            # only when
+            # 1) it is an odd move.
+            # 2) you don't have nitro
+            # 3) your opponent has nitro
+            condition = (self.turn_count % 2 == 1 and
+                         self.bikes[i].bot.nitro_left == 0 and
+                         self.bikes[1-i].bot.nitro_left > 0)
+            if condition :
                 pass
             else :
                 bike.get_move (updates, self.map, first_move)
