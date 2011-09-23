@@ -1,3 +1,4 @@
+TIMEOUT          = 1
 N_TURNS          = 2500
 BIKE_1_SYMBOL    = "1"
 BIKE_2_SYMBOL    = "2"

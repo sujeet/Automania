@@ -4,6 +4,9 @@ import zipfile
 import tempfile
 import os
 from os import linesep
+from datetime import datetime, timedelta
+from threading import Thread
+from time import sleep
 
 import Constants
 from Constants import *
@@ -112,15 +115,11 @@ class Bot :
         """
         return_code = self.process.poll ()
         if return_code != None :
-            # Player 1 dead means score is -1
-            if self.symbol == BIKE_1_SYMBOL :
-                print -1
-            else :
-                print 1
-            raise BotProcessDiedError ("The player with symbol "
-                                       + self.symbol
-                                       + " terminated with exit code "
-                                       + str (return_code))
+            print ("The player with symbol "
+                   + self.symbol
+                   + " terminated with exit code "
+                   + str (return_code))
+            raise BotProcessDiedError (self.symbol)
 
     def get_move (self, updates, first_move = False) :
         """ Communicate with the player code and return the move. """
@@ -131,18 +130,42 @@ class Bot :
                                       + str (self.traverser_left) + linesep)
 
         self.process.stdin.write (self.info_to_send + linesep)
-        # print "bot number : ", self.symbol
-        # print "sent message : ", self.info_to_send
+        print "bot number : ", self.symbol
+        print "sent message : ", self.info_to_send
         self.process.stdin.flush ()
         self.info_to_send = ""
-        # print "waiting for response ..."
+        print "waiting for response ..."
         self.ensure_running ()
-        direction = self.process.stdout.readline ().strip ()
+        # Now, repeatedly check whether the bot has given any
+        # output until we go beyond time limit.
+        output_list = []
+
+        def put_function_output_into_list (function, list_) :
+            list_.append (function ())
+
+        output_collector = Thread (target = put_function_output_into_list,
+                                   args = (self.process.stdout.readline,
+                                           output_list))
+        output_collector.daemon = True  
+        # So the thread is killed when the program is killed
+        start = datetime.now ()
+        output_collector.start ()
+        while (datetime.now () - start) < timedelta (0, TIMEOUT, 0) :
+            if len (output_list) == 1 :
+                break
+            else :
+                sleep (0.01)
+        else :
+            # Execution came here means that the player exceed time limit.
+            print "player", self.symbol , "exceeded time limit."
+            raise BotTimedOutError (self.symbol)
+
+        direction = output_list[0].strip ()
         self.ensure_running ()
-        # print "got response : ", direction
+        print "got response : ", direction
         updates.reset ()
         try :
             return Constants.__getattribute__ (direction)
         except :
-            raise InvalidMoveError ("Invalid move : " +
-                                    direction)
+            print "Invalid move by bot number", self.symbol, ":", direction
+            raise InvalidMoveError (self.symbol)

@@ -37,23 +37,13 @@ class Bike :
     def get_move (self, updates, map, first_move = False) :
         """ Gets the move from the bot.
         Sets the curr_position accordingly. """
-        try :
-            direction = self.bot.get_move (updates, first_move)
-            self.prev_posn = Position (self.curr_posn.x,
-                                       self.curr_posn.y,
-                                       self.curr_posn.max_x,
-                                       self.curr_posn.max_y)
-            self.curr_posn.update (direction)
-            self.put_trail_for_html (map)
-            # saying prev_pons = curr_posn won't help
-
-        except InvalidMoveError as error :
-            print "Bike ", self.symbol, " ", error
-            self.is_dead = True
-
-        except BotProcessDiedError as error :
-            print error
-            self.is_dead = True
+        direction = self.bot.get_move (updates, first_move)
+        self.prev_posn = Position (self.curr_posn.x,
+                                   self.curr_posn.y,
+                                   self.curr_posn.max_x,
+                                   self.curr_posn.max_y)
+        self.curr_posn.update (direction)
+        self.put_trail_for_html (map)
     
     def power_up (self, arena, power_symbol) :
         """ Take appropriate actions depending on

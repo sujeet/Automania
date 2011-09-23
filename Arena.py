@@ -113,6 +113,7 @@ class Arena :
             # and hence were declared dead
             if (bike.is_dead and
                 self.bikes [1-i].bot.nitro_left != 0 and
+                self.bikes [i].bot.nitro_left == 0 and
                 self.turn_count % 2 == 1) :
                 bike.is_dead = False
         # Bikes colliding with someting which has not shown
