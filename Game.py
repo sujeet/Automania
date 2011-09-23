@@ -1,5 +1,6 @@
 import sys
 import os
+import traceback
 
 from Constants import *
 from Arena import *
@@ -22,12 +23,20 @@ if __name__ == "__main__" :
                 break
             
         arena.terminate_game ()
-        os.system ("python log_to_html.py")
         
+    # can't put arena.terminate_game () into
+    # the "finally" clause because it prints the scores.
+    # The judge just looks at the last line of output and
+    # hence errors, if any, should come after the scones.
+    except (BotProcessDiedError,
+            InvalidMoveError,
+            BotTimedOutError), (e) :
+        arena.terminate_game ()
+        print e.code
+
     except :
-        for bike in arena.bikes :
-            try :
-                bike.bot.process.kill ()
-            except OSError :
-                # the process was already terminated
-                pass
+        arena.terminate_game ()
+        traceback.print_exc (file=sys.stdout)
+
+    finally :
+        os.system ("python log_to_html.py")
